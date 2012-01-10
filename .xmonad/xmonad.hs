@@ -20,9 +20,9 @@ myManageHook = composeAll
 myWorkspaces = ["1:main", "2:social", "3:dev", "4:media", "5:monitor", "6", "7", "8"]
 defaultLayout = tiled ||| Mirror tiled ||| Full
   where
-    tiled = avoidStruts $ spacing 5 $ Tall nmaster delta ratio
+    tiled = spacing 5 $ Tall nmaster delta ratio
     nmaster = 1
-    ratio = 2/3
+    ratio = 3/5
     delta = 5/100
 
 mediaLayout = noBorders $ Full
@@ -33,7 +33,7 @@ main = do
   xmonad $ defaultConfig
     { 
       manageHook = insertPosition Below Newer <+> myManageHook
-    , layoutHook = myLayout
+    , layoutHook = avoidStruts $ myLayout
     , logHook = dynamicLogWithPP xmobarPP
       { ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor "green" "" . shorten 150
