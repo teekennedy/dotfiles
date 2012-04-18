@@ -20,7 +20,7 @@ myManageHook = composeAll
 myWorkspaces = ["1:main", "2:social", "3:dev", "4:media", "5:monitor", "6", "7", "8"]
 defaultLayout = tiled ||| Mirror tiled ||| Full
   where
-    tiled = spacing 5 $ Tall nmaster delta ratio
+    tiled = Tall nmaster delta ratio
     nmaster = 1
     ratio = 3/5
     delta = 5/100
@@ -43,7 +43,7 @@ main = do
     , workspaces = myWorkspaces
       -- keeps Minecraft in line
     , startupHook = setWMName "LG3D"
-    , borderWidth        = 2
+    , borderWidth        = 1
       -- border colors set to match 256 color terminal PS1
     , normalBorderColor  = "#0087ff"
     , focusedBorderColor = "#5fd700"

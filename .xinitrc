@@ -3,6 +3,10 @@
 # ~/.xinitrc
 #
 # Executed by startx (run your window manager from here)
+# Arch packages necessary for this to run:
+# [xorg-apps group] - xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
+# [misc] xscreensaver numlockx xcompmgr feh xmonad
+# [AUR] shantz-xwinwrap-bzr
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -18,33 +22,18 @@ export DE='xfce'
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
-start_xmonad()
-{
-	# merge Xresources into urxvt settings
-	xrdb -merge ~/.Xresources
-	# throw in some simple compositing
-	xcompmgr &
-	trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --tint 0x191970 --height 14 &
-	xsetroot -cursor_name left_ptr
-	feh --bg-scale ~/pictures/wallpaper.png
-	xmonad
-}
+# I like automatic numlock
+numlockx
+# merge Xresources into urxvt settings
+xrdb -merge ~/.Xresources
+# throw in some simple compositing
+xcompmgr &
+xscreensaver -no-splash &
 
-start_xfce()
-{
-	exec startxfce4
-}
+xsetroot -cursor_name left_ptr
+# use a screensaver for our background
+xwinwrap -b -fs -sp -fs -nf -ov -- /usr/lib/xscreensaver/klein -root -delay 34513 -view-mode walk -orientation-marks -mode wireframe -appearance solid -colors rainbow -projection-3d orthographic -projection-4d orthographic -walk-speed 1 -root -window-id WID &
+# we can alternatively use a wallpaper
+# feh --bg-scale ~/pictures/wallpaper.png
+xmonad
 
-DEFAULT_SESSION=start_xmonad
-case $1 in
-xmonad)
-	start_xmonad
-	;;
-xfce4)
-	start_xfce
-	;;
-*)
-	$DEFAULT_SESSION
-	;;
-esac

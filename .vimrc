@@ -5,6 +5,7 @@ set nu
 syntax on
 
 " Indent automatically depending on filetype
+set sts=4 ts=4 sw=4 expandtab
 filetype on
 filetype indent on
 filetype plugin on
@@ -20,6 +21,7 @@ set lazyredraw
 
 " Case insensitive search
 set ic
+set smartcase
 
 " display the mode you're in
 set showmode
@@ -33,17 +35,13 @@ set hls
 " Wrap text instead of being on one line
 set lbr
 
-" Automatically change working directory to that of current file.
-" While a little more cryptic, this command has greater plugin
-" Compatibility than its more obvious counterpart (set autochdir)
-autocmd BufEnter * silent! lcd %:p:h
-
 colorscheme molokai
 
-" My favorite font"
 if has("gui_running")
+    " I only want incremental search in the GUI
+    set incsearch
 	if has("gui_gtk2")
-		set guifont=Envy\ Code\ R\ 11
+		set guifont=Terminus\ 10
 	elseif has("gui_win32")
 		set guifont=Envy\ Code\ R:h10:w6
 	endif
@@ -55,3 +53,5 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
+" scons syntax
+au BufNewFile,BufRead SCons* set filetype=scons
