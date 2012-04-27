@@ -23,11 +23,11 @@ if [ -t 1 ]; then
 
 	ncolors=$(tput colors)
 	if ( test -n "$ncolors" && test $ncolors -ge 256 ); then
-		export PS1='\[\033[38;05;33m\]\u\[\033[0m\]@\[\033[38;05;76m\]\h \[\033[38;05;245m\]\w\[\033[38;05;33m\] >>\[\033[0m\] '
+		export PS1='\[\033[38;05;33m\]\u\[\033[0m\]@\[\033[38;05;76m\]\h \[\033[38;05;245m\]\W\[\033[38;05;33m\] >>\[\033[0m\] '
 	elif ( test -n "$ncolors" && test $ncolors -ge 8 ); then
-		export PS1='\[\e[0;34m\]\u\[\e[m\]@\[\e[3;32m\]\h \[\e[m\]\w \[\e[0;34m\]>>\[\e[m\] '
+		export PS1='\[\e[0;34m\]\u\[\e[m\]@\[\e[3;32m\]\h \[\e[m\]\W \[\e[0;34m\]>>\[\e[m\] '
 	else
-		export PS1='\u@\h \w >> '
+		export PS1='\u@\h \W >> '
 	fi
 fi
 
