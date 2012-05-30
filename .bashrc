@@ -5,14 +5,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# git bash completion
+source /usr/share/git/completion/git-completion.bash
 
 # modified commands
 alias diff='colordiff' 				# requires colordiff package
 alias grep='grep --color=auto'
-alias df='df -h'
-alias du='du -h -c'
-alias mkdir='mkdir -p -v'
-alias ping='ping -c 5'
 alias ls='ls --color=auto'
 alias g='gvim --remote-silent'
 alias v='vim --remote-silent'
