@@ -37,10 +37,6 @@ set lbr
 
 colorscheme molokai
 
-" When the page starts to scroll, keep the cursor 8 lines from
-" the top and 8 lines from the bottom
-set scrolloff=8
-
 " Turn off highlight search
 nmap  ,n :set invhls<CR>:set hls?<CR>
 
@@ -61,6 +57,35 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+" function to insert a C/C++ header file guard
+function! s:InsertGuard()
+    let randlen = 7
+    let randnum = system("xxd -c " . randlen * 2 . " -l " . randlen . " -p /dev/urandom")
+    let randnum = strpart(randnum, 0, randlen * 2)
+    let fname = expand("%")
+    let lastslash = strridx(fname, "/")
+    if lastslash >= 0
+        let fname = strpart(fname, lastslash+1)
+    endif
+    let fname = substitute(fname, "[^a-zA-Z0-9]", "_", "g")
+    let randid = toupper(fname . "_" . randnum)
+    exec 'norm O#ifndef ' . randid
+    exec 'norm o#define ' . randid
+    exec 'norm o'
+    let origin = getpos('.')
+    exec '$norm o#endif /* ' . randid . ' */'
+    norm o
+    -norm O
+    call setpos('.', origin)
+    norm w
+endfunction
+
+noremap <silent> <F12>  :call <SID>InsertGuard()<CR>
+inoremap <silent> <F12>  <Esc>:call <SID>InsertGuard()<CR>
+
+" generate ctags recursively at the current working directory
+nmap <silent> <F8> :silent !ctags -R<CR>
 
 "-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
