@@ -1,4 +1,4 @@
-" Turn on line numbering. Turn it off with "set nonu"
+" Turn on line numbering. Turn it off with set nonu
 set nu
 
 " Set syntax on
@@ -12,6 +12,9 @@ filetype plugin on
 set autoindent
 set smartindent
 set smarttab
+
+" Wrap lines longer than 79 characters
+set tw=79
 
 " Allow for switching buffers without saving
 set hidden
@@ -41,12 +44,13 @@ colorscheme molokai
 nmap  ,n :set invhls<CR>:set hls?<CR>
 
 if has("gui_running")
+    set cc=+1
     " I only want incremental search in the GUI
     set incsearch
     " I'm not a fan of the toolbar I never use stealing screen real estate
     set guioptions=ac
 	if has("gui_gtk2")
-		set guifont=Terminus\ 10
+		set guifont=Terminus\ 9
 	elseif has("gui_win32")
 		set guifont=Envy\ Code\ R:h10:w6
 	endif
@@ -86,6 +90,8 @@ inoremap <silent> <F12>  <Esc>:call <SID>InsertGuard()<CR>
 
 " generate ctags recursively at the current working directory
 nmap <silent> <F8> :silent !ctags -R<CR>
+" remove trailing whitespace from a file
+nmap <silent> ,w :%s/\s\+$<CR>
 
 "-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
