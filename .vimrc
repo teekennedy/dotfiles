@@ -40,20 +40,17 @@ set lbr
 
 colorscheme molokai
 
-" Turn off highlight search
-nmap  ,n :set invhls<CR>:set hls?<CR>
-
 if has("gui_running")
     set cc=+1
     " I only want incremental search in the GUI
     set incsearch
     " I'm not a fan of the toolbar I never use stealing screen real estate
     set guioptions=ac
-	if has("gui_gtk2")
-		set guifont=Terminus\ 9
-	elseif has("gui_win32")
-		set guifont=Envy\ Code\ R:h10:w6
-	endif
+    if has("gui_gtk2")
+        set guifont=Terminus\ 9
+    elseif has("gui_win32")
+        set guifont=Envy\ Code\ R:h10:w6
+    endif
 endif
 
 " ruby
@@ -90,7 +87,11 @@ inoremap <silent> <F12>  <Esc>:call <SID>InsertGuard()<CR>
 
 " generate ctags recursively at the current working directory
 nmap <silent> <F8> :silent !ctags -R<CR>
-" remove trailing whitespace from a file
+
+" Toggle highlight search
+nmap ,n :set invhls<CR>:set hls?<CR>
+
+" Remove trailing whitespace
 nmap <silent> ,w :%s/\s\+$<CR>
 
 "-----------------------------------------------------------------------------
@@ -109,6 +110,12 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
                    \ '^Thumbs\.db$', '^\.sconsign\.dblite$',
                    \ '\.swp$', '\.lib$' ]
+
+"-----------------------------------------------------------------------------
+" clang_complete plugin Settings
+"-----------------------------------------------------------------------------
+
+let g:clang_use_library=1
 
 " scons syntax
 au BufNewFile,BufRead SCons* set filetype=scons
