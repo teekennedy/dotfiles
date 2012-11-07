@@ -32,11 +32,16 @@ fi
 # yaourt complains if I don't set this to something.
 export EDITOR="vim"
 
+# for locally installed packages
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+
 # remove all previous duplicates in command history before saving the current one
 export HISTCONTROL="erasedups"
+
+# needed for TwinView
+export SDL_VIDEO_FULLSCREEN_HEAD=1
 
 # have easy access to projects
 export CDPATH=".:~:~/Dropbox/dev/68k/Projects"
 
-export TIGCC="/usr/local/share/gcc4ti"
-export PATH="$PATH:$TIGCC/bin"
+export PATH="~/bin:$PATH"
