@@ -8,6 +8,9 @@
 # [misc] xscreensaver numlockx xcompmgr feh xmonad
 # [AUR] shantz-xwinwrap-bzr
 
+# All machine-specific xinit instructions go here:
+. ./.xinitrc-details
+
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
     [ -x "$f" ] && . "$f"
@@ -17,6 +20,12 @@ fi
 
 # use all the same default apps as Xfce does
 export DE='xfce'
+
+# for locally installed packages
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# needed for TwinView SDL gaming
+export SDL_VIDEO_FULLSCREEN_HEAD=1
 
 #include fonts such as terminus
 xset +fp /usr/share/fonts/local
