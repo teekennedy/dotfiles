@@ -88,6 +88,9 @@ inoremap <silent> <F12>  <Esc>:call <SID>InsertGuard()<CR>
 " generate ctags recursively at the current working directory
 nmap <silent> <F8> :silent !ctags -R<CR>
 
+" build a project. Only useful if makeprg is set
+nmap <F6> :make<CR>
+
 " Toggle highlight search
 nmap ,n :set invhls<CR>:set hls?<CR>
 
