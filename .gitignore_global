@@ -1,0 +1,39 @@
+# built binaries
+*.o
+*.a
+*.lib
+*.so
+*.pyc
+*.exe
+*.dll
+
+# packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# logs and db
+*.log
+*.sql
+*.sqlite
+
+# temporary files
+*~
+*.swp
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+
+# dev project files
+tags
+.clang_complete

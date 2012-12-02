@@ -23,3 +23,5 @@ do
     [[ $f == ".config" ]] && f=$f/herbstluftwm
     backup_and_symlink $f
 done
+
+backup_and_symlink .gitignore_global
