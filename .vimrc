@@ -1,3 +1,6 @@
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
 " Turn on line numbering. Turn it off with set nonu
 set nu
 
@@ -6,9 +9,7 @@ syntax on
 
 " Indent automatically depending on filetype
 set sts=4 ts=4 sw=4 expandtab
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 set autoindent
 set smartindent
 set smarttab
