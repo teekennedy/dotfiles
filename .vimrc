@@ -1,11 +1,13 @@
+" All plugins managed using git submodules and added using pathogen,
+" which is a submodule itself.
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
-" Turn on line numbering. Turn it off with set nonu
-set nu
+set nocp " turn off vi compatibility
+set nu " Turn on line numbering. (nu|nonu)
 
-" Set syntax on
-syntax on
+syntax on " Set syntax on
 
 " Indent automatically depending on filetype
 set sts=4 ts=4 sw=4 expandtab
@@ -14,37 +16,27 @@ set autoindent
 set smartindent
 set smarttab
 
-" Wrap lines longer than 79 characters
-set tw=79
+set tw=79 " Wrap lines longer than 79 characters
 
-" Allow for switching buffers without saving
-set hidden
+set hidden " Allow for switching buffers without saving
 
-" Don't update display while executing macros
-set lazyredraw
+set lazyredraw " Don't update display while executing macros
 
-" Case insensitive search
+" Smart case search
 set ic
 set smartcase
 
-" display the mode you're in
-set showmode
+set wildmenu " enhanced command-line completion
 
-" enhanced command-line completion
-set wildmenu
+set hls " Higlhight search
 
-" Higlhight search
-set hls
-
-" Wrap text instead of being on one line
-set lbr
+set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 
 colorscheme molokai
 
 if has("gui_running")
-    set cc=+1
-    " I only want incremental search in the GUI
-    set incsearch
+    set cc=+1 " highlight vertical column at textwidth + 1
+    set incsearch " I only want incremental search in the GUI
     " I'm not a fan of the toolbar I never use stealing screen real estate
     set guioptions=ac
     if has("gui_gtk2")
@@ -99,27 +91,32 @@ nmap ,n :set invhls<CR>:set hls?<CR>
 nmap <silent> ,w :%s/\s\+$<CR>
 
 "-----------------------------------------------------------------------------
+" supertab Plugin Settings
+"-----------------------------------------------------------------------------
+
+" not technically a supertab setting, but very related
+set completeopt=longest,menuone " select longest option, always show menu
+
+"-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
 "-----------------------------------------------------------------------------
 " Toggle the NERD Tree on an off with F7
 nmap <F7> :NERDTreeToggle<CR>
 
-" Close the NERD Tree with Shift-F7
-nmap <S-F7> :NERDTreeClose<CR>
-
-" Show the bookmarks table on startup
-let NERDTreeShowBookmarks=1
+let NERDTreeQuitOnOpen=1    " Disappear on file open
+let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
 
 " Don't display these kinds of files
 let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
                    \ '^Thumbs\.db$', '^\.sconsign\.dblite$',
                    \ '\.swp$', '\.lib$' ]
 
-"-----------------------------------------------------------------------------
-" clang_complete plugin Settings
-"-----------------------------------------------------------------------------
-
-let g:clang_use_library=1
-
 " scons syntax
 au BufNewFile,BufRead SCons* set filetype=scons
+
+"-----------------------------------------------------------------------------
+" clang_complete Plugin Settings
+"-----------------------------------------------------------------------------
+
+let g:clang_user_options='|| exit 0'
+let g:clang_auto_select=1
