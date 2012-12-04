@@ -90,20 +90,18 @@ nmap ,n :set invhls<CR>:set hls?<CR>
 " Remove trailing whitespace
 nmap <silent> ,w :%s/\s\+$<CR>
 
-"-----------------------------------------------------------------------------
-" supertab Plugin Settings
-"-----------------------------------------------------------------------------
+" Supertab Plugin settings
 
-" not technically a supertab setting, but very related
+" let g:SuperTabDefaultCompletionType="context"
+" let g:SuperTabLongestHighlight=1
+
 set completeopt=longest,menuone " select longest option, always show menu
 
-"-----------------------------------------------------------------------------
 " NERD Tree Plugin Settings
-"-----------------------------------------------------------------------------
+
 " Toggle the NERD Tree on an off with F7
 nmap <F7> :NERDTreeToggle<CR>
 
-let NERDTreeQuitOnOpen=1    " Disappear on file open
 let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
 
 " Don't display these kinds of files
@@ -114,9 +112,13 @@ let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
 " scons syntax
 au BufNewFile,BufRead SCons* set filetype=scons
 
-"-----------------------------------------------------------------------------
 " clang_complete Plugin Settings
-"-----------------------------------------------------------------------------
 
 let g:clang_user_options='|| exit 0'
 let g:clang_auto_select=1
+
+" Vim sessions Plugin Settings
+
+let g:session_autoload='no'
+let g:session_autosave='no'
+let g:session_persist_globals=['&makeprg']
