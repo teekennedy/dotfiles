@@ -92,10 +92,10 @@ nmap <silent> ,w :%s/\s\+$<CR>
 
 " Supertab Plugin settings
 
-" let g:SuperTabDefaultCompletionType="context"
-" let g:SuperTabLongestHighlight=1
+set completeopt=longest,menu " select longest option, always show menu
 
-set completeopt=longest,menuone " select longest option, always show menu
+let g:SuperTabDefaultCompletionType="context"
+let g:SuperTabLongestEnhanced=1
 
 " NERD Tree Plugin Settings
 
@@ -115,7 +115,7 @@ au BufNewFile,BufRead SCons* set filetype=scons
 " clang_complete Plugin Settings
 
 let g:clang_user_options='|| exit 0'
-let g:clang_auto_select=1
+let g:clang_complete_auto=0
 
 " Vim sessions Plugin Settings
 
