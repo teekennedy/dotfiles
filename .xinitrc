@@ -30,6 +30,9 @@ export SDL_VIDEO_FULLSCREEN_HEAD=1
 # needed for Minecraft
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# needed for Steam
+export SDL_AUDIODRIVER=alsa
+
 #include fonts such as terminus
 xset +fp /usr/share/fonts/local
 xset fp rehash
