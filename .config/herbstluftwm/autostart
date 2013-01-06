@@ -9,8 +9,8 @@ function hc() {
 
 hc emit_hook reload
 
-# xsetroot -solid '#5A8E3A'
-feh --bg-fill ~/pictures/wallpaper.png
+# Use a random wallpaper from ~/pictures/wallpaper/
+feh --bg-fill --no-xinerama "$(find ~/pictures/wallpaper -regex ".*\.\(jpg\|jpeg\|png\)" | shuf -n1)"
 
 
 # remove all existing keybindings
