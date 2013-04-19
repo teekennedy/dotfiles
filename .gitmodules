@@ -33,7 +33,7 @@
 	url = https://github.com/xolox/vim-session.git
 [submodule ".vim/bundle/snippets"]
 	path = .vim/bundle/snippets
-	url = https://github.com/honza/snipmate-snippets.git
+	url = https://github.com/tkennedy/vim-snippets
 [submodule ".vim/bundle/tlib_vim"]
 	path = .vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
