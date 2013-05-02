@@ -15,10 +15,8 @@ function backup_and_symlink
     ln -s $dotfiles_dir/$1 $dest
 }
 
-for f in $( ls -A | egrep '^\.' )
+for f in $( ls -A | egrep '^\.' | grep -v 'git' )
 do
-    # don't symlink this project's git files
-    [[ $f == .git* ]] && continue
     # don't symlink the entire .config directory
     [[ $f == ".config" ]] && f=$f/herbstluftwm
     backup_and_symlink $f
