@@ -1,4 +1,5 @@
 urxvt.depth: 32
+urxvt.print-pipe: "cat > /dev/null"
 urxvt*background: rgba:0000/0000/0000/dddd
 urxvt*blurRadius: 5
 urxvt*scrollBar: false
