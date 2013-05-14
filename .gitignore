@@ -2,4 +2,5 @@
 .vim/.VimballRecord
 .vim/.netrwhist
 .vim/doc/*
+.vim/snippets/*
 
