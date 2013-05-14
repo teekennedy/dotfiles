@@ -15,6 +15,7 @@
 *.jar
 *.rar
 *.tar
+*.xz
 *.zip
 
 # logs and db
