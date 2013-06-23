@@ -5,8 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# git bash completion
-source /usr/share/git/completion/git-completion.bash
+[ -e $BASH_SOURCE-details ] && source $BASH_SOURCE-details
 
 # modified commands
 alias diff='colordiff' 				# requires colordiff package
