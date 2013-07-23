@@ -4,12 +4,12 @@
 #
 # Executed by startx (run your window manager from here)
 # Arch packages necessary for this to run:
-# [xorg-apps group] - xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
-# [misc] xscreensaver numlockx xcompmgr feh xmonad
-# [AUR] shantz-xwinwrap-bzr
+# [xorg-apps group] - xorg-xset xorg-xsetroot xorg-xrdb
+# [misc] xscreensaver numlockx xcompmgr feh
 
 # All machine-specific xinit instructions go here:
-. ./.xinitrc-details
+fn=`basename $0`
+[ -x ./.$fn-details ] && ./.$fn-details
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -45,9 +45,14 @@ xrdb -merge ~/.Xresources
 xcompmgr &
 xscreensaver -no-splash &
 
-# use a screensaver for our background
-# xwinwrap -b -fs -sp -fs -nf -ov -- /usr/lib/xscreensaver/klein -root -delay 34513 -view-mode walk -orientation-marks -mode wireframe -appearance solid -colors rainbow -projection-3d orthographic -projection-4d orthographic -walk-speed 1 -root -window-id WID &
-# we can alternatively use a wallpaper
-# feh --bg-scale ~/pictures/wallpaper.png
+# use a random wallpaper for the background
+feh --bg-fill \
+    --no-xinerama \
+    "$(find ~/pictures/wallpaper -regex ".*\.\(jpg\|jpeg\|png\)" | shuf -n1)"
+#set status bar
+while true; do
+    xsetroot -name "$(date +%R)"
+    sleep 50
+done &
 
-exec herbstluftwm
+exec dwm

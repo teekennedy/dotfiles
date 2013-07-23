@@ -1,3 +1,3 @@
 #!/bin/bash
 
-makepkg -efi --skipinteg
+makepkg -fi --skipinteg

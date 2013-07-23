@@ -1,10 +1,9 @@
-# $Id: PKGBUILD 60970 2011-12-19 21:33:58Z spupykin $
 # Original Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Mutilator: Terrance Kennedy <cyphus _at_ cyph _dot_ us>
 
 pkgname=cyphus-dwm-git
 _gitname=cyphus-dwm
-pkgver=1621.6b3c5ee
+pkgver=1626.c2767c3
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -14,7 +13,6 @@ options=(zipman)
 conflicts=('dwm')
 depends=('libx11' 'libxinerama')
 makedepends=('git')
-source=( 'git+https://github.com/tkennedy/cyphus-dwm.git' )
 
 pkgver() {
   cd $_gitname

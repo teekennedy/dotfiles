@@ -33,7 +33,7 @@
 	url = https://github.com/xolox/vim-session.git
 [submodule ".vim/bundle/snippets"]
 	path = .vim/bundle/snippets
-	url = https://github.com/tkennedy/vim-snippets
+	url = https://github.com/cyphus/vim-snippets
 [submodule ".vim/bundle/tlib_vim"]
 	path = .vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/align"]
 	path = .vim/bundle/align
 	url = https://github.com/vim-scripts/Align.git
+[submodule "dwm/src/cyphus-dwm"]
+	path = dwm/src/cyphus-dwm
+	url = https://github.com/cyphus/cyphus-dwm.git
