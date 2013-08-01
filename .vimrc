@@ -8,6 +8,8 @@ set nocp " turn off vi compatibility
 set nu " Turn on line numbering. (nu|nonu)
 
 syntax on " Set syntax on
+" Don't flag curly braces inside parenthesis (i.e. C++11 syntax) as error
+let c_no_curly_error=1
 
 " Indent automatically depending on filetype
 set sts=4 ts=4 sw=4 expandtab
@@ -59,18 +61,29 @@ function! s:InsertGuard()
     let randnum = strpart(randnum, 0, randlen * 2)
     let fname = expand("%")
     let lastslash = strridx(fname, "/")
+    let authorname = system("git config user.name")
+    let authorname = strpart( authorname, 0, len(authorname) - 1 )
+    let authoremail = Strip(system("git config user.email"))
+    let authoremail = strpart( authoremail, 0, len(authoremail) - 1 )
+    let author = authorname . ' <' . authoremail . '>'
+    let date = system('date "+%Y-%m-%d"')
+    let date = strpart( date, 0, len(date) - 1 )
     if lastslash >= 0
         let fname = strpart(fname, lastslash+1)
     endif
+    norm ggO/**
+    exec 'norm o@file ' . fname
+    exec 'norm o@author ' . author
+    exec 'norm o@date ' . date
+    norm o/
     let fname = substitute(fname, "[^a-zA-Z0-9]", "_", "g")
     let randid = toupper(fname . "_" . randnum)
-    exec 'norm O#ifndef ' . randid
+    exec 'norm o#ifndef ' . randid
     exec 'norm o#define ' . randid
     exec 'norm o'
     let origin = getpos('.')
-    exec '$norm o#endif /* ' . randid . ' */'
-    norm o
-    -norm O
+    exec '$norm Go#endif /* ' . randid . ' */'
+    norm O
     call setpos('.', origin)
     norm w
 endfunction
