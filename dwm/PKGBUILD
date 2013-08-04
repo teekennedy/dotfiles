@@ -3,7 +3,7 @@
 
 pkgname=cyphus-dwm-git
 _gitname=cyphus-dwm
-pkgver=1626.c2767c3
+pkgver=1627.075e760
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
