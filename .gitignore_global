@@ -38,4 +38,4 @@ ehthumbs.db
 
 # dev project files
 tags
-.clang_complete
+.ycm_extra_conf.py

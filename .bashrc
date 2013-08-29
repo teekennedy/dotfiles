@@ -30,6 +30,9 @@ fi
 
 export EDITOR="vim"
 
+# start ssh agent
+eval $(ssh-agent) > /dev/null
+
 # remove all previous duplicates in command history before saving the current one
 export HISTCONTROL="erasedups"
 export HISTFILESIZE=2500

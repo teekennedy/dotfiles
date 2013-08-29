@@ -106,12 +106,11 @@ nmap ,n :set invhls<CR>:set hls?<CR>
 " Remove trailing whitespace
 nmap <silent> ,w :%s/\s\+$<CR>
 
-" Supertab Plugin settings
+" You complete me plugin settings
 
-set completeopt=longest,menu " select longest option, always show menu
-
-let g:SuperTabDefaultCompletionType="context"
-let g:SuperTabLongestEnhanced=1
+let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
+let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
 
 " NERD Tree Plugin Settings
 
@@ -127,11 +126,6 @@ let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
 
 " scons syntax
 au BufNewFile,BufRead SCons* set filetype=scons
-
-" clang_complete Plugin Settings
-
-let g:clang_user_options='|| exit 0'
-let g:clang_complete_auto=0
 
 " Vim sessions Plugin Settings
 
