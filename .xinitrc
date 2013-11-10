@@ -37,6 +37,9 @@ export SDL_AUDIODRIVER=alsa
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
+# set right alt as the compose key
+setxkbmap -option compose:ralt
+
 # I like automatic numlock
 numlockx
 # merge Xresources into urxvt settings
