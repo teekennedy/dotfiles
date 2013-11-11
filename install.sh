@@ -1,12 +1,13 @@
 #!/bin/bash
 
-dotfiles_dir=$( dirname $( readlink -f $0 ) )
+dotfiles_dir=$( cd "$(dirname "$0")" ; pwd -P )
 cd $dotfiles_dir
 
 function backup_and_symlink
 {
     dest="$HOME/$1"
-    [ -h $dest ] && return
+    echo $dest
+    [ -L $dest ] && return
     if [ -e $dest ]; then
         echo "Backing up $dest to $dest.bak..."
         mv $dest $dest.bak
@@ -17,8 +18,6 @@ function backup_and_symlink
 
 for f in $( ls -A | egrep '^\.' | grep -v 'git' )
 do
-    # don't symlink the entire .config directory
-    [[ $f == ".config" ]] && f=$f/herbstluftwm
     backup_and_symlink $f
 done
 
