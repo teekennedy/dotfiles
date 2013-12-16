@@ -14,6 +14,9 @@ alias ls='ls --color=auto'
 alias g='gvim --remote-silent'
 alias v='vim --remote-silent'
 
+# vi keybindings in bash
+set -o vi
+
 # Custom PS1
 # Checks for 256 color terminal
 if [ -t 1 ]; then
