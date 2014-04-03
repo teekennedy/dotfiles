@@ -11,6 +11,12 @@ urxvt*perl-ext-common:    default,matcher
 urxvt*urlLauncher:        chromium
 urxvt*matcher.button:     1
 
+! Scroll settings
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+urxvt*saveLines: 10000
+
 ! Molokai theme
 urxvt*foreground: #d0d0d0
 urxvt*cursorColor: #8000BA
