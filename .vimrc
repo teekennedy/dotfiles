@@ -28,6 +28,10 @@ set lazyredraw " Don't update display while executing macros
 set ic
 set smartcase
 
+" The following help avoid 'Hit ENTER to continue' status messages:
+set shortmess=a " Shorten status messages
+set cmdheight=2 " More status message lines (default is 1)
+
 set wildmenu " enhanced command-line completion
 
 set hls " Higlhight search
