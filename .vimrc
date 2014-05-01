@@ -157,6 +157,9 @@ let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
 " scons syntax
 au BufNewFile,BufRead SCons* set filetype=scons
 
+" waf syntax
+au BufNewFile,BufRead wscript set filetype=python
+
 " Vim sessions Plugin Settings
 
 let g:session_autoload='no'
