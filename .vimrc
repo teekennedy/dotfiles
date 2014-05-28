@@ -65,23 +65,11 @@ function! s:InsertGuard()
     let randnum = strpart(randnum, 0, randlen * 2)
     let fname = expand("%")
     let lastslash = strridx(fname, "/")
-    let date = system('date "+%Y-%m-%d"')
-    let date = strpart( date, 0, len(date) - 1 )
     if lastslash >= 0
         let fname = strpart(fname, lastslash+1)
     endif
     norm ggO/**
     exec 'norm o@file ' . fname
-    silent !git rev-parse --git-dir
-    if v:shell_error == 0 " only attempt to add author if we're in a git dir
-        let authorname = system("git config user.name")
-        let authorname = strpart( authorname, 0, len(authorname) - 1 )
-        let authoremail = system("git config user.email")
-        let authoremail = strpart( authoremail, 0, len(authoremail) - 1 )
-        let author = authorname . ' <' . authoremail . '>'
-        exec 'norm o@author ' . author
-    endif
-    exec 'norm o@date ' . date
     norm o/
     let fname = substitute(fname, "[^a-zA-Z0-9]", "_", "g")
     let randid = toupper(fname . "_" . randnum)
