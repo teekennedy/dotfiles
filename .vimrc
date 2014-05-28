@@ -8,7 +8,7 @@ set nocp " turn off vi compatibility
 set nu " Turn on line numbering. (nu|nonu)
 
 syntax on " Set syntax on
-" Don't flag curly braces inside parenthesis (i.e. C++11 syntax) as error
+" Don't flag curly braces inside parenthesis (i.e. C++11 lambda) as error
 let c_no_curly_error=1
 
 " Indent automatically depending on filetype
