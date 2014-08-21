@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/molokai"]
 	path = .vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
-[submodule ".themes"]
-	path = .themes
-	url = https://github.com/seanyeh/gtk2-theme-aphotic.git
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
