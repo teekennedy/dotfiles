@@ -13,6 +13,7 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias g='gvim --remote-silent'
 alias v='vim --remote-silent'
+alias startx='ssh-agent startx'
 
 # vi keybindings in bash
 set -o vi
@@ -32,9 +33,6 @@ if [ -t 1 ]; then
 fi
 
 export EDITOR="vim"
-
-# start ssh agent
-eval $(ssh-agent) > /dev/null
 
 # remove all previous duplicates in command history before saving the current one
 export HISTCONTROL="erasedups"
