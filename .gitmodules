@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/tracwiki"]
 	path = .vim/bundle/tracwiki
 	url = git@github.com:vim-scripts/tracwiki.git
+[submodule ".vim/bundle/salt"]
+	path = .vim/bundle/salt
+	url = git@github.com:saltstack/salt-vim.git
