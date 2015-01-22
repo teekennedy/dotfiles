@@ -39,3 +39,6 @@ export HISTCONTROL="erasedups"
 export HISTFILESIZE=2500
 
 export PATH="~/bin:$PATH"
+
+# function to query available packages
+nix? (){ nix-env -qa \* -P | fgrep -i "$1"; }
