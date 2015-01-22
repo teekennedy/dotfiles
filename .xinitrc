@@ -16,9 +16,6 @@ fi
 # use all the same default apps as Xfce does
 export DE='xfce'
 
-# for locally installed packages
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-
 # needed for TwinView SDL gaming
 export SDL_VIDEO_FULLSCREEN_HEAD=1
 
@@ -27,10 +24,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # needed for Steam
 export SDL_AUDIODRIVER=alsa
-
-#include fonts such as terminus
-xset +fp /usr/share/fonts/local
-xset fp rehash
 
 # set right alt as the compose key
 setxkbmap -option compose:ralt
