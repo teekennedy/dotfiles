@@ -1,38 +1,38 @@
-urxvt.depth: 32
-urxvt.print-pipe: "cat > /dev/null"
-urxvt*background: rgba:0000/0000/0000/dddd
-urxvt*blurRadius: 5
-urxvt*scrollBar: false
-urxvt*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
-urxvt*boldFont: -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1
+URxvt.depth: 32
+URxvt.print-pipe: "cat > /dev/null"
+URxvt*background: rgba:0000/0000/0000/dddd
+URxvt*blurRadius: 5
+URxvt*scrollBar: false
+URxvt*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
+URxvt*boldFont: -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1
 
-urxvt*perl-lib:           /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:    default,matcher
-urxvt*urlLauncher:        chromium
-urxvt*matcher.button:     1
+URxvt*perl-lib:           /usr/lib/urxvt/perl/
+URxvt*perl-ext-common:    default,matcher
+URxvt*urlLauncher:        chromium
+URxvt*matcher.button:     1
 
 ! Scroll settings
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
-urxvt*saveLines: 10000
+URxvt*saveLines: 10000
 
 ! Molokai theme
-urxvt*foreground: #d0d0d0
-urxvt*cursorColor: #8000BA
-urxvt*color0: #101010
-urxvt*color1: #960050
-urxvt*color2: #66aa11
-urxvt*color3: #c47f2c
-urxvt*color4: #30309b
-urxvt*color5: #7e40a5
-urxvt*color6: #89b6e2
-urxvt*color7: #9999aa
-urxvt*color8: #303030
-urxvt*color9: #ff0090
-urxvt*color10: #80ff00
-urxvt*color11: #ffba68
-urxvt*color12: #5f5fee
-urxvt*color13: #bb88dd
-urxvt*color14: #4eb4fa
-urxvt*color15: #d0d0d0
+URxvt*foreground: #d0d0d0
+URxvt*cursorColor: #8000BA
+URxvt*color0: #101010
+URxvt*color1: #960050
+URxvt*color2: #66aa11
+URxvt*color3: #c47f2c
+URxvt*color4: #30309b
+URxvt*color5: #7e40a5
+URxvt*color6: #89b6e2
+URxvt*color7: #9999aa
+URxvt*color8: #303030
+URxvt*color9: #ff0090
+URxvt*color10: #80ff00
+URxvt*color11: #ffba68
+URxvt*color12: #5f5fee
+URxvt*color13: #bb88dd
+URxvt*color14: #4eb4fa
+URxvt*color15: #d0d0d0
