@@ -55,3 +55,18 @@
 [submodule ".vim/bundle/salt"]
 	path = .vim/bundle/salt
 	url = git@github.com:saltstack/salt-vim.git
+[submodule ".vim/bundle/vim-addon-nix"]
+	path = .vim/bundle/vim-addon-nix
+	url = git@github.com:MarcWeber/vim-addon-nix.git
+[submodule ".vim/bundle/vim-addon-actions"]
+	path = .vim/bundle/vim-addon-actions
+	url = git@github.com:MarcWeber/vim-addon-actions.git
+[submodule ".vim/bundle/vim-addon-completion"]
+	path = .vim/bundle/vim-addon-completion
+	url = git@github.com:MarcWeber/vim-addon-completion.git
+[submodule ".vim/bundle/vim-addon-goto-thing-at-cursor"]
+	path = .vim/bundle/vim-addon-goto-thing-at-cursor
+	url = git@github.com:MarcWeber/vim-addon-goto-thing-at-cursor.git
+[submodule ".vim/bundle/vim-addon-errorformats"]
+	path = .vim/bundle/vim-addon-errorformats
+	url = git@github.com:MarcWeber/vim-addon-errorformats.git
