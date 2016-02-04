@@ -14,6 +14,7 @@ let c_no_curly_error=1
 set sts=4 ts=4 sw=4 expandtab
 filetype plugin indent on
 set autoindent
+set backspace=2 " Fixes some backspace problems on NixOS
 
 set tw=79 " Wrap lines longer than 79 characters
 
