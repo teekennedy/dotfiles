@@ -2,7 +2,6 @@
 " which is a submodule itself.
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
-call pathogen#helptags()
 
 set nocp " turn off vi compatibility
 set nu " Turn on line numbering. (nu|nonu)
