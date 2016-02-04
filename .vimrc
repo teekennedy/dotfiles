@@ -20,6 +20,8 @@ set tw=79 " Wrap lines longer than 79 characters
 
 set hidden " Allow for switching buffers without saving
 
+set dir=~/tmp " Save swap files under ~/tmp
+
 set lazyredraw " Don't update display while executing macros
 
 " Smart case search
