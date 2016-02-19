@@ -4,7 +4,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 set nocp " turn off vi compatibility
-set nu " Turn on line numbering. (nu|nonu)
+set relativenumber " show relative line numbers
 
 syntax on " Set syntax on
 " Don't flag curly braces inside parenthesis (i.e. C++11 lambda) as error
@@ -17,6 +17,7 @@ set autoindent
 set backspace=2 " Fixes some backspace problems on NixOS
 
 set tw=79 " Wrap lines longer than 79 characters
+set cc=+1 " highlight vertical column at textwidth + 1
 
 set hidden " Allow for switching buffers without saving
 
@@ -27,6 +28,7 @@ set lazyredraw " Don't update display while executing macros
 " Smart case search
 set ic
 set smartcase
+set incsearch " incremental search
 
 " The following help avoid 'Hit ENTER to continue' status messages:
 set shortmess=a " Shorten status messages
@@ -41,8 +43,6 @@ set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 colorscheme molokai
 
 if has("gui_running")
-    set cc=+1 " highlight vertical column at textwidth + 1
-    set incsearch " I only want incremental search in the GUI
     " I'm not a fan of the toolbar I never use stealing screen real estate
     set guioptions=ac
     if has("gui_gtk2")
