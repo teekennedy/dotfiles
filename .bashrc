@@ -18,6 +18,8 @@ alias startx='ssh-agent startx'
 # vi keybindings in bash
 set -o vi
 
+export TERM="xterm-256color"
+
 # Custom PS1
 # Checks for 256 color terminal
 if [ -t 1 ]; then
@@ -38,7 +40,7 @@ export EDITOR="vim"
 export HISTCONTROL="erasedups"
 export HISTFILESIZE=2500
 
-export PATH="~/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # function to query available packages
 nix? (){ nix-env -qa \* -P | fgrep -i "$1"; }

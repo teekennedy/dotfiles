@@ -4,7 +4,13 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 set nocp " turn off vi compatibility
+set number " show what line I'm on
 set relativenumber " show relative line numbers
+set mouse=a " support the mouse even in the terminal
+" enable resizing splits with mouse from inside a tmux session
+if &term =~ '^screen'
+    set ttymouse=xterm2
+endif
 
 syntax on " Set syntax on
 " Don't flag curly braces inside parenthesis (i.e. C++11 lambda) as error
@@ -86,11 +92,17 @@ nmap <silent> <F8> :silent !ctags -R<CR>
 " build a project. Only useful if makeprg is set
 nmap <F6> :make<CR>
 
+" map leader key to space bar
+let mapleader=" "
+
 " Toggle highlight search
-nmap ,n :set invhls<CR>:set hls?<CR>
+nmap <leader>n :set invhls<CR>:set hls?<CR>
 
 " Remove trailing whitespace
-nmap <silent> ,w :%s/\s\+$<CR>
+nmap <silent> <leader>w :%s/\s\+$<CR>
+
+" Toggle paste mode
+nmap <silent> <leader>p :set invpaste<CR>
 
 " You complete me plugin settings
 
