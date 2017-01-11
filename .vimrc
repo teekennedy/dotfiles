@@ -22,6 +22,9 @@ filetype plugin indent on
 set autoindent
 set backspace=2 " Fixes some backspace problems on NixOS
 
+" Remove comment leader when joining comment lines
+set formatoptions+=j
+
 set tw=79 " Wrap lines longer than 79 characters
 set cc=+1 " highlight vertical column at textwidth + 1
 
