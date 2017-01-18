@@ -135,6 +135,14 @@ au BufNewFile,BufRead SCons* set filetype=scons
 " waf syntax
 au BufNewFile,BufRead wscript set filetype=python
 
+" easy-align settings
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Vim sessions Plugin Settings
 
 let g:session_autoload='no'
