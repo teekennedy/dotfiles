@@ -10,7 +10,6 @@
 # modified commands
 alias diff='colordiff'                 # requires colordiff package
 alias grep='grep --color=auto'
-alias ls='ls --color=auto'
 alias g='gvim --remote-silent'
 alias v='vim --remote-silent'
 alias startx='ssh-agent startx'
