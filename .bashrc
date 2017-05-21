@@ -8,7 +8,7 @@
 [ -e $BASH_SOURCE-details ] && source $BASH_SOURCE-details
 
 # modified commands
-alias diff='colordiff'                 # requires colordiff package
+alias cdiff='colordiff'                 # requires colordiff package
 alias grep='grep --color=auto'
 alias g='gvim --remote-silent'
 alias v='vim --remote-silent'
