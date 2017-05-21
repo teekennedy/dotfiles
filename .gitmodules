@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/keepcase"]
 	path = .vim/bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/youcompleteme"]
 	path = .vim/bundle/youcompleteme
 	url = https://github.com/Valloric/YouCompleteMe.git
@@ -73,3 +70,12 @@
 [submodule ".vim/bundle/easy-align"]
 	path = .vim/bundle/easy-align
 	url = git@github.com:junegunn/vim-easy-align
+[submodule ".vim/bundle/ale"]
+	path = .vim/bundle/ale
+	url = git@github.com:w0rp/ale.git
+[submodule ".vim/bundle/airline"]
+	path = .vim/bundle/airline
+	url = git@github.com:vim-airline/vim-airline.git
+[submodule ".vim/bundle/fugitive"]
+	path = .vim/bundle/fugitive
+	url = git@github.com:tpope/vim-fugitive.git
