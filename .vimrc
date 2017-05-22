@@ -7,6 +7,7 @@ set nocp " turn off vi compatibility
 set number " show what line I'm on
 set relativenumber " show relative line numbers
 set mouse=a " support the mouse even in the terminal
+
 " enable resizing splits with mouse from inside a tmux session
 if &term =~ '^screen'
     set ttymouse=xterm2
@@ -60,37 +61,6 @@ if has("gui_running")
         set guifont=Envy\ Code\ R:h10:w6
     endif
 endif
-
-" function to insert a C/C++ header file guard
-function! s:InsertGuard()
-    let randlen = 7
-    let randnum = system("xxd -c " . randlen * 2 . " -l " . randlen . " -p /dev/urandom")
-    let randnum = strpart(randnum, 0, randlen * 2)
-    let fname = expand("%")
-    let lastslash = strridx(fname, "/")
-    if lastslash >= 0
-        let fname = strpart(fname, lastslash+1)
-    endif
-    norm ggO/**
-    exec 'norm o@file ' . fname
-    norm o/
-    let fname = substitute(fname, "[^a-zA-Z0-9]", "_", "g")
-    let randid = toupper(fname . "_" . randnum)
-    exec 'norm o#ifndef ' . randid
-    exec 'norm o#define ' . randid
-    exec 'norm o'
-    let origin = getpos('.')
-    exec '$norm Go#endif /* ' . randid . ' */'
-    norm O
-    call setpos('.', origin)
-    norm w
-endfunction
-
-noremap <silent> <F12>  :call <SID>InsertGuard()<CR>
-inoremap <silent> <F12>  <Esc>:call <SID>InsertGuard()<CR>
-
-" generate ctags recursively at the current working directory
-nmap <silent> <F8> :silent !ctags -R<CR>
 
 " build a project. Only useful if makeprg is set
 nmap <F6> :make<CR>
