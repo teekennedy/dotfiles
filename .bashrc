@@ -7,11 +7,11 @@
 
 [ -e $BASH_SOURCE-details ] && source $BASH_SOURCE-details
 
-# modified commands
-alias cdiff='colordiff'                 # requires colordiff package
-alias grep='grep --color=auto'
+# Aliases:
 alias g='gvim --remote-silent'
-alias v='vim --remote-silent'
+# Tmux alias: attaches to the named session, creating the session if it doesn't
+# already exist. Ex: t dev
+alias t='tmux new -As'
 alias startx='ssh-agent startx'
 
 # vi keybindings in bash
