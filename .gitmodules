@@ -28,9 +28,6 @@
 [submodule ".vim/bundle/vim-addon-mw-utils"]
 	path = .vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "dwm/src/cyphus-dwm"]
-	path = dwm/src/cyphus-dwm
-	url = https://github.com/cyphus/cyphus-dwm.git
 [submodule ".vim/bundle/misc"]
 	path = .vim/bundle/misc
 	url = https://github.com/xolox/vim-misc.git
