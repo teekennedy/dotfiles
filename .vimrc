@@ -40,10 +40,6 @@ set ic
 set smartcase
 set incsearch " incremental search
 
-" The following help avoid 'Hit ENTER to continue' status messages:
-set shortmess=a " Shorten status messages
-set cmdheight=2 " More status message lines (default is 1)
-
 set wildmenu " enhanced command-line completion
 
 set hls " Higlhight search
@@ -62,14 +58,14 @@ if has("gui_running")
     endif
 endif
 
-" build a project. Only useful if makeprg is set
-nmap <F6> :make<CR>
-
 " map leader key to space bar
 let mapleader=" "
 
+" build a project. Only useful if makeprg is set
+nmap <leader>r :make<CR>
+
 " Toggle highlight search
-nmap <leader>n :set invhls<CR>:set hls?<CR>
+nmap <silent> <leader>n :set invhls<CR>
 
 " Remove trailing whitespace
 nmap <silent> <leader>w :%s/\s\+$<CR>
@@ -82,6 +78,11 @@ nmap <silent> <leader>p :set invpaste<CR>
 let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
 let g:ycm_add_preview_to_completeopt = 1
 
+" The following help avoid 'Hit ENTER to continue' on YCM-generated status
+" messages by allowing for more status lines to be displayed at once.
+set shortmess=a " Shorten status messages
+set cmdheight=2 " More status message lines (default is 1)
+
 " Map UltiSnips to Ctrl+k
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
@@ -90,7 +91,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 " NERD Tree Plugin Settings
 
 " Toggle the NERD Tree on an off with F7
-nmap <F7> :NERDTreeToggle<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 
 let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
 
@@ -99,8 +100,15 @@ let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
                    \ '^Thumbs\.db$', '^\.sconsign\.dblite$',
                    \ '\.swp$', '\.lib$' ]
 
-" scons syntax
-au BufNewFile,BufRead SCons* set filetype=scons
+" Airline plugin settings
+
+" show statusline even when there are no splits
+set laststatus=2
+" use powerline patched font symbols
+let g:airline_powerline_fonts = 1
+" Set the timeout for waiting for another key to be pressed in milliseconds.
+" This prevents a noticeable delay after hitting ESC to leave insert mode.
+set ttimeoutlen=7
 
 " waf syntax
 au BufNewFile,BufRead wscript set filetype=python
@@ -112,9 +120,3 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" Vim sessions Plugin Settings
-
-let g:session_autoload='no'
-let g:session_autosave='no'
-let g:session_persist_globals=['&makeprg']
