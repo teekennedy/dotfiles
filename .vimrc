@@ -109,9 +109,15 @@ let g:airline_powerline_fonts = 1
 " Set the timeout for waiting for another key to be pressed in milliseconds.
 " This prevents a noticeable delay after hitting ESC to leave insert mode.
 set ttimeoutlen=7
+" Let vim-airline set the tabline when there are no tabs
+let g:airline#extensions#tabline#enabled = 1
 
 " waf syntax
 au BufNewFile,BufRead wscript set filetype=python
+
+" ALE (asynchronous lint engine) settings
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'w'
 
 " easy-align settings
 
