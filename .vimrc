@@ -40,13 +40,18 @@ set ic
 set smartcase
 set incsearch " incremental search
 
-set wildmenu " enhanced command-line completion
+" Tab-complete the longest prefix common to all matches, then tab again will
+" provide a list, and further tabs will cycle through completion options.
+set wildmode=longest,list,full
+set wildmenu " show menu for list and full expansions
 
 set hls " Higlhight search
 
 set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 
 colorscheme molokai
+" attempt to make molokai colors in terminal version match those in GUI version
+let g:rehash256 = 1
 
 if has("gui_running")
     " I'm not a fan of the toolbar I never use stealing screen real estate
@@ -57,6 +62,15 @@ if has("gui_running")
         set guifont=Envy\ Code\ R:h10:w6
     endif
 endif
+
+" custom commands
+
+" command to change all indentation-related values simultaneously
+fun! SetTabWidth( width ) "{{{
+    execute "setlocal sts=".a:width." ts=".a:width." sw=".a:width
+endfunction "}}}
+
+command! -nargs=* SetTabWidth call SetTabWidth( '<args>' )
 
 " map leader key to space bar
 let mapleader=" "
