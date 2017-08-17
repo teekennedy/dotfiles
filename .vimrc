@@ -79,7 +79,7 @@ let mapleader=" "
 nmap <leader>r :make<CR>
 
 " Toggle highlight search
-nmap <silent> <leader>n :set invhls<CR>
+nmap <silent> <leader>h :set invhls<CR>
 
 " Remove trailing whitespace
 nmap <silent> <leader>w :%s/\s\+$<CR>
@@ -105,7 +105,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 " NERD Tree Plugin Settings
 
 " Toggle the NERD Tree on an off with F7
-nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 
 let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
 
