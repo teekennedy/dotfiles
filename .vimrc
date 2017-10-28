@@ -133,6 +133,10 @@ au BufNewFile,BufRead wscript set filetype=python
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
 
+" vim-jsx-pretty settings
+
+let g:vim_jsx_pretty_colorful_config = 1 " requires vim-javascript
+
 " easy-align settings
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
