@@ -92,11 +92,6 @@ nmap <silent> <leader>p :set invpaste<CR>
 let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
 let g:ycm_add_preview_to_completeopt = 1
 
-" The following help avoid 'Hit ENTER to continue' on YCM-generated status
-" messages by allowing for more status lines to be displayed at once.
-set shortmess=a " Shorten status messages
-set cmdheight=2 " More status message lines (default is 1)
-
 " Map UltiSnips to Ctrl+k
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
@@ -104,7 +99,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 
 " NERD Tree Plugin Settings
 
-" Toggle the NERD Tree on an off with F7
+" Toggle the NERD Tree on an off
 nmap <leader>n :NERDTreeToggle<CR>
 
 let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
@@ -132,6 +127,9 @@ au BufNewFile,BufRead wscript set filetype=python
 " ALE (asynchronous lint engine) settings
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
+
+" ALE goto next warning/error (with wrap around to start of file if necessary)
+nmap <silent> <leader>e <Plug>(ale_next_wrap)
 
 " vim-jsx-pretty settings
 
