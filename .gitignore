@@ -1,6 +1,0 @@
-# ignore some vim stuff
-.vim/.VimballRecord
-.vim/.netrwhist
-.vim/doc/*
-.vim/snippets/*
-

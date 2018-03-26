@@ -12,3 +12,5 @@
 [diff]
     # The patience algorithm produces better looking diffs at the cost of CPU.
     algorithm = patience
+[core]
+    excludesfile = ~/.gitignore_global

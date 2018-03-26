@@ -39,5 +39,11 @@ ehthumbs.db
 # dev project files
 tags
 .ycm_extra_conf.py
-.ruby-version # RVM/chruby/rbenv version
-.python-version # pyenv version
+# used by YCM for js completion
+.tern-project
+# RVM/chruby/rbenv version
+.ruby-version
+# pyenv version
+.python-version
+# nvm version
+.nvmrc
