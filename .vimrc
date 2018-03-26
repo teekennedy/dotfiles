@@ -25,6 +25,10 @@ set backspace=2 " Fixes some backspace problems on NixOS
 
 " Remove comment leader when joining comment lines
 set formatoptions+=j
+" Only auto wrap lines if line exceeds textwidth during current insert
+set formatoptions+=b
+" Allow auto formatting of comments with gq/gw
+set formatoptions+=q
 
 set tw=79 " Wrap lines longer than 79 characters
 set cc=+1 " highlight vertical column at textwidth + 1
@@ -97,17 +101,16 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 
-" NERD Tree Plugin Settings
+" CtrlP plugin settings
 
-" Toggle the NERD Tree on an off
-nmap <leader>n :NERDTreeToggle<CR>
+" Ignore files that are also ignored by git:
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-let NERDTreeShowBookmarks=1 " Show the bookmarks table on startup
+" search in Files, Buffers and MRU files at the same time.
+let g:ctrlp_cmd = 'CtrlPMixed'
 
-" Don't display these kinds of files
-let NERDTreeIgnore=[ '\.o$', '\.a$', '\.exe$', '\.pyc$',
-                   \ '^Thumbs\.db$', '^\.sconsign\.dblite$',
-                   \ '\.swp$', '\.lib$' ]
+" turn off working path detection and just use vim's cwd
+let g:ctrlp_working_path_mode = 0
 
 " Airline plugin settings
 
