@@ -22,12 +22,24 @@ optimized for macOS. Features:
 
 ## Base Installation (macOS)
 
+1. Install base packages required for all dotfiles to function:
+
+```bash
+brew update
+brew install \
+        git \
+        macvim --with-override-system-vim \
+        tmux \
+        zsh \
+        ;
+```
+
 1. Clone the repo and checkout submodules:
 
 ```bash
 git clone git@github.com:cyphus/dotfiles.git
 cd dotfiles
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 1. Symlink dotfiles from the cloned repo to your home directory. Any files that
@@ -36,13 +48,21 @@ git submodule update --init
 
 ```console
 $ ./symlink_dotfiles.sh
-Symlinking /Users/cyphus/.gitconfig to /Users/cyphus/projects/dotfiles/.gitconfig
-Backing up /Users/cyphus/.gitignore_global to /Users/cyphus/.gitignore_global.bak...
+Syminking /Users/cyphus/.gitconfig to /Users/cyphus/projects/dotfiles/.gitconfig
+Backing up /Users/cyphus/.gitignore_global to /Users/cyphus/.gitignore_global.bak
 Symlinking /Users/cyphus/.gitignore_global to /Users/cyphus/projects/dotfiles/.gitignore_global
 Symlinking /Users/cyphus/.tmux.conf to /Users/cyphus/projects/dotfiles/.tmux.conf
 Symlinking /Users/cyphus/.vim to /Users/cyphus/projects/dotfiles/.vim
 Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
 Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
+```
+
+## Other helpful utilities
+
+I consider these tools helpful enough to install on all my devices.
+
+```bash
+brew install tig watch
 ```
 
 ## License:

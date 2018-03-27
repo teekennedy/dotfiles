@@ -1,48 +1,48 @@
 [submodule ".vim/bundle/molokai"]
-	path = .vim/bundle/molokai
+	path = dotfiles/.vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
 [submodule ".vim/bundle/pathogen"]
-	path = .vim/bundle/pathogen
+	path = dotfiles/.vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
 [submodule ".vim/bundle/snippets"]
-	path = .vim/bundle/snippets
+	path = dotfiles/.vim/bundle/snippets
 	url = https://github.com/cyphus/vim-snippets
 [submodule ".vim/bundle/keepcase"]
-	path = .vim/bundle/keepcase
+	path = dotfiles/.vim/bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim.git
 [submodule ".vim/bundle/youcompleteme"]
-	path = .vim/bundle/youcompleteme
+	path = dotfiles/.vim/bundle/youcompleteme
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/ultisnips"]
-	path = .vim/bundle/ultisnips
+	path = dotfiles/.vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 [submodule ".vim/bundle/tracwiki"]
-	path = .vim/bundle/tracwiki
+	path = dotfiles/.vim/bundle/tracwiki
 	url = git@github.com:vim-scripts/tracwiki.git
 [submodule ".vim/bundle/salt"]
-	path = .vim/bundle/salt
+	path = dotfiles/.vim/bundle/salt
 	url = git@github.com:saltstack/salt-vim.git
 [submodule ".vim/bundle/vim-tmux-navigator"]
-	path = .vim/bundle/vim-tmux-navigator
+	path = dotfiles/.vim/bundle/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
 [submodule ".vim/bundle/easy-align"]
-	path = .vim/bundle/easy-align
+	path = dotfiles/.vim/bundle/easy-align
 	url = git@github.com:junegunn/vim-easy-align
 [submodule ".vim/bundle/ale"]
-	path = .vim/bundle/ale
+	path = dotfiles/.vim/bundle/ale
 	url = git@github.com:w0rp/ale.git
 [submodule ".vim/bundle/airline"]
-	path = .vim/bundle/airline
+	path = dotfiles/.vim/bundle/airline
 	url = git@github.com:vim-airline/vim-airline.git
 [submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
+	path = dotfiles/.vim/bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-javascript"]
-	path = .vim/bundle/vim-javascript
+	path = dotfiles/.vim/bundle/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
 [submodule ".vim/bundle/vim-jsx-pretty"]
-	path = .vim/bundle/vim-jsx-pretty
+	path = dotfiles/.vim/bundle/vim-jsx-pretty
 	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
 [submodule ".vim/bundle/ctrlp"]
-	path = .vim/bundle/ctrlp
+	path = dotfiles/.vim/bundle/ctrlp
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
