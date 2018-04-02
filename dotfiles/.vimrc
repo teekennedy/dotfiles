@@ -35,7 +35,7 @@ set cc=+1 " highlight vertical column at textwidth + 1
 
 set hidden " Allow for switching buffers without saving
 
-set dir=~/tmp " Save swap files under ~/tmp
+set dir=~/.swp " Save swap files under a central location
 
 set lazyredraw " Don't update display while executing macros
 
