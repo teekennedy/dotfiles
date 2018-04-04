@@ -130,6 +130,12 @@ au BufNewFile,BufRead wscript set filetype=python
 " ALE (asynchronous lint engine) settings
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
+let g:ale_linters = {'go': ['gometalinter']}
+
+" ALE gometalinter settings
+let g:ale_go_gometalinter_executable = 'gometalinter.v1'
+" gometalinter options are the same ones used in sensu-go
+let g:ale_go_gometalinter_options = '--vendor --disable-all --enable=vet --enable=ineffassign --enable=goconst --tests'
 
 " ALE goto next warning/error (with wrap around to start of file if necessary)
 nmap <silent> <leader>e <Plug>(ale_next_wrap)
