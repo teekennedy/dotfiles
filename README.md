@@ -1,7 +1,7 @@
 # Dotfiles by Cyphus
 
-My personal collection of dotfiles. Originally optimized for Arch, now
-optimized for macOS. Features:
+My personal collection of dotfiles. Originally optimized for Arch, then
+completely refactored for macOS. Features:
 
 - zsh:
   - Running off of a personal fork of OMZ with performance fixes for the pyenv
@@ -14,37 +14,41 @@ optimized for macOS. Features:
 
 - tmux:
   - uses `Ctrl+a` as prefix (very common)
-  - extended history for panes
-  - keeps the current directory when opening/splitting windows
+  - extended history for panes (10,000 lines)
+  - keeps the current working directory when opening/splitting windows
   - mouse integration (maily used for selecting text for copy-paste)
   - vim-aware smart pane switching (using `Ctrl+[h|j|k|l]`)
-
+  - no status bar. Maybe later I'll customize it to my liking, but for now it's
+    just in the way.
+  - does _not_ use
+    [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/)
+    as it is not needed for tmux 2.6+ (see
+    [#66](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)).
 
 ## Base Installation (macOS)
 
-1. Install base packages required for all dotfiles to function:
+1. Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+   from the Mac App Store. While most utilities under Homebrew only require the
+   Xcode command line tools, macvim in particular needs a full Xcode
+   installation.
 
-```bash
-brew update
-brew install \
-        git \
-        macvim --with-override-system-vim \
-        tmux \
-        zsh \
-        ;
-```
-
-1. Clone the repo and checkout submodules:
+1. Clone and cd to the repo:
 
 ```bash
 git clone git@github.com:cyphus/dotfiles.git
 cd dotfiles
-git submodule update --init --recursive
 ```
 
-1. Symlink dotfiles from the cloned repo to your home directory. Any files that
-   already exist in your home directory are first backed up to *dotfile*.bak.
-   Any files that are already symlinks are left alone.
+1. Run the first time setup script:
+
+```bash
+./first_time_setup_macos.sh
+```
+
+1. Run `symlink_dotfiles.sh` to "install" dotfiles by symlinking them from the
+   cloned repo to your home directory. Any files that already exist in your
+   home directory are first backed up to *dotfile*.bak.  Any files that are
+   already symlinks are left alone.
 
 ```console
 $ ./symlink_dotfiles.sh

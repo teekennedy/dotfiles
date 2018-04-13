@@ -4,9 +4,8 @@
 # Snippet from https://stackoverflow.com/a/246128/1209614
 dotfiles_dir=$( cd "$(dirname "$0")" ; pwd -P )/dotfiles
 
-function backup_and_symlink
-{
-    dest="$HOME/$1"
+backup_and_symlink() {
+    local dest="$HOME/$1"
     if [ -L $dest ]; then
         echo "$dest is already a symlink. Skipping."
         return

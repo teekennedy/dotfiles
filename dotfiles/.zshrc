@@ -51,7 +51,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Specify plugins to use.
 # Plugins loaded from $ZSH/plugins and $ZSH_CUSTOM/plugins
-plugins=(git)
+plugins=(git nvm)
 
 source $ZSH/oh-my-zsh.sh
 

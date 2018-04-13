@@ -91,6 +91,9 @@ nmap <silent> <leader>w :%s/\s\+$<CR>
 " Toggle paste mode
 nmap <silent> <leader>p :set invpaste<CR>
 
+" Semantic-aware GoTo definition/declaration
+nmap <silent> <leader>[ :YcmCompleter GoTo<CR>
+
 " You complete me plugin settings
 
 let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
