@@ -17,6 +17,10 @@ syntax on " Set syntax on
 " Don't flag curly braces inside parenthesis (i.e. C++11 lambda) as error
 let c_no_curly_error=1
 
+" Vim's built-in netrw plugin places .netrwhist files in the current directory
+" when invoked. Turn off these files by setting history to 0.
+let g:netrw_dirhistmax = 0
+
 " Indent automatically depending on filetype
 set sts=4 ts=4 sw=4 expandtab
 filetype plugin indent on
