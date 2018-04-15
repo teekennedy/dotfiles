@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$PATH
+# Set PATH in ~/.zprofile
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/cyphus/.oh-my-zsh
@@ -20,7 +20,7 @@ BULLETTRAIN_PROMPT_SEPARATE_LINE='true'
 BULLETTRAIN_STATUS_EXIT_SHOW='true'
 
 # disable pyenv-virtualenv from prepending the current virtualenv to the prompt
-PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -35,7 +35,8 @@ DISABLE_AUTO_UPDATE="true"
 # OMZ's auto title interferes with tmux window's titles, so we turn it off.
 # https://github.com/robbyrussell/oh-my-zsh/pull/257
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# Must be exported to be available to tmux subshells.
+export DISABLE_AUTO_TITLE="true"
 
 # I don't like autocorrect, it interrupts workflow with a prompt.
 ENABLE_CORRECTION="false"
@@ -51,7 +52,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Specify plugins to use.
 # Plugins loaded from $ZSH/plugins and $ZSH_CUSTOM/plugins
-plugins=(git nvm)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
