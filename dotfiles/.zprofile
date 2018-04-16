@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-# This file is loaded on each new zsh interactive login shell.
+# This file is loaded on each new zsh interactive login shell. It is the first
+# user-specific file sourced by zsh on login shells.
 
 # MacOS has a utility called path_helper that is meant to build your initial
 # PATH variable from lines under /etc/paths and files under /etc/paths.d. It is
@@ -20,9 +21,10 @@ reorganize_login_subshell_path() {
     # run path_helper against an empty PATH
     PATH=''
     eval `/usr/libexec/path_helper -s`
-    # At this point the PATH should contain only system-wide paths.
+    # At this point the PATH contains only system-wide paths.
 
-    # If paths are the same this is not a subshell. The PATH is correct.
+    # If paths are the same this is not a subshell or no user-defined paths are
+    # set. In other words, the PATH is correct and there is no work to be done.
     if [ "$old_path" = "$PATH" ]; then
         return
     fi
@@ -41,8 +43,14 @@ fi
 # remove path reorganization function to avoid cluttering environment
 unset -f reorganize_login_subshell_path
 
-# prepend $HOME/bin to path only if it's not already part of the path
-if [[ $PATH != *"$HOME/bin:"* ]]; then
-    PATH="$HOME/bin:$PATH"
-fi
+user_defined_paths=("$HOME/bin")
+
+for path in ${user_defined_paths[@]}; do
+    # prepend user to path only if it's not already part of the path
+    if [[ $PATH != *"$path:"* ]]; then
+        PATH="$path:$PATH"
+    fi
+done
+
+unset user_defined_paths
 export PATH
