@@ -10,7 +10,9 @@ set mouse=a " support the mouse even in the terminal
 
 " enable resizing splits with mouse from inside a tmux session
 if &term =~ '^screen'
-    set ttymouse=xterm2
+    " sgr is a new mouse handler as of vim 7.3.632.
+    " sgr is backwards compatible with xterm2 and works with columns > 223
+    set ttymouse=sgr
 endif
 
 syntax on " Set syntax on
