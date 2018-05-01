@@ -41,7 +41,9 @@ set cc=+1 " highlight vertical column at textwidth + 1
 
 set hidden " Allow for switching buffers without saving
 
-set dir=~/.swp " Save swap files under a central location
+" Save swap files under a central location. The // suffix will include the full
+" path to each swapfile to avoid filename collisions.
+set dir=~/.swp//
 
 set lazyredraw " Don't update display while executing macros
 
