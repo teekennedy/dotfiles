@@ -43,14 +43,14 @@ fi
 # remove path reorganization function to avoid cluttering environment
 unset -f reorganize_login_subshell_path
 
-user_defined_paths=("$HOME/bin")
+user_defined_paths=("$HOME/bin" "$HOME/go/bin")
 
-for path in ${user_defined_paths[@]}; do
+for user_path in ${user_defined_paths[@]}; do
     # prepend user to path only if it's not already part of the path
-    if [[ $PATH != *"$path:"* ]]; then
-        PATH="$path:$PATH"
+    if [[ $PATH != *"$user_path:"* ]]; then
+        PATH="$user_path:$PATH"
     fi
 done
+unset user_defined_paths user_path
 
-unset user_defined_paths
 export PATH
