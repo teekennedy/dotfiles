@@ -65,16 +65,6 @@ colorscheme molokai
 " attempt to make molokai colors in terminal version match those in GUI version
 let g:rehash256 = 1
 
-if has("gui_running")
-    " I'm not a fan of the toolbar I never use stealing screen real estate
-    set guioptions=ac
-    if has("gui_gtk2")
-        set guifont=Terminus\ 9
-    elseif has("gui_win32")
-        set guifont=Envy\ Code\ R:h10:w6
-    endif
-endif
-
 " custom commands
 
 " command to change all indentation-related values simultaneously
