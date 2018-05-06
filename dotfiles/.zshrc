@@ -1,4 +1,5 @@
 # Set PATH in ~/.zprofile
+export CDPATH=$HOME/go/src/github.com/sensu
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/cyphus/.oh-my-zsh

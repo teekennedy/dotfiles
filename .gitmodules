@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = dotfiles/.vim/bundle/ctrlp
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "dotfiles/.vim/bundle/go"]
+	path = dotfiles/.vim/bundle/go
+	url = git@github.com:fatih/vim-go
