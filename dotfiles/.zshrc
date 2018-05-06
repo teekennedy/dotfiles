@@ -1,8 +1,12 @@
 # Set PATH in ~/.zprofile
 export CDPATH=$HOME/go/src/github.com/sensu
 
+# This file is for staging new console integrations
+[ -x $HOME/.zshrc-staging ] && . $HOME/.zshrc-staging
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/cyphus/.oh-my-zsh
+
 
 # Set name of the theme to load.
 ZSH_THEME="bullet-train"
