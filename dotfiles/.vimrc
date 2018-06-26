@@ -86,6 +86,9 @@ nmap <silent> <leader>h :set invhls<CR>
 " Remove trailing whitespace
 nmap <silent> <leader>w :%s/\s\+$<CR>
 
+" Run GoTest on the current buffer
+nmap <silent> <leader>t :GoTest<CR>
+
 " Toggle paste mode
 nmap <silent> <leader>p :set invpaste<CR>
 
