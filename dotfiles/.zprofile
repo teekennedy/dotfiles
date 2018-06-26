@@ -43,7 +43,7 @@ fi
 # remove path reorganization function to avoid cluttering environment
 unset -f reorganize_login_subshell_path
 
-user_defined_paths=("$HOME/bin" "$HOME/go/bin")
+user_defined_paths=("$HOME/bin" "$HOME/go/bin" "/usr/local/sbin")
 
 for user_path in ${user_defined_paths[@]}; do
     # prepend user to path only if it's not already part of the path
