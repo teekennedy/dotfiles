@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/pathogen"]
 	path = dotfiles/.vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/snippets"]
-	path = dotfiles/.vim/bundle/snippets
-	url = https://github.com/cyphus/vim-snippets
 [submodule ".vim/bundle/keepcase"]
 	path = dotfiles/.vim/bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim.git
