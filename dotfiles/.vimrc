@@ -1,3 +1,9 @@
+" workaround for vim warning when compiled against Python 3.7
+" https://github.com/vim/vim/issues/3117
+if has('python3')
+  silent! python3 1
+endif
+
 " All plugins managed using git submodules and added using pathogen,
 " which is a submodule itself.
 runtime bundle/pathogen/autoload/pathogen.vim
