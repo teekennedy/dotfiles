@@ -144,13 +144,33 @@ let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
 let g:ale_linters = {'go': ['gometalinter']}
 
+" Format code for me on :w
+let g:ale_fix_on_save = 1
+
+" goimports on save.
+let g:ale_fixers = {'go': ['goimports', 'gofmt']}
+
 " ALE gometalinter settings
-let g:ale_go_gometalinter_executable = 'gometalinter.v1'
+let g:ale_go_gometalinter_executable = 'gometalinter.v2'
 " gometalinter options are the same ones used in sensu-go
-let g:ale_go_gometalinter_options = '--vendor --disable-all --enable=vet --enable=ineffassign --enable=goconst --tests'
+let g:ale_go_gometalinter_options = '--vendor'
+		\ . ' --disable-all'
+		\ . ' --enable=vet'
+		\ . ' --enable=ineffassign'
+		\ . ' --enable=goconst'
+		\ . ' --tests'
 
 " ALE goto next warning/error (with wrap around to start of file if necessary)
 nmap <silent> <leader>e <Plug>(ale_next_wrap)
+
+" vim-go settings
+
+" No gofmt on save. We use ALE.
+let g:go_fmt_autosave = 0
+
+" ALE uses location list, vim-go uses quickfix list by default. Having both
+" open produces weird UI issues (see https://vi.stackexchange.com/q/14166)
+let g:go_list_type = 'locationlist'
 
 " vim-jsx-pretty settings
 
