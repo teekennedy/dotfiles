@@ -113,8 +113,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 
 " CtrlP plugin settings
 
-" Ignore files that are also ignored by git:
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" Ignore files that are also ignored by git and my custom .ctrlpignore
+let g:ctrlp_user_command = ['.git', 'cd %s' .
+    \ '&& git ls-files -co --exclude-standard' .
+    \ '| ([ -f .ctrlpignore ] && grep -vf .ctrlpignore || cat)']
 
 " search in Files, Buffers and MRU files at the same time.
 let g:ctrlp_cmd = 'CtrlPMixed'
