@@ -73,6 +73,9 @@ let g:rehash256 = 1
 
 " custom commands
 
+" select last pasted text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " command to change all indentation-related values simultaneously
 fun! SetTabWidth( width ) "{{{
     execute "setlocal sts=".a:width." ts=".a:width." sw=".a:width
