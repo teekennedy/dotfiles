@@ -46,3 +46,6 @@
 [submodule "dotfiles/.vim/bundle/go"]
 	path = dotfiles/.vim/bundle/go
 	url = git@github.com:fatih/vim-go
+[submodule "dotfiles/.vim/bundle/vim-terraform"]
+	path = dotfiles/.vim/bundle/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
