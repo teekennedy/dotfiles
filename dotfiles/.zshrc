@@ -5,15 +5,13 @@ export CDPATH=$HOME/go/src/github.com/cyphus
 [ -x $HOME/.zshrc-staging ] && . $HOME/.zshrc-staging
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/cyphus/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 
 # Set name of the theme to load.
 ZSH_THEME="bullet-train"
 
-BULLETTRAIN_PROMPT_ORDER=(status context dir local_pyenv git cmd_exec_time)
-# if the current user matches the default user, context segment is omitted
-BULLETTRAIN_CONTEXT_DEFAULT_USER='cyphus'
+BULLETTRAIN_PROMPT_ORDER=(status dir local_pyenv git cmd_exec_time)
 BULLETTRAIN_DIR_BG='black'
 BULLETTRAIN_DIR_FG='white'
 BULLETTRAIN_GIT_BG='blue'
