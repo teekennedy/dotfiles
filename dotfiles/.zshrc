@@ -1,5 +1,5 @@
 # Set PATH in ~/.zprofile
-export CDPATH=$HOME/go/src/github.com/sensu:$HOME/go/src/github.com/cyphus
+export CDPATH=$HOME/go/src/github.com/cyphus
 
 # This file is for staging new console integrations
 [ -x $HOME/.zshrc-staging ] && . $HOME/.zshrc-staging
