@@ -1,12 +1,11 @@
 # Set PATH in ~/.zprofile
 export CDPATH=$HOME/go/src/github.com/cyphus
 
-# This file is for staging new console integrations
-[ -x $HOME/.zshrc-staging ] && . $HOME/.zshrc-staging
+# This file is for device-specific custom settings
+[ -x $HOME/.zshrc-custom ] && . $HOME/.zshrc-custom
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 
 # Set name of the theme to load.
 ZSH_THEME="bullet-train"
