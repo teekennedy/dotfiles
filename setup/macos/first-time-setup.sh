@@ -31,6 +31,16 @@ pushd ./dotfiles/.vim/bundle/youcompleteme
 ./install.py --go-completer --js-completer --rust-completer --clang-completer
 popd
 
+echo "Installing zlib dependency to build pyenv.."
+# See the macOS 10.14 instructions under
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems#build-failed-error-the-python-zlib-extension-was-not-compiled-missing-the-zlib
+# for more info.
+xcode-select --install
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+
+echo "Installing pyenv.."
+brew install pyenv pyenv-virtualenv
+
 # make vim's swapfile directory
 mkdir -p $HOME/.swp
 # install dependencies of vim-go
