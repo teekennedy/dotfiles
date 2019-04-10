@@ -143,7 +143,7 @@ let g:airline#extensions#tabline#enabled = 1
 au BufNewFile,BufRead wscript set filetype=python
 
 " jinja2 syntax (used by sceptre)
-au BufNewFile,BufRead j2 set filetype=yaml
+au BufNewFile,BufRead *.j2 set filetype=yaml
 
 " ALE (asynchronous lint engine) settings
 let g:ale_sign_error = 'E'
