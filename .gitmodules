@@ -52,3 +52,6 @@
 [submodule "dotfiles/.vim/bundle/elm-vim"]
 	path = dotfiles/.vim/bundle/elm-vim
 	url = git@github.com:ElmCast/elm-vim.git
+[submodule "dotfiles/.vim/bundle/vim-eunuch"]
+	path = dotfiles/.vim/bundle/vim-eunuch
+	url = git@github.com:tpope/vim-eunuch.git
