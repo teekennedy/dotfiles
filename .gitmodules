@@ -55,3 +55,9 @@
 [submodule "dotfiles/.vim/bundle/vim-eunuch"]
 	path = dotfiles/.vim/bundle/vim-eunuch
 	url = git@github.com:tpope/vim-eunuch.git
+[submodule "dotfiles/.vim/bundle/vim-surround"]
+	path = dotfiles/.vim/bundle/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "dotfiles/.vim/bundle/vim-repeat"]
+	path = dotfiles/.vim/bundle/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
