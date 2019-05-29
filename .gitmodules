@@ -61,3 +61,6 @@
 [submodule "dotfiles/.vim/bundle/vim-repeat"]
 	path = dotfiles/.vim/bundle/vim-repeat
 	url = git@github.com:tpope/vim-repeat.git
+[submodule "dotfiles/.vim/bundle/vim-jsonnet"]
+	path = dotfiles/.vim/bundle/vim-jsonnet
+	url = git@github.com:google/vim-jsonnet.git
