@@ -8,7 +8,7 @@
     default = simple
 [alias]
     # Deletes all local branches that are fully merged into the current HEAD.
-    delete-merged = !git branch --merged | grep -v \"\\*\" | grep -v master | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
+    delete-merged = !git branch --merged | grep -vE \"\\*|master|develop\" | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
 [diff]
     # The patience algorithm produces better looking diffs at the cost of CPU.
     algorithm = patience
