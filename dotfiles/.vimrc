@@ -127,6 +127,12 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " turn off working path detection and just use vim's cwd
 let g:ctrlp_working_path_mode = 0
 
+" Jsonnet plugin settings
+
+let g:jsonnet_command='jsonnetfmt'
+let g:jsonnet_fmt_command=''
+let g:jsonnet_fmt_options='--comment-style h'
+
 " Airline plugin settings
 
 " show statusline even when there are no splits
