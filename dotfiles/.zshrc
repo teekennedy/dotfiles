@@ -72,3 +72,9 @@ unsetopt HIST_VERIFY
 # Tmux alias: attaches to the named session, creating the session if it doesn't
 # already exist. Ex: t dev
 alias t='tmux new -As'
+
+# Alias for copying the output of my yubikey 2FA codes.
+#     Ex: auth aws -> paste into aws
+function auth() {
+    ykman oath code $1 | awk '{ print $2 }' | pbcopy
+}
