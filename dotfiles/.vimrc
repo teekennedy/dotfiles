@@ -148,13 +148,18 @@ au BufNewFile,BufRead *.j2 set filetype=yaml
 " ALE (asynchronous lint engine) settings
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
-let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_linters = {
+        \'go': ['gometalinter'],
+    \}
 
 " Format code for me on :w
 let g:ale_fix_on_save = 1
 
 " goimports on save.
-let g:ale_fixers = {'go': ['goimports', 'gofmt']}
+let g:ale_fixers = {
+        \'go': ['goimports', 'gofmt'],
+        \'python': ['black'],
+    \}
 
 " ALE gometalinter settings
 let g:ale_go_gometalinter_executable = 'gometalinter.v2'
