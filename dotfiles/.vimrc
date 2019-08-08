@@ -67,9 +67,9 @@ set hls " Higlhight search
 
 set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 
-colorscheme molokai
 " attempt to make molokai colors in terminal version match those in GUI version
 let g:rehash256 = 1
+colorscheme molokai
 
 " custom commands
 
