@@ -142,8 +142,11 @@ let g:airline#extensions#tabline#enabled = 1
 " waf syntax
 au BufNewFile,BufRead wscript set filetype=python
 
-" jinja2 syntax (used by sceptre)
-au BufNewFile,BufRead *.j2 set filetype=yaml
+" Jenkinsfiles are groovy
+au BufNewFile,BufRead *.jenkinsfile, Jenkinsfile set filetype=groovy
+
+" Some repos use dockerfile as a prefix
+au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
 " ALE (asynchronous lint engine) settings
 let g:ale_sign_error = 'E'
