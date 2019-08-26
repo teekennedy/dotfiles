@@ -143,7 +143,7 @@ let g:airline#extensions#tabline#enabled = 1
 au BufNewFile,BufRead wscript set filetype=python
 
 " Jenkinsfiles are groovy
-au BufNewFile,BufRead *.jenkinsfile, Jenkinsfile set filetype=groovy
+au BufNewFile,BufRead *.jenkinsfile,Jenkinsfile set filetype=groovy
 
 " Some repos use dockerfile as a prefix
 au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
