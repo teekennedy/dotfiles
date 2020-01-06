@@ -61,6 +61,14 @@ Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
 Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
 ```
 
+## Adding extra paths to the PATH
+
+Many paths are specific to a given user's environment and therefore should not
+be added to the dotfiles version control. Adding machine-specific paths to the
+PATH can be done by placing a `.zprofile-paths` file in your home directory
+with one path per line. Shell comments are allowed in this file as they are
+parsed out when loaded.
+
 ## Other helpful utilities
 
 I consider these tools helpful enough to install on all my devices.

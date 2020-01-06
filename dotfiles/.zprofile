@@ -43,7 +43,16 @@ fi
 # remove path reorganization function to avoid cluttering environment
 unset -f reorganize_login_subshell_path
 
-user_defined_paths=("$HOME/bin" "$HOME/go/bin" "/usr/local/sbin")
+user_defined_paths=("$HOME/bin" "/usr/local/sbin")
+if [[ -a "$HOME/.zprofile-paths" ]]; then
+    zmodload zsh/mapfile
+    # Append list of paths from ~/.zprofile-paths
+    # (f) is zsh parameter expansion used to split the expansion at newlines.
+    # (Z+C+) is zsh parameter expansion used to parse and remove comments
+    # http://zsh.sourceforge.net/Doc/Release/Expansion.html
+    user_defined_paths+=("${(Z+C+)${(f)mapfile[$HOME/.zprofile-paths]}}")
+    echo $user_defined_paths
+fi
 
 for user_path in ${user_defined_paths[@]}; do
     # prepend user to path only if it's not already part of the path
