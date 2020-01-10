@@ -44,22 +44,22 @@ fi
 unset -f reorganize_login_subshell_path
 
 user_defined_paths=("$HOME/bin" "/usr/local/sbin")
-if [[ -a "$HOME/.zprofile-paths" ]]; then
+# Append list of paths from user_defined_paths_file
+user_defined_paths_file="$HOME/.zprofile-paths"
+if [[ -a "$user_defined_paths_file" ]]; then
     zmodload zsh/mapfile
-    # Append list of paths from ~/.zprofile-paths
-    # (f) is zsh parameter expansion used to split the expansion at newlines.
-    # (Z+C+) is zsh parameter expansion used to parse and remove comments
+    # (Z+Cn+) is zsh parameter expansion used to parse and remove comments
     # http://zsh.sourceforge.net/Doc/Release/Expansion.html
-    user_defined_paths+=("${(Z+C+)${(f)mapfile[$HOME/.zprofile-paths]}}")
-    echo $user_defined_paths
+    user_defined_paths+=("${(Z+Cn+)${mapfile[$user_defined_paths_file]}}")
 fi
 
 for user_path in ${user_defined_paths[@]}; do
     # prepend user to path only if it's not already part of the path
     if [[ $PATH != *"$user_path:"* ]]; then
-        PATH="$user_path:$PATH"
+        # Use eval to expand any shell variables in user_defined_paths
+        eval PATH=$(echo "$user_path:$PATH")
     fi
 done
-unset user_defined_paths user_path
+unset user_defined_paths user_defined_paths_file user_path
 
 export PATH
