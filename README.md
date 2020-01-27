@@ -61,6 +61,21 @@ Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
 Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
 ```
 
+## iTerm2 setup
+
+If you want your iTerm2 terminal to look like mine, follow these steps:
+
+ * Install [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font:
+   ```
+   brew tap homebrew/cask-fonts
+   brew install font-jetbrains-mono
+   ```
+ * Go to the *Profiles* tab of the iTerm2 prefernces page. Under the *Text*
+   section of your currently activated profile, make sure that:
+   * *Use built-in Powerline glyphs* is ✅
+   * Change the font to JetBrains Mono installed earlier, and make sure both
+     *Use ligatures* and *Anti-aliased* are ✅
+
 ## Adding extra paths to the PATH
 
 Many paths are specific to a given user's environment and therefore should not
@@ -74,7 +89,7 @@ parsed out when loaded.
 I consider these tools helpful enough to install on all my devices.
 
 ```bash
-brew install tig watch
+brew install tig tree watch
 ```
 
 ## License:
