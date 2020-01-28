@@ -34,32 +34,26 @@ completely refactored for macOS. Features:
 
 1. Clone and cd to the repo:
 
-```bash
-git clone git@github.com:cyphus/dotfiles.git
-cd dotfiles
-```
-
-1. Run the first time setup script:
-
-```bash
-./first_time_setup_macos.sh
-```
+   ```bash
+   git clone git@github.com:cyphus/dotfiles.git
+   cd dotfiles
+   ```
 
 1. Run `symlink_dotfiles.sh` to "install" dotfiles by symlinking them from the
    cloned repo to your home directory. Any files that already exist in your
    home directory are first backed up to *dotfile*.bak.  Any files that are
    already symlinks are left alone.
 
-```console
-$ ./symlink_dotfiles.sh
-Syminking /Users/cyphus/.gitconfig to /Users/cyphus/projects/dotfiles/.gitconfig
-Backing up /Users/cyphus/.gitignore_global to /Users/cyphus/.gitignore_global.bak
-Symlinking /Users/cyphus/.gitignore_global to /Users/cyphus/projects/dotfiles/.gitignore_global
-Symlinking /Users/cyphus/.tmux.conf to /Users/cyphus/projects/dotfiles/.tmux.conf
-Symlinking /Users/cyphus/.vim to /Users/cyphus/projects/dotfiles/.vim
-Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
-Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
-```
+   ```console
+   $ ./symlink_dotfiles.sh
+   Syminking /Users/cyphus/.gitconfig to /Users/cyphus/projects/dotfiles/.gitconfig
+   Backing up /Users/cyphus/.gitignore_global to /Users/cyphus/.gitignore_global.bak
+   Symlinking /Users/cyphus/.gitignore_global to /Users/cyphus/projects/dotfiles/.gitignore_global
+   Symlinking /Users/cyphus/.tmux.conf to /Users/cyphus/projects/dotfiles/.tmux.conf
+   Symlinking /Users/cyphus/.vim to /Users/cyphus/projects/dotfiles/.vim
+      Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
+   Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
+   ```
 
 ## iTerm2 setup
 
