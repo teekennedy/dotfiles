@@ -25,6 +25,9 @@ completely refactored for macOS. Features:
     as it is not needed for tmux 2.6+ (see
     [#66](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)).
 
+- iTerm2
+  - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
+
 ## Base Installation (macOS)
 
 1. Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
