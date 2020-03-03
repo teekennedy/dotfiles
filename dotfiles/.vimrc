@@ -103,11 +103,6 @@ nmap <silent> <leader>[ :YcmCompleter GoTo<CR>
 let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
 let g:ycm_add_preview_to_completeopt = 1
 
-" Map UltiSnips to Ctrl+k
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
-
 " CtrlP plugin settings
 
 " Ignore files that are also ignored by git and my custom .ctrlpignore
@@ -180,7 +175,7 @@ nmap <silent> <leader>e <Plug>(ale_next_wrap)
 
 " vim-go settings
 
-" No gofmt on save. We use ALE.
+" No gofmt on save. ALE does this.
 let g:go_fmt_autosave = 0
 
 " ALE uses location list, vim-go uses quickfix list by default. Having both

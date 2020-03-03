@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/youcompleteme"]
 	path = dotfiles/.vim/bundle/youcompleteme
 	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule ".vim/bundle/ultisnips"]
-	path = dotfiles/.vim/bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
 [submodule ".vim/bundle/tracwiki"]
 	path = dotfiles/.vim/bundle/tracwiki
 	url = git@github.com:vim-scripts/tracwiki.git
