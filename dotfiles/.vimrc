@@ -153,6 +153,7 @@ let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
 let g:ale_linters = {
         \'go': ['gometalinter'],
+        \'python': ['flake8'],
     \}
 
 " Format code for me on :w
