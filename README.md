@@ -35,11 +35,12 @@ completely refactored for macOS. Features:
    Xcode command line tools, macvim in particular needs a full Xcode
    installation.
 
-1. Clone and cd to the repo:
+1. Clone and initialize submodules:
 
    ```bash
    git clone git@github.com:cyphus/dotfiles.git
    cd dotfiles
+   git submodule update --init --recursive
    ```
 
 1. Run `symlink_dotfiles.sh` to "install" dotfiles by symlinking them from the
@@ -57,6 +58,40 @@ completely refactored for macOS. Features:
       Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
    Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
    ```
+
+## Vim setup
+
+### YouCompleteMe Setup
+
+Make sure you have a python 3 compiled with shared library enabled for
+YouCompleteMe to work. The homebrew packages for python will already have this,
+but if you're using pyenv, you need to make sure the global python installation
+(the one set with `pyenv global <x.y.z>` is compiled with `--enable-shared`:
+
+```
+env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.2
+```
+
+Then, change to the YouCompleteMe submodule directory and run `./install.py`
+with one or more of the following language-specific flags:
+
+* C family support: install clang with `xcode-select --install` and add
+  --clangd-completer when calling install.py.
+* C# support: install Mono and add --cs-completer when calling install.py.
+* Go support: `brew install golang` and add --go-completer when calling
+  install.py.
+* JavaScript and TypeScript support: install Node.js and npm and add
+  --ts-completer when calling install.py.
+* Rust support: add --rust-completer when calling install.py.
+* Java support: install JDK8 (version 8 required) and add
+  --java-completer when calling install.py.
+
+Ex:
+
+```
+cd dotfiles/.vim/bundle/youcompleteme
+./install.py --clangd-completer --go-completer --ts-completer
+```
 
 ## iTerm2 setup
 
