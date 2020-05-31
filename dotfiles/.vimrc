@@ -186,6 +186,10 @@ let g:go_list_type = 'locationlist'
 
 let g:vim_jsx_pretty_colorful_config = 1 " requires vim-javascript
 
+" vim-terraform settings
+
+let g:terraform_fmt_on_save=1
+
 " easy-align settings
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
