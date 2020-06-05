@@ -14,7 +14,7 @@ completely refactored for macOS. Features:
 
 - tmux:
   - uses `Ctrl+a` as prefix (very common)
-  - extended history for panes (10,000 lines)
+  - extended history for panes (100k lines)
   - keeps the current working directory when opening/splitting windows
   - mouse integration (maily used for selecting text for copy-paste)
   - vim-aware smart pane switching (using `Ctrl+[h|j|k|l]`)
@@ -91,6 +91,17 @@ Ex:
 ```
 cd dotfiles/.vim/bundle/youcompleteme
 ./install.py --clangd-completer --go-completer --ts-completer
+```
+
+### Adding new Vim plugins
+
+Vim plugins are tracked as git submodules, used as a lightweight vendoring
+mechanism. They are loaded into vim using
+[pathogen.vim](https://github.com/tpope/vim-pathogen). To add a new vim plugin
+as a git submodule, grab the SSH clone url for the plugin's repo and run:
+
+```
+git submodule add <repo> dotfiles/.vim/bundle/<plugin_name>
 ```
 
 ## iTerm2 setup

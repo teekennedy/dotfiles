@@ -61,3 +61,6 @@
 [submodule "dotfiles/.vim/bundle/vim-jsonnet"]
 	path = dotfiles/.vim/bundle/vim-jsonnet
 	url = git@github.com:google/vim-jsonnet.git
+[submodule "dotfiles/.vim/bundle/visual-star-search"]
+	path = dotfiles/.vim/bundle/visual-star-search
+	url = git@github.com:bronson/vim-visual-star-search.git
