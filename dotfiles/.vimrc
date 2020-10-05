@@ -61,9 +61,9 @@ set hls " Higlhight search
 
 set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 
-" attempt to make molokai colors in terminal version match those in GUI version
-let g:rehash256 = 1
-colorscheme molokai
+" Use gruvbox colorscheme
+autocmd vimenter * colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 
 " custom commands
 

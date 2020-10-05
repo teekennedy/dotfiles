@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/molokai"]
-	path = dotfiles/.vim/bundle/molokai
-	url = https://github.com/tomasr/molokai.git
 [submodule ".vim/bundle/pathogen"]
 	path = dotfiles/.vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
@@ -64,3 +61,6 @@
 [submodule "dotfiles/.vim/bundle/visual-star-search"]
 	path = dotfiles/.vim/bundle/visual-star-search
 	url = git@github.com:bronson/vim-visual-star-search.git
+[submodule "dotfiles/.vim/bundle/gruvbox"]
+	path = dotfiles/.vim/bundle/gruvbox
+	url = git@github.com:morhetz/gruvbox.git
