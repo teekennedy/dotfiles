@@ -10,7 +10,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="bullet-train"
 
-BULLETTRAIN_PROMPT_ORDER=(status dir local_pyenv git cmd_exec_time)
+BULLETTRAIN_PROMPT_ORDER=(status cmd_exec_time dir local_pyenv git)
 BULLETTRAIN_DIR_BG='black'
 BULLETTRAIN_DIR_FG='white'
 BULLETTRAIN_GIT_BG='blue'
