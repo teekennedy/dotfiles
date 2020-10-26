@@ -118,8 +118,8 @@ let g:ctrlp_working_path_mode = 0
 
 " Jsonnet plugin settings
 
-let g:jsonnet_command='jsonnetfmt'
-let g:jsonnet_fmt_command=''
+let g:jsonnet_command='jsonnet'
+let g:jsonnet_fmt_command='jsonnetfmt'
 let g:jsonnet_fmt_options='--comment-style h'
 
 " Airline plugin settings
