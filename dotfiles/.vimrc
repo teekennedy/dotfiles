@@ -45,8 +45,6 @@ set hidden " Allow for switching buffers without saving
 " path to each swapfile to avoid filename collisions.
 set dir=~/.swp//
 
-set lazyredraw " Don't update display while executing macros
-
 " Smart case search
 set ic
 set smartcase
