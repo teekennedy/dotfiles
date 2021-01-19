@@ -59,41 +59,9 @@ completely refactored for macOS. Features:
    Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
    ```
 
-## Vim setup
+## NeoVim setup
 
-### YouCompleteMe Setup
-
-Make sure you have a python 3 compiled with shared library enabled for
-YouCompleteMe to work. The homebrew packages for python will already have this,
-but if you're using pyenv, you need to make sure the global python installation
-(the one set with `pyenv global <x.y.z>` is compiled with `--enable-shared`:
-
-```
-env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.2
-```
-
-Then, change to the YouCompleteMe submodule directory and run `./install.py`
-with one or more of the following language-specific flags:
-
-* C family support: install clang with `xcode-select --install` and add
-  --clangd-completer when calling install.py.
-* C# support: install Mono and add --cs-completer when calling install.py.
-* Go support: `brew install golang` and add --go-completer when calling
-  install.py.
-* JavaScript and TypeScript support: install Node.js and npm and add
-  --ts-completer when calling install.py.
-* Rust support: add --rust-completer when calling install.py.
-* Java support: install JDK8 (version 8 required) and add
-  --java-completer when calling install.py.
-
-Ex:
-
-```
-cd dotfiles/.vim/bundle/youcompleteme
-./install.py --clangd-completer --go-completer --ts-completer
-```
-
-### Adding new Vim plugins
+### Adding new plugins
 
 Vim plugins are tracked as git submodules, used as a lightweight vendoring
 mechanism. They are loaded into vim using
