@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/keepcase"]
 	path = dotfiles/.vim/bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim.git
-[submodule ".vim/bundle/youcompleteme"]
-	path = dotfiles/.vim/bundle/youcompleteme
-	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/tracwiki"]
 	path = dotfiles/.vim/bundle/tracwiki
 	url = git@github.com:vim-scripts/tracwiki.git
@@ -63,4 +60,4 @@
 	url = git@github.com:bronson/vim-visual-star-search.git
 [submodule "dotfiles/.vim/bundle/gruvbox"]
 	path = dotfiles/.vim/bundle/gruvbox
-	url = git@github.com:morhetz/gruvbox.git
+	url = git@github.com:gruvbox-community/gruvbox.git

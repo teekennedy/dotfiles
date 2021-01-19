@@ -8,13 +8,6 @@ set number " show what line I'm on
 set relativenumber " show relative line numbers
 set mouse=a " support the mouse even in the terminal
 
-" enable resizing splits with mouse from inside a tmux session
-if &term =~ '^screen'
-    " sgr is a new mouse handler as of vim 7.3.632.
-    " sgr is backwards compatible with xterm2 and works with columns > 223
-    set ttymouse=sgr
-endif
-
 syntax on " Set syntax on
 " Don't flag curly braces inside parenthesis (i.e. C++11 lambda) as error
 let c_no_curly_error=1
@@ -60,6 +53,7 @@ set hls " Higlhight search
 set lbr " Wrap text visually (does not insert '\n') (lbr|nolbr)
 
 " Use gruvbox colorscheme
+set termguicolors " Allows true 24 bit color setting
 autocmd vimenter * colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 
