@@ -63,3 +63,13 @@ done
 unset user_defined_paths user_defined_paths_file user_path
 
 export PATH
+
+# Load zsh shell completeions from homebrew
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
