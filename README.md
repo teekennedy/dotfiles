@@ -63,13 +63,27 @@ completely refactored for macOS. Features:
 
 ### Adding new plugins
 
-Vim plugins are tracked as git submodules, used as a lightweight vendoring
-mechanism. They are loaded into vim using
-[pathogen.vim](https://github.com/tpope/vim-pathogen). To add a new vim plugin
-as a git submodule, grab the SSH clone url for the plugin's repo and run:
+NeoVim plugins are tracked as git submodules, used as a lightweight vendoring
+mechanism. They are loaded into nvim using
+the native package feature from Vim 8. To add a new vim plugin
+as a git submodule, first choose the plugin category from the following list
+(or create a new one by adding a new subfolder to
+`dotfiles/.local/share/nvim/site/pack`:
+
+- tools (Commands, integrations, new functionalities)
+- language (Language specific plugins)
+- interface (UI tweaks and colorscheme)
+
+Next, grab the SSH clone url for the plugin's repo and run:
 
 ```
-git submodule add <repo> dotfiles/.vim/bundle/<plugin_name>
+git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/<plugin_name>
+```
+
+### Updating plugins
+
+```
+git submodule foreach git pull origin master
 ```
 
 ## iTerm2 setup
