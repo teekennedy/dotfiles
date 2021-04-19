@@ -13,13 +13,15 @@ backup_and_symlink() {
     if [ -e $dest ]; then
         echo "Backing up $dest to $dest.bak"
         mv "$dest" "$dest.bak"
+    else
+	# ensure parent directory exists
+	mkdir -p $(dirname $dest)
     fi
     echo "Symlinking $dest to $dotfiles_dir/$1"
     ln -s "$dotfiles_dir/$1" "$dest"
 }
 
-# Backup and symlink all files in $dotfiles_dir. `ls -A` lists all files in a
-# directory, excluding "." and "..".
-for file in $(ls -A "$dotfiles_dir"); do
+# Backup and symlink all files in $dotfiles_dir.
+for file in $(cd "$dotfiles_dir"; git ls-files); do
     backup_and_symlink $file
 done
