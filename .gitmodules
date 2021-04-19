@@ -1,63 +1,48 @@
-[submodule ".vim/bundle/pathogen"]
-	path = dotfiles/.config/nvim/bundle/pathogen
-	url = https://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/keepcase"]
-	path = dotfiles/.config/nvim/bundle/keepcase
-	url = https://github.com/vim-scripts/keepcase.vim.git
-[submodule ".vim/bundle/tracwiki"]
-	path = dotfiles/.config/nvim/bundle/tracwiki
-	url = git@github.com:vim-scripts/tracwiki.git
-[submodule ".vim/bundle/salt"]
-	path = dotfiles/.config/nvim/bundle/salt
-	url = git@github.com:saltstack/salt-vim.git
 [submodule ".vim/bundle/vim-tmux-navigator"]
-	path = dotfiles/.config/nvim/bundle/vim-tmux-navigator
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
 [submodule ".vim/bundle/easy-align"]
-	path = dotfiles/.config/nvim/bundle/easy-align
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/easy-align
 	url = git@github.com:junegunn/vim-easy-align
-[submodule ".vim/bundle/ale"]
-	path = dotfiles/.config/nvim/bundle/ale
-	url = git@github.com:w0rp/ale.git
 [submodule ".vim/bundle/airline"]
-	path = dotfiles/.config/nvim/bundle/airline
+	path = dotfiles/.local/share/nvim/site/pack/interface/start/airline
 	url = git@github.com:vim-airline/vim-airline.git
 [submodule ".vim/bundle/fugitive"]
-	path = dotfiles/.config/nvim/bundle/fugitive
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-javascript"]
-	path = dotfiles/.config/nvim/bundle/vim-javascript
+	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
 [submodule ".vim/bundle/vim-jsx-pretty"]
-	path = dotfiles/.config/nvim/bundle/vim-jsx-pretty
+	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsx-pretty
 	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
 [submodule ".vim/bundle/ctrlp"]
-	path = dotfiles/.config/nvim/bundle/ctrlp
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/ctrlp
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
 [submodule "dotfiles/.vim/bundle/go"]
-	path = dotfiles/.config/nvim/bundle/go
+	path = dotfiles/.local/share/nvim/site/pack/language/start/go
 	url = git@github.com:fatih/vim-go
 [submodule "dotfiles/.vim/bundle/vim-terraform"]
-	path = dotfiles/.config/nvim/bundle/vim-terraform
+	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
 [submodule "dotfiles/.vim/bundle/elm-vim"]
 	path = dotfiles/.vim/bundle/elm-vim
 	url = git@github.com:ElmCast/elm-vim.git
 [submodule "dotfiles/.vim/bundle/vim-eunuch"]
-	path = dotfiles/.config/nvim/bundle/vim-eunuch
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-eunuch
 	url = git@github.com:tpope/vim-eunuch.git
 [submodule "dotfiles/.vim/bundle/vim-surround"]
-	path = dotfiles/.config/nvim/bundle/vim-surround
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-surround
 	url = git@github.com:tpope/vim-surround.git
 [submodule "dotfiles/.vim/bundle/vim-repeat"]
-	path = dotfiles/.config/nvim/bundle/vim-repeat
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-repeat
 	url = git@github.com:tpope/vim-repeat.git
 [submodule "dotfiles/.vim/bundle/vim-jsonnet"]
-	path = dotfiles/.config/nvim/bundle/vim-jsonnet
+	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonnet
 	url = git@github.com:midnightconman/vim-jsonnet.git
 [submodule "dotfiles/.vim/bundle/visual-star-search"]
-	path = dotfiles/.config/nvim/bundle/visual-star-search
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/visual-star-search
 	url = git@github.com:bronson/vim-visual-star-search.git
 [submodule "dotfiles/.vim/bundle/gruvbox"]
-	path = dotfiles/.config/nvim/bundle/gruvbox
+	path = dotfiles/.local/share/nvim/site/pack/interface/start/gruvbox
 	url = git@github.com:gruvbox-community/gruvbox.git

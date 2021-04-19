@@ -1,8 +1,3 @@
-" All plugins managed using git submodules and added using pathogen,
-" which is a submodule itself.
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
 set number " show what line I'm on
 set relativenumber " show relative line numbers
 set mouse=a " support the mouse even in the terminal
@@ -71,14 +66,6 @@ nmap <silent> <leader>t :GoTest<CR>
 " Toggle paste mode
 nmap <silent> <leader>p :set invpaste<CR>
 
-" Semantic-aware GoTo definition/declaration
-nmap <silent> <leader>[ :YcmCompleter GoTo<CR>
-
-" You complete me plugin settings
-
-let g:ycm_extra_conf_globlist = [ '~/projects/*', '!~/*' ]
-let g:ycm_add_preview_to_completeopt = 1
-
 " CtrlP plugin settings
 
 " Ignore files that are also ignored by git and my custom .ctrlpignore
@@ -116,36 +103,6 @@ au BufNewFile,BufRead *.jenkinsfile,Jenkinsfile set filetype=groovy
 
 " Some repos use dockerfile as a prefix
 au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
-
-" ALE (asynchronous lint engine) settings
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'w'
-let g:ale_linters = {
-        \'go': ['gometalinter'],
-        \'python': ['flake8'],
-    \}
-
-" Format code for me on :w
-let g:ale_fix_on_save = 1
-
-" goimports on save.
-let g:ale_fixers = {
-        \'go': ['goimports', 'gofmt'],
-        \'python': ['black'],
-    \}
-
-" ALE gometalinter settings
-let g:ale_go_gometalinter_executable = 'gometalinter.v2'
-" gometalinter options are the same ones used in sensu-go
-let g:ale_go_gometalinter_options = '--vendor'
-		\ . ' --disable-all'
-		\ . ' --enable=vet'
-		\ . ' --enable=ineffassign'
-		\ . ' --enable=goconst'
-		\ . ' --tests'
-
-" ALE goto next warning/error (with wrap around to start of file if necessary)
-nmap <silent> <leader>e <Plug>(ale_next_wrap)
 
 " vim-go settings
 
