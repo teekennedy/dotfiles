@@ -46,3 +46,6 @@
 [submodule "dotfiles/.vim/bundle/gruvbox"]
 	path = dotfiles/.local/share/nvim/site/pack/interface/start/gruvbox
 	url = git@github.com:gruvbox-community/gruvbox.git
+[submodule "dotfiles/.local/share/nvim/site/pack/tools/start/coc"]
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/coc
+	url = git@github.com:neoclide/coc.nvim.git
