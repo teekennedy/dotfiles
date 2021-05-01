@@ -80,7 +80,7 @@ git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/<plugin
 
 ```
 git submodule foreach git pull origin master
-nvim -c 'CocUpdateSync|q'
+nvim -c 'CocUpdateSync|helptags ALL|q'
 ```
 
 ## Adding extra paths to the PATH

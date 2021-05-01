@@ -154,7 +154,7 @@ let g:ale_fixers = {
 " coc.nvim settings
 
 " Extensions to install
-let g:coc_global_extensions = ['coc-json', 'coc-jedi']
+let g:coc_global_extensions = ['coc-json', 'coc-jedi', 'coc-pyright']
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
