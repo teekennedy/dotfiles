@@ -133,13 +133,19 @@ let g:ale_linters = {
         \'python': ['flake8'],
     \}
 
+" Go to next warning / error
+nnoremap <leader>e :ALENext<cr>
+
 " Use coc.nvim for language server protocol support
 let g:ale_disable_lsp = 1
 
 " Format code for me on :w
 let g:ale_fix_on_save = 1
 
-" goimports on save.
+" Auto import where supported
+let g:ale_completion_autoimport = 1
+
+" Formatters / fixers for various file types
 let g:ale_fixers = {
         \'go': ['goimports', 'gofmt'],
         \'python': ['black', 'isort'],
