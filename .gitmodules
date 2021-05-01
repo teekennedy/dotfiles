@@ -52,3 +52,6 @@
 [submodule "dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonc"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonc
 	url = git@github.com:kevinoid/vim-jsonc.git
+[submodule "dotfiles/.local/share/nvim/site/pack/tools/start/ale"]
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/ale
+	url = git@github.com:w0rp/ale.git

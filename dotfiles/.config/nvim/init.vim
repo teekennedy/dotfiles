@@ -125,7 +125,30 @@ let g:vim_jsx_pretty_colorful_config = 1 " requires vim-javascript
 
 let g:terraform_fmt_on_save=1
 
+" ALE (asynchronous lint engine) settings
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'w'
+let g:ale_linters = {
+        \'go': ['gometalinter'],
+        \'python': ['flake8'],
+    \}
+
+" Use coc.nvim for language server protocol support
+let g:ale_disable_lsp = 1
+
+" Format code for me on :w
+let g:ale_fix_on_save = 1
+
+" goimports on save.
+let g:ale_fixers = {
+        \'go': ['goimports', 'gofmt'],
+        \'python': ['black', 'isort'],
+    \}
+
 " coc.nvim settings
+
+" Extensions to install
+let g:coc_global_extensions = ['coc-json', 'coc-jedi']
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -176,10 +199,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
