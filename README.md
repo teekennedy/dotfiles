@@ -20,12 +20,8 @@ completely refactored for macOS. Features:
   - vim-aware smart pane switching (using `Ctrl+[h|j|k|l]`)
   - no status bar. Maybe later I'll customize it to my liking, but for now it's
     just in the way.
-  - does _not_ use
-    [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/)
-    as it is not needed for tmux 2.6+ (see
-    [#66](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)).
 
-- iTerm2
+- Alacritty
   - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
 
 ## Base Installation (macOS)
@@ -84,22 +80,8 @@ git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/<plugin
 
 ```
 git submodule foreach git pull origin master
+nvim -c 'CocUpdateSync|q'
 ```
-
-## iTerm2 setup
-
-If you want your iTerm2 terminal to look like mine, follow these steps:
-
- * Install [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font:
-   ```
-   brew tap homebrew/cask-fonts
-   brew install font-jetbrains-mono
-   ```
- * Go to the *Profiles* tab of the iTerm2 prefernces page. Under the *Text*
-   section of your currently activated profile, make sure that:
-   * *Use built-in Powerline glyphs* is ✅
-   * Change the font to JetBrains Mono installed earlier, and make sure both
-     *Use ligatures* and *Anti-aliased* are ✅
 
 ## Adding extra paths to the PATH
 
