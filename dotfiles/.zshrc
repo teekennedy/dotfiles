@@ -59,11 +59,9 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 EDITOR='vim'
-# The default pager (less) used by aws-cli v2+ will require the user to quit
-# the pager every time it is used, even if the output is only a few lines long.
-# Setting the --no-init option "Disables  sending  the  termcap  initialization
-# and deinitialization strings to the terminal," which fixes the issue.
-AWS_PAGER='less --no-init'
+# Turn off paging output of AWS cli commands by setting this variable to an
+# empty string.
+AWS_PAGER=''
 
 # By default, OMZ performs history expansion on the current line and pause to
 # verify before running. I prefer my history expanded commands instant.
