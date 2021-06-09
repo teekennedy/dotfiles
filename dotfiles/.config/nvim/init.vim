@@ -1,5 +1,4 @@
 set number " show what line I'm on
-set relativenumber " show relative line numbers
 set mouse=a " support the mouse even in the terminal
 
 " Vim's built-in netrw plugin places .netrwhist files in the current directory
