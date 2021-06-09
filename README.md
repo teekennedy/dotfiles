@@ -1,6 +1,6 @@
 # Dotfiles by Cyphus
 
-My personal collection of dotfiles. Originally optimized for Arch, then
+My personal collection of dotfiles. Originally created for Arch, then
 completely refactored for macOS. Features:
 
 - zsh:
@@ -36,10 +36,13 @@ completely refactored for macOS. Features:
 
    ```
    brew install \
+       # Terminal emulator & font
        alacritty \
+       #
        git \
-       jq \
        neovim \
+       # useful utilities
+       jq \
        tig \
        tree \
        watch \
@@ -69,6 +72,18 @@ completely refactored for macOS. Features:
    Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
    ```
 
+## Updating
+
+Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
+update neovim:
+
+```bash
+git pull
+git submodule update --init --recursive
+./symlink_dotfiles.sh
+nvim -c 'CocUpdateSync|helptags ALL|q'
+```
+
 ## NeoVim setup
 
 ### Adding new plugins
@@ -97,7 +112,19 @@ git submodule foreach git pull origin master
 nvim -c 'CocUpdateSync|helptags ALL|q'
 ```
 
-## Adding extra paths to the PATH
+## Yubikey
+
+### Adding a TOTP 2FA Account
+
+- Setup 2FA on website
+- When given QR code to scan with app, find the alternate text representation
+  (if available), or use a standard QR code scanner to get the 2FA key.
+- Add the key to your Yubikey as an oath code and give it a name:
+  `ykman oath accounts add -t <name> <key>`
+
+## Shell Environment
+
+### Adding extra paths to the PATH
 
 Many paths are specific to a given user's environment and therefore should not
 be added to the dotfiles version control. Adding machine-specific paths to the
