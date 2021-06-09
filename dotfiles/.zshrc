@@ -12,9 +12,11 @@ ZSH_THEME="bullet-train"
 
 BULLETTRAIN_PROMPT_ORDER=(status cmd_exec_time dir local_pyenv git)
 BULLETTRAIN_DIR_BG='black'
-BULLETTRAIN_DIR_FG='white'
+BULLETTRAIN_DIR_FG='default'
 BULLETTRAIN_GIT_BG='blue'
-BULLETTRAIN_GIT_FG='white'
+BULLETTRAIN_GIT_FG='default'
+BULLETTRAIN_PYENV_FG='default'
+BULLETTRAIN_STATUS_FG='default'
 # only show clean/dirty working tree state
 BULLETTRAIN_GIT_EXTENDED='false'
 BULLETTRAIN_PROMPT_ADD_NEWLINE='false'
