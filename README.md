@@ -11,6 +11,12 @@ completely refactored for macOS. Features:
     [Bullet Train](https://github.com/caiogondim/bullet-train.zsh).
   - Custom pyenv prompt that only displays when running a locally defined pyenv
     based on the cwd.
+  - Aliases / shortcuts:
+    - `auth <name>`: Passes the current TOTP code of the given `<name>` from
+      your Yubikey to your clipboard.
+    - `t <name>`: Attaches to a tmux session of the given `<name>`, or creates
+      one if it doesn't already exist.
+
 
 - tmux:
   - uses `Ctrl+a` as prefix (very common)
@@ -26,10 +32,18 @@ completely refactored for macOS. Features:
 
 ## Base Installation (macOS)
 
-1. Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-   from the Mac App Store. While most utilities under Homebrew only require the
-   Xcode command line tools, macvim in particular needs a full Xcode
-   installation.
+1. Install base packages through homebrew:
+
+   ```
+   brew install \
+       alacritty \
+       git \
+       jq \
+       neovim \
+       tig \
+       tree \
+       watch \
+    ```
 
 1. Clone and initialize submodules:
 

@@ -79,5 +79,5 @@ alias t='tmux new -As'
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws
 function auth() {
-    ykman oath code $1 | awk '{ print $2 }' | pbcopy
+    ykman oath accounts code $1 | awk '{ print $2 }' | pbcopy
 }
