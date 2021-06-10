@@ -63,13 +63,17 @@ completely refactored for macOS. Features:
 
    ```console
    $ ./symlink_dotfiles.sh
-   Syminking /Users/cyphus/.gitconfig to /Users/cyphus/projects/dotfiles/.gitconfig
-   Backing up /Users/cyphus/.gitignore_global to /Users/cyphus/.gitignore_global.bak
-   Symlinking /Users/cyphus/.gitignore_global to /Users/cyphus/projects/dotfiles/.gitignore_global
-   Symlinking /Users/cyphus/.tmux.conf to /Users/cyphus/projects/dotfiles/.tmux.conf
-   Symlinking /Users/cyphus/.vim to /Users/cyphus/projects/dotfiles/.vim
-      Symlinking /Users/cyphus/.vimrc to /Users/cyphus/projects/dotfiles/.vimrc
-   Symlinking /Users/cyphus/.zshrc to /Users/cyphus/projects/dotfiles/.zshrc
+   [SKP] /Users/tkennedy/.alacritty.yml is already symlinked. Skipping.
+   [SKP] /Users/tkennedy/.config/nvim/after/filetype.vim is already symlinked. Skipping.
+   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/c.vim is already symlinked. Skipping.
+   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/ruby.vim is already symlinked. Skipping.
+   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/tracwiki.vim is already symlinked. Skipping.
+   ...  (snip) ...
+   [SKP] /Users/tkennedy/.local/share/nvim/site/pack/tools/start/fugitive is already symlinked. Skipping.
+   [SKP] /Users/tkennedy/.local/share/nvim/site/pack/tools/start/visual-star-search is already symlinked. Skipping.
+   [BAK] Backing up /Users/tkennedy/.oh-my-zsh to /Users/tkennedy/.oh-my-zsh.2021-06-10T13_33_43.bak
+   [SYM] Symlinking /Users/tkennedy/.oh-my-zsh to /Users/tkennedy/projects/dotfiles/dotfiles/.oh-my-zsh
+   [SKP] /Users/tkennedy/.tmux.conf is already symlinked. Skipping.
    ```
 
 ## Updating
