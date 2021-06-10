@@ -176,6 +176,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Gruvbox dark)
+# https://github.com/eendroroy/alacritty-theme/blob/master/themes/gruvbox_dark.yaml
 colors:
   # Default colors
   primary:
