@@ -1,4 +1,4 @@
-set number " show what line I'm on
+set number " show line numbers
 set mouse=a " support the mouse even in the terminal
 
 " Vim's built-in netrw plugin places .netrwhist files in the current directory
@@ -172,8 +172,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" use <cr> to confirm snippet completions (ending in ~).
+" https://github.com/neoclide/coc.nvim/wiki/Using-snippets#snippet-completion
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
