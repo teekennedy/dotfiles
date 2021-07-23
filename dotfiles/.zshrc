@@ -69,6 +69,10 @@ AWS_PAGER=''
 # verify before running. I prefer my history expanded commands instant.
 unsetopt HIST_VERIFY
 
+# Erase previous duplicate entries in the history and allow me to use leading
+# spaces to prevent sensitive info from being written to the history.
+export HISTCONTROL=erasedups:ignorespace
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
