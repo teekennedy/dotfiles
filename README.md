@@ -36,16 +36,13 @@ completely refactored for macOS. Features:
 
    ```
    brew install \
-       # Terminal emulator & font
        alacritty \
-       #
        git \
        neovim \
-       # useful utilities
        jq \
        tig \
        tree \
-       watch \
+       watch
     ```
 
 1. Clone and initialize submodules:
@@ -76,7 +73,7 @@ completely refactored for macOS. Features:
    [SKP] /Users/tkennedy/.tmux.conf is already symlinked. Skipping.
    ```
 
-## Updating
+## Updating Dotfiles
 
 Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
 update neovim:
@@ -86,6 +83,24 @@ git pull
 git submodule update --init --recursive
 ./symlink_dotfiles.sh
 nvim -c 'CocUpdateSync|helptags ALL|q'
+```
+
+## Submodules
+
+### Adding
+
+`git submodule add <SSH repository url> <path>`
+
+### Updating
+
+`git submodule update --init --recursive`
+
+### Removing
+
+```
+git submodule deinit -f -- a/submodule    
+rm -rf .git/modules/a/submodule
+git rm -f a/submodule
 ```
 
 ## NeoVim setup
