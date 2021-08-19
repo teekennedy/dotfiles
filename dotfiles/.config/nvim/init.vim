@@ -128,7 +128,7 @@ let g:terraform_fmt_on_save=1
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
 let g:ale_linters = {
-        \'go': ['gometalinter'],
+        \'go': ['gopls'],
         \'python': ['flake8'],
     \}
 

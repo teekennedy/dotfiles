@@ -93,7 +93,7 @@ nvim -c 'CocUpdateSync|helptags ALL|q'
 
 ### Updating
 
-`git submodule update --init --recursive`
+`git submodule update --recursive --remote`
 
 ### Removing
 
