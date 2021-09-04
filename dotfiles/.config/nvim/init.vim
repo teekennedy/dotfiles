@@ -95,8 +95,12 @@ let g:airline_powerline_fonts = 1
 " Set the timeout for waiting for another key to be pressed in milliseconds.
 " This prevents a noticeable delay after hitting ESC to leave insert mode.
 set ttimeoutlen=7
+" Cache changes to highlighting groups. Makes switching between modes faster
+let g:airline_highlighting_cache = 1
 " Let vim-airline set the tabline when there are no tabs
 let g:airline#extensions#tabline#enabled = 1
+" Show ALE diagnostics in the statusline
+let g:airline#extensions#ale#enabled = 1
 
 " waf syntax
 au BufNewFile,BufRead wscript set filetype=python
@@ -109,8 +113,11 @@ au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
 
 " vim-go settings
 
-" No gofmt on save. ALE does this.
+" No gofmt or goimports on save. Coc does this.
 let g:go_fmt_autosave = 0
+let g:go_imports_autosave = 0
+" Coc handles code completion as well
+let g:go_code_completion_enabled = 0
 
 " ALE uses location list, vim-go uses quickfix list by default. Having both
 " open produces weird UI issues (see https://vi.stackexchange.com/q/14166)
@@ -128,9 +135,11 @@ let g:terraform_fmt_on_save=1
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'w'
 let g:ale_linters = {
-        \'go': ['gopls'],
         \'python': ['flake8'],
     \}
+
+" Show errors in the number column. Requires NeoVim 0.5.0+
+set signcolumn=number
 
 " Go to next warning / error
 nnoremap <leader>e :ALENext<cr>
@@ -153,16 +162,7 @@ let g:ale_fixers = {
 " coc.nvim settings
 
 " Extensions to install
-let g:coc_global_extensions = ['coc-json', 'coc-jedi', 'coc-pyright']
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+let g:coc_global_extensions = ['coc-json', 'coc-jedi', 'coc-pyright', 'coc-go']
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
