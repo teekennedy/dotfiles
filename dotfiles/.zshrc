@@ -60,10 +60,12 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-EDITOR='vim'
-# Turn off paging output of AWS cli commands by setting this variable to an
-# empty string.
-AWS_PAGER=''
+export EDITOR='nvim'
+
+# Set AWS pager (the command that all AWS CLI output is displayed through).
+# -F tells less to automatically quit if the output fits in one terminal page.
+# -X tells less to avoid termcap init, which keeps output in terminal scrollback.
+export AWS_PAGER='less -XF'
 
 # By default, OMZ performs history expansion on the current line and pause to
 # verify before running. I prefer my history expanded commands instant.
