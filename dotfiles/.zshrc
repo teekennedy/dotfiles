@@ -38,16 +38,13 @@ DISABLE_AUTO_UPDATE="true"
 
 # OMZ's auto title interferes with tmux window's titles, so we turn it off.
 # https://github.com/robbyrussell/oh-my-zsh/pull/257
-# Uncomment the following line to disable auto-setting terminal title.
-# Must be exported to be available to tmux subshells.
 export DISABLE_AUTO_TITLE="true"
 
 # I don't like autocorrect, it interrupts workflow with a prompt.
 ENABLE_CORRECTION="false"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
+# Disable marking untracked files under VCS as dirty. This makes repository
+# status check for large repositories much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Set the timestamp format used in the history command.
@@ -82,7 +79,13 @@ export HISTCONTROL=erasedups:ignorespace
 #
 # Tmux alias: attaches to the named session, creating the session if it doesn't
 # already exist. Ex: t dev
-alias t='tmux new -As'
+(( $+commands[tmux] )) && alias t='tmux new -As'
+
+# Alias diff to colordiff if available
+(( $+commands[colordiff] )) && alias diff='colordiff'
+
+# Alias vim to neovim if available
+(( $+commands[nvim] )) && alias vim='nvim'
 
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws

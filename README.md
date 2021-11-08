@@ -33,6 +33,8 @@ completely refactored for macOS. Features:
       your Yubikey to your clipboard.
     - `t <name>`: Attaches to a tmux session of the given `<name>`, or creates
       one if it doesn't already exist.
+    - `vim`: aliased to neovim, if available.
+    - `diff`: aliased to colordiff, if available.
 
 
 - tmux:
@@ -51,21 +53,6 @@ completely refactored for macOS. Features:
 
 1. If you haven't already, setup an SSH key for use with GitHub. You'll need it
    to initialize submodules for this repo.
-
-1. Install Homebrew and some packages used as dependencies for this repo:
-
-   ```
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   [ -n "$ZSH_VERSION" ] && setopt local_options interactive_comments
-   # The above line allows comments like this in interactive sessions
-   brew install \
-       alacritty `# Efficient terminal emulator` \
-       colordiff `# Colorized diff output` \
-       git `# Comes with macOS but brew's is newer` \
-       neovim `# Editor` \
-       tmux `# Terminal multiplexer` \
-       ykman `# YubiKey manager`
-   ```
 
 1. Clone and initialize submodules:
 
@@ -107,37 +94,69 @@ completely refactored for macOS. Features:
    [SKP] /Users/tkennedy/.tmux.conf is already symlinked. Skipping.
    ```
 
-## Updating Dotfiles
+## Recommended extras
 
-Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
-update neovim:
-
-```bash
-git pull
-git submodule update --init --recursive
-./symlink_dotfiles.sh
-nvim -c 'CocUpdateSync|helptags ALL|q'
-```
-
-## Submodules
-
-### Adding
-
-`git submodule add <SSH repository url> <path>`
-
-### Updating
-
-`git submodule update --recursive --remote`
-
-### Removing
+In addition to the base installation, here's some other recommended utilities
+and applications I use every day:
 
 ```
-git submodule deinit -f -- a/submodule    
-rm -rf .git/modules/a/submodule
-git rm -f a/submodule
+# CLI utilities
+brew install \
+    colordiff `# Colorized diff tool` \
+    git       `# Comes with macOS but brew's is newer` \
+    jq        `# Json query tool` \
+    mas       `# Mac App Store CLI` \
+    tig       `# Git repo browser` \
+    tmux      `# Terminal multiplexer` \
+    tree      `# Pretty prints directory contents` \
+    watch     `# Run commands repeatedly`
+
+# Apps
+brew cask install \
+    fantastical `# Calendar` \
+    keepassxc `# Password manager`
+
+mas install \
+    904280696  `# Things (todos)` \
+    1091189122 `# Bear (notes)` \
+    1439431081 `# Intermission (give your eyes a break)`
 ```
+## Alacritty setup
+
+[Alacritty](https://alacritty.org/) is a modern, efficient terminal emulator. I
+switched to it after having issues with input lag on iTerm2 and have had a
+seamless experience.
+
+Alacritty is configured via a single yaml file, `~/.alacritty.yml`. I left most
+of the config options at their defaults, only setting the font (JetBrains Mono)
+and the colorscheme (Gruvbox Dark, to match NeoVim). To install, make sure
+you've ran `symlink_dotfiles.sh` and then install Alacritty and its font.
+
+```
+brew tap homebrew/cask-fonts
+brew install alacritty font-jetbrains-mono
+```
+
+That's it!
 
 ## NeoVim setup
+
+[NeoVim](https://neovim.io/) is a modern fork of Vim. I have it configured as a
+pretty full fledged IDE thanks to a combination of
+[coc.nvim](https://github.com/neoclide/coc.nvim), [Asynchronous Lint
+Engine](https://github.com/dense-analysis/ale), and a healthy amount of
+language-specific plugins and config.
+
+Setting up NeoVim requires only NeoVim itself and a recent version of node,
+which is required by coc. I use [fnm](https://github.com/Schniz/fnm) for
+managing my node runtimes, so setup looks like this:
+
+```
+brew install fnm neovim
+eval $(fnm env)
+fnm install --lts
+nvim -c 'CocUpdateSync|helptags ALL|q'
+```
 
 ### Adding new plugins
 
@@ -161,11 +180,38 @@ git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/<plugin
 ### Updating plugins
 
 ```
-git submodule foreach git pull origin master
+git submodule update --recursive --remote
 nvim -c 'CocUpdateSync|helptags ALL|q'
 ```
 
-## Yubikey
+## Yubikey setup
+
+I use a YubiKey for convenient 2FA for just about anything that supports it. It
+can be managed via the `ykman` CLI:
+
+```
+brew install ykman
+```
+
+### Adding an SSH key
+
+YubiKeys support ecdsa-sk and ed25519-sk SSH keys. Like other SSH keys, these
+keys are asymmetric (have public and private components), but in this case the
+private key contains a handle to the YubiKey, thus requiring it to be activated
+for every SSH operation.
+
+To setup, first try to generate a more secure ed25519-sk key:
+
+`ssh-keygen -t ed25519-sk`
+
+If that doesn't work, it's likely that your YubiKey doesn't support ed25519-sk.
+Fall back to ecdsa-sk:
+
+`ssh-keygen -t ecdsa-sk`
+
+Now every time you use the key, you'll be prompted to confirm user presence by
+tapping your YubiKey. This is true whether or not you `ssh-add` the key to an
+SSH agent that supports authenticator based keys.
 
 ### Adding a TOTP 2FA Account
 
@@ -175,22 +221,35 @@ nvim -c 'CocUpdateSync|helptags ALL|q'
 - Add the key to your Yubikey as an oath code and give it a name:
   `ykman oath accounts add -t <name> <key>`
 
-## Shell Environment
+## Updating Dotfiles
 
-### Adding extra paths to the PATH
-
-Many paths are specific to a given user's environment and therefore should not
-be added to the dotfiles version control. Adding machine-specific paths to the
-PATH can be done by placing a `.zprofile-paths` file in your home directory
-with one path per line. Shell comments are allowed in this file as they are
-parsed out when loaded.
-
-## Other helpful utilities
-
-I consider these tools helpful enough to install on all my devices.
+Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
+update neovim:
 
 ```bash
-brew install tig tree watch
+git pull
+git submodule sync
+git submodule update --init --recursive
+./symlink_dotfiles.sh
+nvim -c 'CocUpdateSync|helptags ALL|q'
+```
+
+## Submodules
+
+### Adding
+
+`git submodule add <HTTPS repository url> <path>`
+
+### Updating
+
+`git submodule update --recursive --remote`
+
+### Removing
+
+```
+git submodule deinit -f -- a/submodule
+rm -rf .git/modules/a/submodule
+git rm -f a/submodule
 ```
 
 ## License:
