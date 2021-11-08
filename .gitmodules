@@ -1,60 +1,80 @@
 [submodule ".vim/bundle/vim-tmux-navigator"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
+	url = https://github.com/christoomey/vim-tmux-navigator.git
+	branch = master
 [submodule ".vim/bundle/easy-align"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/easy-align
-	url = git@github.com:junegunn/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+	branch = master
 [submodule ".vim/bundle/airline"]
 	path = dotfiles/.local/share/nvim/site/pack/interface/start/airline
-	url = git@github.com:vim-airline/vim-airline.git
+	url = https://github.com/vim-airline/vim-airline.git
+	branch = master
 [submodule ".vim/bundle/fugitive"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/fugitive
-	url = git@github.com:tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
+	branch = master
 [submodule ".vim/bundle/vim-javascript"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
+	url = https://github.com/pangloss/vim-javascript.git
+	branch = master
 [submodule ".vim/bundle/vim-jsx-pretty"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsx-pretty
-	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+	branch = master
 [submodule ".vim/bundle/ctrlp"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/ctrlp
-	url = git@github.com:ctrlpvim/ctrlp.vim.git
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/go"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/go
-	url = git@github.com:fatih/vim-go
+	url = https://github.com/fatih/vim-go
+	branch = master
 [submodule "dotfiles/.vim/bundle/vim-terraform"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-terraform
-	url = git@github.com:hashivim/vim-terraform.git
+	url = https://github.com/hashivim/vim-terraform.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/elm-vim"]
 	path = dotfiles/.vim/bundle/elm-vim
-	url = git@github.com:ElmCast/elm-vim.git
+	url = https://github.com/ElmCast/elm-vim.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/vim-eunuch"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-eunuch
-	url = git@github.com:tpope/vim-eunuch.git
+	url = https://github.com/tpope/vim-eunuch.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/vim-surround"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-surround
-	url = git@github.com:tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/vim-repeat"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/vim-repeat
-	url = git@github.com:tpope/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/vim-jsonnet"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonnet
-	url = git@github.com:midnightconman/vim-jsonnet.git
+	url = https://github.com/midnightconman/vim-jsonnet.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/visual-star-search"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/visual-star-search
-	url = git@github.com:bronson/vim-visual-star-search.git
+	url = https://github.com/bronson/vim-visual-star-search.git
+	branch = master
 [submodule "dotfiles/.vim/bundle/gruvbox"]
 	path = dotfiles/.local/share/nvim/site/pack/interface/start/gruvbox
-	url = git@github.com:gruvbox-community/gruvbox.git
+	url = https://github.com/gruvbox-community/gruvbox.git
+	branch = master
 [submodule "dotfiles/.local/share/nvim/site/pack/tools/start/coc"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/coc
-	url = git@github.com:neoclide/coc.nvim.git
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
 [submodule "dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonc"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-jsonc
-	url = git@github.com:kevinoid/vim-jsonc.git
+	url = https://github.com/kevinoid/vim-jsonc.git
+	branch = master
 [submodule "dotfiles/.local/share/nvim/site/pack/tools/start/ale"]
 	path = dotfiles/.local/share/nvim/site/pack/tools/start/ale
-	url = git@github.com:w0rp/ale.git
+	url = https://github.com/w0rp/ale.git
+	branch = master
 [submodule "dotfiles/.oh-my-zsh"]
 	path = dotfiles/.oh-my-zsh
 	url = git@github.com:cyphus/oh-my-zsh.git
+	branch = master
