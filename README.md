@@ -39,6 +39,7 @@ completely refactored for macOS. Features:
 
 - tmux:
   - uses `Ctrl+a` as prefix (very common)
+  - creates non-login shells by default (faster and doesn't mess up PATH)
   - extended history for panes (100k lines)
   - keeps the current working directory when opening/splitting windows
   - mouse integration (maily used for selecting text for copy-paste)
