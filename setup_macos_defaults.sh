@@ -31,14 +31,15 @@ read COMPUTER_NAME
 [[ ! -z "$COMPUTER_NAME" ]] && sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
 
 # Map caps lock to ESC. This must be done as a launch agent so it can persist across reboots.
-CAPS_REMAP_PLIST_PATH=/Library/LaunchDaemons/net.missingtoken.map_caps_to_esc.plist
+CAPS_REMAP_SERVICE_NAME=net.missingtoken.map_caps_to_esc
+CAPS_REMAP_PLIST_PATH=/Library/LaunchDaemons/$CAPS_REMAP_SERVICE_NAME.plist
 cat <<EOF | sudo tee $CAPS_REMAP_PLIST_PATH >/dev/null
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>net.missingtoken.map_caps_to_esc</string>
+    <string>$CAPS_REMAP_SERVICE_NAME</string>
     <key>ProgramArguments</key>
     <array>
       <string>$(which hidutil)</string>
@@ -54,7 +55,11 @@ EOF
 chmod 0644 $CAPS_REMAP_PLIST_PATH
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+sudo nvram StartupMute=%00
+
+# Disable the UI-based sound effects for when you perform certain actions like
+# dragging an item to the trash
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
 # Enable dark mode
 defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
@@ -72,9 +77,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable automatic capitalization as it’s annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
@@ -96,9 +98,8 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
