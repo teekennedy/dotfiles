@@ -404,8 +404,21 @@ killall 'QuickTime Player' || true
 ###############################################################################
 
 # Prevent Photos from opening automatically when devices are plugged in
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+defaults write com.apple.ImageCapture disableHotPlug -bool true
 
 killall Photos || true
+
+###############################################################################
+# Bear (notes app)                                                            #
+###############################################################################
+
+# Only run if Bear is installed
+if open -Ra "Bear" 2>/dev/null; then
+  # Turn off spellcheck, grammar check, and auto-correct
+  defaults write net.shinyfrog.bear SFNoteTextViewContinuousSpellCheckingEnabled -bool false
+  defaults write net.shinyfrog.bear SFNoteTextViewGrammarCheckingEnabled -bool false
+  defaults write net.shinyfrog.bear SFNoteTextViewAutomaticSpellingCorrectionEnabled -bool false
+  killall Bear || true
+fi
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
