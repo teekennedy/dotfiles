@@ -1,4 +1,4 @@
-# Dotfiles by Cyphus
+# Terrance Kennedy's Dotfiles
 
 My personal collection of dotfiles. Originally created for Arch, then
 completely refactored for macOS. Features:
@@ -19,8 +19,9 @@ completely refactored for macOS. Features:
     - Disk Utility
     - QuickTime Player
     - Photos
+    - Bear (if installed)
 
-- zsh:
+- **zsh**
   - Running off of a personal fork of OMZ with performance fixes for the pyenv
     plugin. See [My PR](https://github.com/robbyrussell/oh-my-zsh/pull/6165)
     for more info.
@@ -37,7 +38,7 @@ completely refactored for macOS. Features:
     - `diff`: aliased to colordiff, if available.
 
 
-- tmux:
+- **tmux**
   - uses `Ctrl+a` as prefix (very common)
   - creates non-login shells by default (faster and doesn't mess up PATH)
   - extended history for panes (100k lines)
@@ -47,7 +48,7 @@ completely refactored for macOS. Features:
   - no status bar. Maybe later I'll customize it to my liking, but for now it's
     just in the way.
 
-- Alacritty
+- **Alacritty**
   - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
 
 ## Base Installation (macOS)
@@ -185,7 +186,7 @@ git submodule update --recursive --remote
 nvim -c 'CocUpdateSync|helptags ALL|q'
 ```
 
-## Yubikey setup
+## YubiKey (U2F) setup
 
 I use a YubiKey for convenient 2FA for just about anything that supports it. It
 can be managed via the `ykman` CLI:
