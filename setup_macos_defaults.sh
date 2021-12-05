@@ -49,6 +49,12 @@ cat <<EOF | sudo tee $CAPS_REMAP_PLIST_PATH >/dev/null
     </array>
     <key>RunAtLoad</key>
     <true/>
+    <!-- Uncomment this if you need to debug
+    <key>StandardOutPath</key>
+    <string>/tmp/caps-remap.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/caps-remap.out</string>
+    -->
   </dict>
 </plist>
 EOF

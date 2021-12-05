@@ -195,14 +195,16 @@ can be managed via the `ykman` CLI:
 brew install ykman
 ```
 
-### Adding an SSH key
+### Using YubiKey for SSH
 
 YubiKeys support ecdsa-sk and ed25519-sk SSH keys. Like other SSH keys, these
 keys are asymmetric (have public and private components), but in this case the
-private key contains a handle to the YubiKey, thus requiring it to be activated
-for every SSH operation.
+private key is split into a resident key and a handle to the hardware token,
+thus requiring it to be activated for every SSH operation.
 
-To setup, first try to generate a more secure ed25519-sk key:
+#### Adding SSH keys
+
+To add a new SSH key, first try to generate a more secure ed25519-sk key:
 
 `ssh-keygen -t ed25519-sk`
 
@@ -212,14 +214,49 @@ Fall back to ecdsa-sk:
 `ssh-keygen -t ecdsa-sk`
 
 Now every time you use the key, you'll be prompted to confirm user presence by
-tapping your YubiKey. This is true whether or not you `ssh-add` the key to an
-SSH agent that supports authenticator based keys.
+tapping your YubiKey.
+
+#### U2F keys and ssh-agent
+
+MacOS's default ssh-agent doesn't support ed25519-sk or ecdsa-sk keys. While
+adding U2F keys to your ssh-agent doesn't offer much in terms of convenience
+(you still have to tap your YubiKey on every use), having the agent error out
+every time you try to use a U2F key is quite annoying.
+
+If you want to use your U2F SSH keys with the ssh-agent, you'll need to use a
+newer version of ssh-agent from homebrew. MacOS versions with System Integrity
+Protection do not make this easy, as the default ssh-agent is a system-level
+service that cannot be disabled or overwritten since it lives under the
+protected `/System` directory.
+
+To use homebrew's ssh-agent, one has to resort to the somewhat hacky solution
+of starting homebrew's ssh-agent with a new unix socket path, and then forcibly
+symlink the system-provided unix socket to the path used by homebrew. Roughly
+equivalent to running the following at login:
+
+```sh
+# Create a temporary path for homebrew's socket
+HOMEBREW_SSH_AUTH_SOCK=$(mktemp -dt ssh-agent)/auth-sock
+
+# Overwrite the system-generated socket with a symlink to homebrew's
+sudo ln -sf $HOMEBREW_SSH_AUTH_SOCK $SSH_AUTH_SOCK
+
+# Start homebrew's ssh-agent using the new path
+eval "$(ssh-agent -a $HOMEBREW_SSH_AUTH_SOCK)"
+```
+
+To ensure this works across all applications that use ssh-agent, it's best to
+run these steps before login, via your own launch agent. I've made a script to
+setup such an agent [./setup_homebrew_ssh_agent.sh].
+
+See [Kirill Kuznetsov's post] for a detailed background on the motivation
+behind setting up such a launch agent.
 
 ### Adding a TOTP 2FA Account
 
 - Setup 2FA on website
-- When given QR code to scan with app, find the alternate text representation
-  (if available), or use a standard QR code scanner to get the 2FA key.
+- When given QR code to scan with app, find and copy the alternate text
+  representation of the QR code.
 - Add the key to your Yubikey as an oath code and give it a name:
   `ykman oath accounts add -t <name> <key>`
 
@@ -257,3 +294,5 @@ git rm -f a/submodule
 ## License:
 
 MIT
+
+[Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
