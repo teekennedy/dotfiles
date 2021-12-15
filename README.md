@@ -50,6 +50,7 @@ completely refactored for macOS. Features:
 
 - **Alacritty**
   - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
+  - Has great defaults, doesn't need much customization.
 
 ## Base Installation (macOS)
 
