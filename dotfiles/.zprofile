@@ -14,6 +14,9 @@ fi
 # Set homebrew shell environment variables
 eval $($homebrew_prefix/bin/brew shellenv)
 
+# Add ~/bin directory for custom scripts
+PATH="$HOME/bin:$PATH"
+
 # Load version managers
 
 # fnm (Fast Node Manager)
