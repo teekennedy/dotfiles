@@ -177,7 +177,7 @@ as a git submodule, first choose the plugin category from the following list
 Next, grab the SSH clone url for the plugin's repo and run:
 
 ```
-git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/<plugin_name>
+git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/start/<plugin_name>
 ```
 
 ### Updating plugins

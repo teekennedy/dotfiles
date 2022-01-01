@@ -78,3 +78,6 @@
 	path = dotfiles/.oh-my-zsh
 	url = git@github.com:cyphus/oh-my-zsh.git
 	branch = master
+[submodule "dotfiles/.local/share/nvim/site/pack/language/start/vim-markdown"]
+	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
