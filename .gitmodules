@@ -81,3 +81,6 @@
 [submodule "dotfiles/.local/share/nvim/site/pack/language/start/vim-markdown"]
 	path = dotfiles/.local/share/nvim/site/pack/language/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "dotfiles/.local/share/nvim/site/pack/tools/start/nvim-treesitter"]
+	path = dotfiles/.local/share/nvim/site/pack/tools/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git

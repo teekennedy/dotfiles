@@ -69,7 +69,7 @@ completely refactored for macOS. Features:
    `setup_macos_defaults.sh` to make sure you agree with the settings, then
    run it:
 
-   ```
+   ```bash
    ./setup_macos_defaults.sh
    ```
 
@@ -102,7 +102,7 @@ completely refactored for macOS. Features:
 In addition to the base installation, here's some other recommended utilities
 and applications I use every day:
 
-```
+```bash
 # CLI utilities
 brew install \
     colordiff `# Colorized diff tool` \
@@ -135,7 +135,7 @@ of the config options at their defaults, only setting the font (JetBrains Mono)
 and the colorscheme (Gruvbox Dark, to match NeoVim). To install, make sure
 you've ran `symlink_dotfiles.sh` and then install Alacritty and its font.
 
-```
+```bash
 brew tap homebrew/cask-fonts
 brew install alacritty font-jetbrains-mono
 ```
@@ -154,11 +154,11 @@ Setting up NeoVim requires only NeoVim itself and a recent version of node,
 which is required by coc. I use [fnm](https://github.com/Schniz/fnm) for
 managing my node runtimes, so setup looks like this:
 
-```
+```bash
 brew install fnm neovim
 eval $(fnm env)
 fnm install --lts
-nvim -c 'CocUpdateSync|helptags ALL|q'
+nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
 ```
 
 ### Adding new plugins
@@ -176,15 +176,15 @@ as a git submodule, first choose the plugin category from the following list
 
 Next, grab the SSH clone url for the plugin's repo and run:
 
-```
+```bash
 git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/start/<plugin_name>
 ```
 
 ### Updating plugins
 
-```
+```bash
 git submodule update --recursive --remote
-nvim -c 'CocUpdateSync|helptags ALL|q'
+nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
 ```
 
 ## YubiKey (U2F) setup
@@ -192,7 +192,7 @@ nvim -c 'CocUpdateSync|helptags ALL|q'
 I use a YubiKey for convenient 2FA for just about anything that supports it. It
 can be managed via the `ykman` CLI:
 
-```
+```bash
 brew install ykman
 ```
 
@@ -235,7 +235,7 @@ of starting homebrew's ssh-agent with a new unix socket path, and then forcibly
 symlink the system-provided unix socket to the path used by homebrew. Roughly
 equivalent to running the following at login:
 
-```sh
+```bash
 # Create a temporary path for homebrew's socket
 HOMEBREW_SSH_AUTH_SOCK=$(mktemp -dt ssh-agent)/auth-sock
 
@@ -271,7 +271,7 @@ git pull
 git submodule sync
 git submodule update --init --recursive
 ./symlink_dotfiles.sh
-nvim -c 'CocUpdateSync|helptags ALL|q'
+nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
 ```
 
 ## Submodules
@@ -286,7 +286,7 @@ nvim -c 'CocUpdateSync|helptags ALL|q'
 
 ### Removing
 
-```
+```bash
 git submodule deinit -f -- a/submodule
 rm -rf .git/modules/a/submodule
 git rm -f a/submodule

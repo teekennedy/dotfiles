@@ -248,3 +248,27 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" nvim-treesitter plugin
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained", or list of languages
+  -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+  ensure_installed = "all",
+
+  -- List of parsers to ignore installing. I'm ignoring everything that's
+  -- marked as experimental or unofficially maintained except markdown
+  ignore_install = { "d", "elm", "fortran", "haskell", "swift" },
+
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    disable = {},
+  },
+}
+EOF
