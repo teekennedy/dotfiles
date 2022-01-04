@@ -57,7 +57,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='nvim'
+export EDITOR='vim'
 
 # Set AWS pager (the command that all AWS CLI output is displayed through).
 # -F tells less to automatically quit if the output fits in one terminal page.
@@ -90,5 +90,5 @@ export HISTCONTROL=erasedups:ignorespace
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws
 function auth() {
-    ykman oath accounts code $1 | awk '{ print $2 }' | pbcopy
+    ykman oath accounts code -s $1 2> >(sed 's/Touch/Tap/' 1>&2) | pbcopy
 }

@@ -196,6 +196,17 @@ can be managed via the `ykman` CLI:
 brew install ykman
 ```
 
+If this is the first time using your YubiKey, I recommend turning off OTP to
+prevent long strings of letters being typed when you accidentally touch it. OTP
+is rarely used and the services that support it have other options anyway.
+
+```console
+$ ykman config usb --disable OTP
+Disable OTP.
+This will cause the YubiKey to reboot.
+Configure USB? [y/N]: y
+```
+
 ### Using YubiKey for SSH
 
 YubiKeys support ecdsa-sk and ed25519-sk SSH keys. Like other SSH keys, these
