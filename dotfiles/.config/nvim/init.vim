@@ -41,6 +41,9 @@ let g:gruvbox_contrast_dark='hard'
 
 " custom commands
 
+" when saving a buffer that starts with a shebang, make it executable
+au BufWritePost * if getline(1) =~ "^#!.*/bin/" | silent !chmod a+x % | endif
+
 " select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
