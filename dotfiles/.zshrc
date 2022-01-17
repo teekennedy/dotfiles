@@ -59,10 +59,11 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
 
-# Set AWS pager (the command that all AWS CLI output is displayed through).
+# Set pager (used by many utilities that page their output).
 # -F tells less to automatically quit if the output fits in one terminal page.
 # -X tells less to avoid termcap init, which keeps output in terminal scrollback.
-export AWS_PAGER='less -XF'
+# -R tells less not to escape terminal color sequences in its output.
+export PAGER='less -XRF'
 
 # By default, OMZ performs history expansion on the current line and pause to
 # verify before running. I prefer my history expanded commands instant.
@@ -87,8 +88,24 @@ export HISTCONTROL=erasedups:ignorespace
 # Alias vim to neovim if available
 (( $+commands[nvim] )) && alias vim='nvim'
 
+# Alias cat to bat https://github.com/sharkdp/bat if available
+if command -v bat &>/dev/null; then
+    alias cat='bat --paging=never'
+    # Assumes you've set aws-cli to use json output
+    export AWS_PAGER='bat -l json'
+
+    # Aliases for bat-extras https://github.com/eth-p/bat-extras
+
+    # https://github.com/eth-p/bat-extras/blob/master/doc/batman.md
+    (( $+commands[batman] )) && alias man='batman'
+fi
+
+
+
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws
-function auth() {
-    ykman oath accounts code -s $1 2> >(sed 's/Touch/Tap/' 1>&2) | pbcopy
-}
+if command -v ykman &>/dev/null; then
+    auth() {
+        ykman oath accounts code -s $1 2> >(sed 's/Touch/Tap/' 1>&2) | pbcopy
+    }
+fi

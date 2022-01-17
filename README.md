@@ -105,14 +105,17 @@ and applications I use every day:
 ```bash
 # CLI utilities
 brew install \
-    colordiff `# Colorized diff tool` \
-    git       `# Comes with macOS but brew's is newer` \
-    jq        `# Json query tool` \
-    mas       `# Mac App Store CLI` \
-    tig       `# Git repo browser` \
-    tmux      `# Terminal multiplexer` \
-    tree      `# Pretty prints directory contents` \
-    watch     `# Run commands repeatedly`
+    bat        `# Cat clone with syntax highlighting support` \
+    bat-extras `# Bat integration with other utilities` \
+    colordiff  `# Colorized diff tool` \
+    git        `# Comes with macOS but brew's is newer` \
+    git-delta  `# Syntax highlighting pager for git, diff, and grep output` \
+    jq         `# Json query tool` \
+    mas        `# Mac App Store CLI` \
+    tig        `# Git repo browser` \
+    tmux       `# Terminal multiplexer` \
+    tree       `# Pretty prints directory contents` \
+    watch      `# Run commands repeatedly`
 
 # Apps
 brew cask install \

@@ -9,14 +9,61 @@
 [alias]
     # Deletes all local branches that are fully merged into the current HEAD.
     delete-merged = !git branch --merged | grep -vE \"\\*|master|main|hotfix/\" | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
+
+# https://git-scm.com/docs/git-diff#Documentation/git-diff.txt
 [diff]
-    # The patience algorithm produces better looking diffs at the cost of CPU.
-    algorithm = patience
+    # The histogram algorithm produces better looking diffs at the cost of CPU.
+    algorithm = histogram
+    # Differentiate moved blocks of text by using different colors
+    colorMoved = default
+
 [core]
     excludesfile = ~/.gitignore_global
+
 [pager]
-	branch = false
+  # Disable pager when calling git branch
+  branch = false
+
 [pull]
-	ff = only
+  ff = only
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
+# Use delta as syntax highlighter for git paging
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only --features='interactive gruvbox'
+
+[delta]
+	# Named groups of settings in delta
+	features = gruvbox
+	# Map git provided colors for moved blocks of text to color from theme
+	map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+	# Use line numbers in diffs
+	line-numbers = true
+	# Don't need hunk headers if using line numbers
+	hunk-header-style = omit
+	file-decoration-style = blue
+
+[delta "interactive"]
+	keep-plus-minus-markers = false
+
+[delta "gruvbox"]
+	syntax-theme = gruvbox-dark
+	# Set line number +, - styles to match gruvbox's green and red
+	line-numbers-plus-style = "#98971a"
+	line-numbers-minus-style = "#cc241d"
+
+	# Color mixing the gruvbox dark hard contrast background with green and red
+	# foreground colors.
+	# 15% #98971a + 85% #1d2021
+	plus-style = syntax "#2f3220"
+	# 40% #98971a + 60% #1d2021
+	plus-emph-style = syntax "#4e501e"
+	# 15% #cc241d + 85% #1d2021
+	minus-style = syntax "#372120"
+	# 40% #cc241d + 60% #1d2021
+	minus-emph-style = syntax "#63221f"

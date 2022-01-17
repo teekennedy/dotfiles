@@ -1,0 +1,5 @@
+# Set the theme
+--theme="gruvbox-dark"
+
+# Just colorize, don't show extra elements
+--style="plain"
