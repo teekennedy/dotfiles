@@ -14,22 +14,25 @@ fi
 # Set homebrew shell environment variables
 eval $($homebrew_prefix/bin/brew shellenv)
 
+unset homebrew_prefix
+
 # Add ~/bin directory for custom scripts
 PATH="$HOME/bin:$PATH"
 
-# Load version managers
+# Load zprofile configs 
+
+# Source files in lib (if any)
+for zsh_lib_file ($HOME/.zsh/lib/*.zsh(N)); do
+    source $zsh_lib_file
+done
+
+# Source configs from zprofile config dir (if any)
+for zsh_config_file ($HOME/.zsh/zprofile/*.zsh(N)); do
+    source $zsh_config_file
+done
+
 
 # fnm (Fast Node Manager)
 (( $+commands[fnm] )) && eval "$(fnm env)"
 
 export PATH
-
-# Load zsh shell completeions from homebrew
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-fi
-

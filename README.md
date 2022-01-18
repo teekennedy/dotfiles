@@ -3,7 +3,37 @@
 My personal collection of dotfiles. Originally created for Arch, then
 completely refactored for macOS. Features:
 
-- macOS settings (see setup_macos_defaults.sh for full list):
+- **zsh**
+  - Relatively minimal setup with autocompletion and colorized output where
+    available.
+  - Prompt from [Powerlevel10k]
+  - Aliases / shortcuts:
+    - `auth <name>`: Passes the current TOTP code of the given `<name>` from
+      your Yubikey to your clipboard.
+    - `cat` aliased to the syntax-highlighting [bat]. Bat is also used as the
+      output pager for the aws-cli.
+    - `diff`: aliased to colordiff, if available.
+    - `man`: aliased to `batman` from [bat-extras].
+    - `t <name>`: Attaches to a tmux session of the given `<name>`, or creates
+      one if it doesn't already exist.
+    - `vim`: aliased to neovim, if available.
+
+
+- **tmux**
+  - uses `Ctrl+a` as prefix (very common)
+  - creates non-login shells by default (faster and doesn't mess up PATH)
+  - extended history for panes (100k lines)
+  - keeps the current working directory when opening/splitting windows
+  - mouse integration (maily used for selecting text for copy-paste)
+  - vim-aware smart pane switching (using `Ctrl+[h|j|k|l]`)
+  - no status bar. Maybe later I'll customize it to my liking, but for now it's
+    just in the way.
+
+- **Alacritty**
+  - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
+  - Has great defaults, doesn't need much customization.
+
+- **MacOS Setup** to sync all my mac settings across devices:
   - Map caps lock key to esc.
   - Sets host name interactively (skippable).
   - Speeds up or disables many animations.
@@ -20,37 +50,6 @@ completely refactored for macOS. Features:
     - QuickTime Player
     - Photos
     - Bear (if installed)
-
-- **zsh**
-  - Running off of a personal fork of OMZ with performance fixes for the pyenv
-    plugin. See [My PR](https://github.com/robbyrussell/oh-my-zsh/pull/6165)
-    for more info.
-  - Custom theme based on
-    [Bullet Train](https://github.com/caiogondim/bullet-train.zsh).
-  - Custom pyenv prompt that only displays when running a locally defined pyenv
-    based on the cwd.
-  - Aliases / shortcuts:
-    - `auth <name>`: Passes the current TOTP code of the given `<name>` from
-      your Yubikey to your clipboard.
-    - `t <name>`: Attaches to a tmux session of the given `<name>`, or creates
-      one if it doesn't already exist.
-    - `vim`: aliased to neovim, if available.
-    - `diff`: aliased to colordiff, if available.
-
-
-- **tmux**
-  - uses `Ctrl+a` as prefix (very common)
-  - creates non-login shells by default (faster and doesn't mess up PATH)
-  - extended history for panes (100k lines)
-  - keeps the current working directory when opening/splitting windows
-  - mouse integration (maily used for selecting text for copy-paste)
-  - vim-aware smart pane switching (using `Ctrl+[h|j|k|l]`)
-  - no status bar. Maybe later I'll customize it to my liking, but for now it's
-    just in the way.
-
-- **Alacritty**
-  - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
-  - Has great defaults, doesn't need much customization.
 
 ## Base Installation (macOS)
 
@@ -127,7 +126,7 @@ mas install \
     1091189122 `# Bear (notes)` \
     1439431081 `# Intermission (give your eyes a break)`
 ```
-## Alacritty setup
+## Alacritty / Zsh setup
 
 [Alacritty](https://alacritty.org/) is a modern, efficient terminal emulator. I
 switched to it after having issues with input lag on iTerm2 and have had a
@@ -138,9 +137,21 @@ of the config options at their defaults, only setting the font (JetBrains Mono)
 and the colorscheme (Gruvbox Dark, to match NeoVim). To install, make sure
 you've ran `symlink_dotfiles.sh` and then install Alacritty and its font.
 
+Note: at the time of writing, homebrew cask does not have the font families
+referenced by Alacritty's config. Instead, these fonts need to be installed
+from a cloned repo:
+
 ```bash
-brew tap homebrew/cask-fonts
-brew install alacritty font-jetbrains-mono
+git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
+cd nerd-fonts
+git sparse-checkout add patched-fonts/JetBrainsMono
+./install.sh JetBrainsMono
+```
+
+The only dependency for zsh is [Powerlevel10k]. Install with:
+
+```bash
+brew install romkatv/powerlevel10k/powerlevel10k
 ```
 
 That's it!
@@ -310,4 +321,7 @@ git rm -f a/submodule
 
 MIT
 
+[bat]: https://github.com/sharkdp/bat
+[bat-extras]: https://github.com/eth-p/bat-extras
 [Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
+[Powerlevel10k]: https://github.com/romkatv/powerlevel10k
