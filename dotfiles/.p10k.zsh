@@ -115,6 +115,7 @@
 
   function prompt_fnm() {
     local fnm_default
+    (( $+commands[fnm] )) || return
     fnm_default=$(fnm list | grep default | awk '{ print $2 }') || return
     local fnm_current=$(fnm current)
     [[ $fnm_default != $fnm_current ]] || return
