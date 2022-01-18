@@ -129,7 +129,7 @@ mas install \
     1091189122 `# Bear (notes)` \
     1439431081 `# Intermission (give your eyes a break)`
 ```
-## Alacritty / Zsh setup
+## Alacritty setup
 
 [Alacritty](https://alacritty.org/) is a modern, efficient terminal emulator. I
 switched to it after having issues with input lag on iTerm2 and have had a
@@ -139,6 +139,10 @@ Alacritty is configured via a single yaml file, `~/.alacritty.yml`. I left most
 of the config options at their defaults, only setting the font (JetBrains Mono)
 and the colorscheme (Gruvbox Dark, to match NeoVim). To install, make sure
 you've ran `symlink_dotfiles.sh` and then install Alacritty and its font.
+
+```bash
+brew install alacritty
+```
 
 Note: at the time of writing, homebrew cask does not have the font families
 referenced by Alacritty's config. Instead, these fonts need to be installed
@@ -151,6 +155,24 @@ git sparse-checkout add patched-fonts/JetBrainsMono
 ./install.sh JetBrainsMono
 ```
 
+If you want to enable support for italics and 24 bit color in alacritty and
+tmux, you'll have to add the terminal info files for both:
+
+```bash
+pushd $(mktemp -d)
+# Download and unpack latest terminal descriptions from ncurses site
+curl -fSsLO https://invisible-island.net/datafiles/current/terminfo.src.gz
+gunzip terminfo.src.gz
+# Compile terminfos full path to ensure this is the version of tic shipped with macOS
+/usr/bin/tic -xe tmux-256color,alacritty terminfo.src
+popd
+```
+
+To confirm that alacritty has successfully picked up its terminfo, launch a new
+Alacritty window and run `echo $TERM`. It should output `alacritty-direct`. If
+it doesn't, this gist on installing term
+
+## Zsh setup
 The only dependency for zsh is [Powerlevel10k]. Install with:
 
 ```bash
