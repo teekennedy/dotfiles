@@ -139,7 +139,7 @@ font:
     style: ExtraLight Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
