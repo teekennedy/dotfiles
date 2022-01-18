@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # lazy_loader.sh
-# Copyright 2018 Terrance Kennedy
+# Copyright 2018-2022 Terrance Kennedy
 # MIT License, http://www.opensource.org/licenses/mit-license.php
 
 # Defer initialization steps until one or more trigger commands is invoked.
@@ -12,7 +12,7 @@
 # initialization_function, lazy_load creates a stub for each command that runs
 # the initialization_function before invoking the command. It also unloads the
 # stub, so the next time the command is ran, it's ran directly.
-function lazy_load() {
+lazy_load() {
     if [ $# -lt 2 ]; then
         echo "Usage: lazy_load <initialization_function> <cmd> [ <cmd2> [..] ]"
         return

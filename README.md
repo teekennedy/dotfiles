@@ -116,6 +116,9 @@ brew install \
     tree       `# Pretty prints directory contents` \
     watch      `# Run commands repeatedly`
 
+# If you get an error: 'command not found: #' when running the above, either
+# remove the inline comments or run 'setopt interactive_comments' to fix.
+
 # Apps
 brew cask install \
     fantastical `# Calendar` \
@@ -188,7 +191,7 @@ as a git submodule, first choose the plugin category from the following list
 - language (Language specific plugins)
 - interface (UI tweaks and colorscheme)
 
-Next, grab the SSH clone url for the plugin's repo and run:
+Next, grab the https clone url for the plugin's repo and run:
 
 ```bash
 git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/start/<plugin_name>

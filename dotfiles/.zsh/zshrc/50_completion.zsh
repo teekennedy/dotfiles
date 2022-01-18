@@ -17,11 +17,5 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
 
-# Load zsh shell completeions from homebrew
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
 autoload -Uz +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
