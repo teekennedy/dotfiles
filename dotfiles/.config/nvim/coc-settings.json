@@ -1,0 +1,4 @@
+{
+    // https://github.com/fannheyward/coc-pyright#configurations
+    "python.formatting.provider": "black"
+}
