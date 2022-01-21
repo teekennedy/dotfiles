@@ -7,9 +7,15 @@ zstyle ':completion:*' menu select
 setopt complete_in_word
 # Move the cursor to the end of the word after completion
 setopt always_to_end
+# Expand aliases before looking them up in the completion system
+setopt complete_aliases
 
-# Use case-insensitive and hyphen-insensitive completion
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}'
+# Use the following completion rules:
+# '': prefer completion exactly as written
+# 'm:{a-zA-Z-_}={A-Za-z_-}': case-insensitive and hyphen/underscore-insensitive completion
+# 'r:|=*': Match against the right side of the string, e.g. 'bar' matches 'foobar'
+# 'l:|=* r:|=*': Match any substring in the word, e.g. 'ooba' matches 'foobar'.
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 # Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
 
@@ -17,5 +23,5 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
 
-autoload -Uz +X compinit && compinit
+autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
