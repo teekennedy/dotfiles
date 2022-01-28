@@ -1,6 +1,13 @@
 #!/usr/bin/env zsh
 # Setup aliases and functions to be used interactively
 
+# Filesystem navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ll="ls -lah"
+
 # Tmux alias: attaches to the named session, creating the session if it doesn't
 # already exist. Ex: t dev
 command_exists tmux && alias t='tmux new -As'

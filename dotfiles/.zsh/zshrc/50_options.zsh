@@ -9,5 +9,8 @@ setopt interactive_comments
 # but set here for extra insurance.
 setopt no_beep
 
+# When a path to a directory is entered in place of a command, CD to it.
+setopt auto_cd
+
 # Use Ctrl+R to search history in reverse
 bindkey '^R' history-incremental-pattern-search-backward
