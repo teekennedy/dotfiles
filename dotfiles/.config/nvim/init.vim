@@ -225,6 +225,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Add mapping to format current buffer.
 nmap <leader>f  <Plug>(coc-format)
+" Add mapping to organize imports.
+nmap <leader>i call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}

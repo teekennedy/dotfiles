@@ -6,8 +6,6 @@ if exists("b:python_ftplugin_loaded")
 endif
 let b:python_ftplugin_loaded = 1
 
-nmap <leader>i call CocActionAsync('codeAction', 'pyright.organizeimports')
-
 let cwd_pyenv_versions = exists('cwd_pyenv_versions') ? cwd_pyenv_versions : {}
 
 " Pyenv integration block
