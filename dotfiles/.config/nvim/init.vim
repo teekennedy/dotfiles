@@ -150,9 +150,6 @@ let g:ale_linters = {
 " Show errors in the number column. Requires NeoVim 0.5.0+
 set signcolumn=number
 
-" Go to next warning / error
-nnoremap <leader>e :ALENext<cr>
-
 " Use coc.nvim for language server protocol support
 let g:ale_disable_lsp = 1
 
@@ -190,10 +187,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Go to next diagnostic
+nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -238,8 +235,8 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+" Add mapping to format current buffer.
+nmap <leader>f  <Plug>(coc-format)
 
 " Add (Neo)Vim's native statusline support.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
