@@ -21,8 +21,19 @@
 	excludesfile = ~/.gitignore_global
 
 [pager]
-  # Disable pager when calling git branch
+	# Disable pager when calling git branch
 	branch = false
+
+[merge]
+	# set "nvim" as tool for merging
+	tool = nvim
+
+[mergetool]
+	# automatically launch merge tool without displaying a prompt
+	prompt = false
+
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [pull]
 	ff = only
