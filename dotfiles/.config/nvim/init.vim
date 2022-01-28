@@ -108,15 +108,6 @@ let g:airline#extensions#tabline#enabled = 1
 " Show ALE diagnostics in the statusline
 let g:airline#extensions#ale#enabled = 1
 
-" waf syntax
-au BufNewFile,BufRead wscript set filetype=python
-
-" Jenkinsfiles are groovy
-au BufNewFile,BufRead *.jenkinsfile,Jenkinsfile set filetype=groovy
-
-" Some repos use dockerfile as a prefix
-au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
-
 " vim-go settings
 
 " No gofmt or goimports on save. Coc does this.
