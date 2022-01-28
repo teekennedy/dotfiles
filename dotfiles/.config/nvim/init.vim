@@ -5,9 +5,6 @@ set mouse=a " support the mouse even in the terminal
 " when invoked. Turn off these files by setting history to 0.
 let g:netrw_dirhistmax = 0
 
-" Indent automatically depending on filetype
-set sts=4 ts=4 sw=4 expandtab
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
