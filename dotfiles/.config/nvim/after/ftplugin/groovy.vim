@@ -7,4 +7,4 @@ endif
 let b:groovy_ftplugin_loaded = 1
 
 " Groovy indentation rules
-setlocal sts=2 ts=2 sw=2
+set softtabstop=2 shiftwidth=2 expandtab
