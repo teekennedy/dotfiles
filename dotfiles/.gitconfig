@@ -31,6 +31,8 @@
 [mergetool]
 	# automatically launch merge tool without displaying a prompt
 	prompt = false
+	# Disable saving .orig backup of file with conflict markers after merging
+	keepBackup = false
 
 [mergetool "nvim"]
 	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
