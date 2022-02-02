@@ -105,20 +105,13 @@ set ttimeoutlen=7
 let g:airline_highlighting_cache = 1
 " Let vim-airline set the tabline when there are no tabs
 let g:airline#extensions#tabline#enabled = 1
-" Show ALE diagnostics in the statusline
-let g:airline#extensions#ale#enabled = 1
+" Show CoC diagnostics in the statusline
+let g:airline#extensions#coc#enabled = 1
 
 " vim-go settings
 
-" No gofmt or goimports on save. Coc does this.
-let g:go_fmt_autosave = 0
-let g:go_imports_autosave = 0
 " Coc handles code completion as well
 let g:go_code_completion_enabled = 0
-
-" ALE uses location list, vim-go uses quickfix list by default. Having both
-" open produces weird UI issues (see https://vi.stackexchange.com/q/14166)
-let g:go_list_type = 'locationlist'
 
 " vim-jsx-pretty settings
 
@@ -128,30 +121,8 @@ let g:vim_jsx_pretty_colorful_config = 1 " requires vim-javascript
 
 let g:terraform_fmt_on_save=1
 
-" ALE (asynchronous lint engine) settings
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'w'
-let g:ale_linters = {
-        \'python': ['flake8'],
-    \}
-
 " Show errors in the number column. Requires NeoVim 0.5.0+
 set signcolumn=number
-
-" Use coc.nvim for language server protocol support
-let g:ale_disable_lsp = 1
-
-" Format code for me on :w
-let g:ale_fix_on_save = 1
-
-" Auto import where supported
-let g:ale_completion_autoimport = 1
-
-" Formatters / fixers for various file types
-let g:ale_fixers = {
-        \'go': ['goimports', 'gofmt'],
-        \'python': ['black', 'isort'],
-    \}
 
 " coc.nvim settings
 
