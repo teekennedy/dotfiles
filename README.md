@@ -314,15 +314,7 @@ behind setting up such a launch agent.
 ## Updating Dotfiles
 
 Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
-update neovim:
-
-```bash
-git pull
-git submodule sync
-git submodule update --init --recursive
-./symlink_dotfiles.sh
-nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
-```
+update neovim using `update_dotfiles.sh`.
 
 ## Submodules
 

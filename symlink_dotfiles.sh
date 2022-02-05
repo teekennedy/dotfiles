@@ -1,8 +1,25 @@
 #!/bin/bash
 
-# Determine dotfiles dir relative to the script's source directory.
+set -euo pipefail
+
+# Source directory that script lives in
 # Snippet from https://stackoverflow.com/a/246128/1209614
-dotfiles_dir=$( cd "$(dirname "$0")" ; pwd -P )/dotfiles
+script_dir=$( cd "$(dirname "$0")" ; pwd -P )
+
+# dotfiles directory relative to script_dir
+dotfiles_dir="dotfiles"
+
+# This script saves the last commit it was ran against to intelligently add, update, and remove
+# symlinks according to changes since that commit.
+last_symlinked_file="$script_dir/.last_symlinked"
+
+if [ -f "$last_symlinked_file" ]; then
+    last_symlinked="$(cat $last_symlinked_file)"
+else
+    # Default last_symlinked to the first commit in this repo
+    # https://stackoverflow.com/a/5189296/1209614
+    last_symlinked="$(git rev-list --max-parents=0 HEAD)"
+fi
 
 green=`tput setaf 2`
 yellow=`tput setaf 3`
@@ -10,7 +27,7 @@ blue=`tput setaf 4`
 reset=`tput sgr0`
 
 backup_and_symlink() {
-    local src="$dotfiles_dir/$1"
+    local src="$script_dir/$dotfiles_dir/$1"
     local dest="$HOME/$1"
     if [[ -L $dest && "$(readlink $dest)" == "$src" ]]; then
         echo -e "${green}[SKP]${reset} $dest is already symlinked. Skipping."
@@ -29,15 +46,36 @@ backup_and_symlink() {
     ln -s "$src" "$dest"
 }
 
-cleanup_broken_symlinks() {
-    echo "Finding and removing any broken symlinks to the dotfiles directory."
-    find $HOME -lname "$dotfiles_dir/*" -type l ! -exec test -e {} \; -print -delete
+cleanup_broken_symlink() {
+    local src="$script_dir/$dotfiles_dir/$1"
+    local dest="$HOME/$1"
+    if [[ -L $dest && ! -e $dest ]]; then
+        echo "${blue}[REM]${reset} Removing symlink $dest to deleted file $1"
+        # rm $dest
+    else
+        echo "${green}[SKP]${reset} No broken symlink found at $dest"
+    fi
 }
 
-# Backup and symlink all files in $dotfiles_dir.
-for file in $(cd "$dotfiles_dir"; git ls-files); do
+dotfiles_changed_since() {
+    local commit=$1
+    local filter=$2
+    cd $script_dir/$dotfiles_dir
+    # Show filenames relative to dotfiles dir that match the given filter
+    # --no-renames disables rename detection, showing renamed files as addition / removal pairs
+    git diff --name-only --relative --no-renames --diff-filter=$filter $commit
+}
+
+# Backup and symlink all new files in dotfiles subdirectory
+for file in $(dotfiles_changed_since $last_symlinked A); do
     backup_and_symlink $file
 done
 
-cleanup_broken_symlinks
+# Remove symlinks for all deleted and renamed files under dotfiles subdirectory
+for file in $(dotfiles_changed_since $last_symlinked D); do
+    cleanup_broken_symlink $file
+done
+
+git rev-parse HEAD > $last_symlinked_file
+
 echo "Done"
