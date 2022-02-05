@@ -21,6 +21,11 @@ FPATH=$homebrew_prefix/share/zsh/site-functions:$FPATH
 # Add ~/bin directory for custom scripts
 PATH="$HOME/bin:$PATH"
 
+# If golang is available, add GOPATH to PATH
+if command -v go &>/dev/null; then
+    PATH="$(go env GOPATH)/bin:$PATH"
+fi
+
 # Source configs from zprofile config dir (if any)
 for zsh_config_file ($HOME/.zsh/zprofile/*.zsh(N)); do
     source $zsh_config_file

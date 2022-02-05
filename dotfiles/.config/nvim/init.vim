@@ -12,8 +12,11 @@ set updatetime=300
 " Only auto wrap lines if line exceeds textwidth during current insert
 set formatoptions+=b
 
-set tw=79 " Wrap lines longer than 79 characters
-set cc=+1 " highlight vertical column at textwidth + 1
+set textwidth=99 " Wrap lines longer than 99 characters
+set colorcolumn=+1 " highlight vertical column at textwidth + 1
+
+" Defaults for whitespace and tabwidth. Overridden for specific filetypes.
+set softtabstop=4 shiftwidth=4 expandtab
 
 set hidden " Allow for switching buffers without saving
 
@@ -44,13 +47,6 @@ au BufWritePost * if getline(1) =~ "^#!.*/bin/" | silent !chmod a+x % | endif
 " select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" command to change all indentation-related values simultaneously
-fun! SetTabWidth( width ) "{{{
-    execute "setlocal sts=".a:width." ts=".a:width." sw=".a:width
-endfunction "}}}
-
-command! -nargs=* SetTabWidth call SetTabWidth( '<args>' )
-
 " map leader key to space bar
 let mapleader=" "
 
@@ -62,9 +58,6 @@ nmap <silent> <leader>h :set invhls<CR>
 
 " Remove trailing whitespace
 nmap <silent> <leader>w :%s/\s\+$<CR>
-
-" Run GoTest on the current buffer
-nmap <silent> <leader>t :GoTest<CR>
 
 " Toggle paste mode
 nmap <silent> <leader>p :set invpaste<CR>
@@ -110,8 +103,14 @@ let g:airline#extensions#coc#enabled = 1
 
 " vim-go settings
 
-" Coc handles code completion as well
+" Coc handles code completion
 let g:go_code_completion_enabled = 0
+
+" Run gometalinter on save
+let g:go_metalinter_autosave = 1
+
+" Set command for metalinter
+let g:go_metalinter_command = 'golangci-lint'
 
 " vim-jsx-pretty settings
 
@@ -132,9 +131,10 @@ let g:coc_global_extensions = ['coc-json', 'coc-jedi', 'coc-pyright', 'coc-go']
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+" Use <cr> (return) to confirm selected completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -219,7 +219,7 @@ require'nvim-treesitter.configs'.setup {
 
   -- List of parsers to ignore installing. I'm ignoring everything that's
   -- marked as experimental or unofficially maintained except markdown
-  ignore_install = { "d", "elm", "fortran", "haskell", "swift" },
+  ignore_install = { "d", "elm", "fortran", "haskell", "swift", "phpdoc" },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
