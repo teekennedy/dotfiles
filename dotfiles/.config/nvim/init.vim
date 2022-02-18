@@ -106,11 +106,17 @@ let g:airline#extensions#coc#enabled = 1
 " Coc handles code completion
 let g:go_code_completion_enabled = 0
 
+" Set command for metalinter
+let g:go_metalinter_command = 'golangci-lint'
+
+" Enabled linters for golangci-lint. An empty list runs the default linters as set by .golangci.yml
+let g:go_metalinter_enabled = []
+
 " Run gometalinter on save
 let g:go_metalinter_autosave = 1
 
-" Set command for metalinter
-let g:go_metalinter_command = 'golangci-lint'
+" Linters to run on save. ['vet', 'revive'] is the default when metalinter is golangci-lint.
+let g:go_metalinter_autosave_enabled = ['vet', 'revive']
 
 " vim-jsx-pretty settings
 

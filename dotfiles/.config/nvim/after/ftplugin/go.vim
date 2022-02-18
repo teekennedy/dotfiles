@@ -9,6 +9,9 @@ let b:go_ftplugin_loaded = 1
 " Run GoTest on the current buffer
 nnoremap <buffer> <silent> <leader>t :GoTest<CR>
 
+" Run gometalinter (golangci-lint)
+nnoremap <buffer> <silent> <leader>l :GoMetaLinter<CR>
+
 " Run GoCoverageToggle on the current buffer
 nnoremap <buffer> <silent> <leader>c :GoCoverageToggle<CR>
 
