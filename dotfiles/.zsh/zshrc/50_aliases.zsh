@@ -39,6 +39,9 @@ if command_exists bat; then
     command_exists batman && alias man='batman'
 fi
 
+# Alias tf to terraform if available
+command_exists terraform && alias tf='terraform'
+
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws
 if command_exists ykman; then
