@@ -51,7 +51,7 @@ cleanup_broken_symlink() {
     local dest="$HOME/$1"
     if [[ -L $dest && ! -e $dest ]]; then
         echo "${blue}[REM]${reset} Removing symlink $dest to deleted file $1"
-        # rm $dest
+        rm $dest
     else
         echo "${green}[SKP]${reset} No broken symlink found at $dest"
     fi
