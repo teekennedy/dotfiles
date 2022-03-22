@@ -7,4 +7,4 @@ endif
 let b:json_ftplugin_loaded = 1
 
 " Indentation settings (personal preference)
-set sts=4 ts=4 sw=4 expandtab
+set sts=2 ts=2 sw=2 expandtab
