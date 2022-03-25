@@ -4,4 +4,10 @@
         "*.ipynb": "jupyter.notebook.ipynb"
     },
     "telemetry.telemetryLevel": "off",
+    // Settings suggested by https://dev.to/jcofman/make-vs-code-better-by-editing-and-updating-some-settings-4m9a
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "editor.fontFamily": "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "typescript.inlayHints.parameterNames.enabled": "all"
 }

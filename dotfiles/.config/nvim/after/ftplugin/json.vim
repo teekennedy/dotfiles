@@ -8,3 +8,4 @@ let b:json_ftplugin_loaded = 1
 
 " Indentation settings (personal preference)
 set sts=2 ts=2 sw=2 expandtab
+set ft=jsonc

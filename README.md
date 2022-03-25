@@ -96,6 +96,29 @@ completely refactored for macOS. Features:
    [SKP] /Users/tkennedy/.tmux.conf is already symlinked. Skipping.
    ```
 
+## Updating Dotfiles
+
+Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
+update neovim using `update_dotfiles.sh`.
+
+## Submodules
+
+### Adding
+
+`git submodule add <HTTPS repository url> <path>`
+
+### Updating
+
+`git submodule update --recursive --remote`
+
+### Removing
+
+```bash
+git submodule deinit -f -- a/submodule
+rm -rf .git/modules/a/submodule
+git rm -f a/submodule
+```
+
 ## Recommended extras
 
 In addition to the base installation, here's some other recommended utilities
@@ -226,6 +249,17 @@ git submodule update --recursive --remote
 nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
 ```
 
+## VS Code Setup
+
+VS Code's settings.json has a [location that depends on OS]. I develop on macOS and Linux, so to
+support both, I have the settings.json in my dotfiles repo symlinked to the default Linux location,
+`~/.config/Code/User/settings.json`. For macOS I have the extra one-time setup of sylinking the
+default macOS directory to the default Linux directory:
+
+```bash
+ln -sf $HOME/.config/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+```
+
 ## YubiKey (U2F) setup
 
 I use a YubiKey for convenient 2FA for just about anything that supports it. It
@@ -311,29 +345,6 @@ behind setting up such a launch agent.
 - Add the key to your Yubikey as an oath code and give it a name:
   `ykman oath accounts add -t <name> <key>`
 
-## Updating Dotfiles
-
-Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
-update neovim using `update_dotfiles.sh`.
-
-## Submodules
-
-### Adding
-
-`git submodule add <HTTPS repository url> <path>`
-
-### Updating
-
-`git submodule update --recursive --remote`
-
-### Removing
-
-```bash
-git submodule deinit -f -- a/submodule
-rm -rf .git/modules/a/submodule
-git rm -f a/submodule
-```
-
 ## License:
 
 MIT
@@ -342,3 +353,4 @@ MIT
 [bat-extras]: https://github.com/eth-p/bat-extras
 [Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
 [Powerlevel10k]: https://github.com/romkatv/powerlevel10k
+[location that depends on OS]: https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
