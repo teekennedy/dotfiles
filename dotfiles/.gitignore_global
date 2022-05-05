@@ -36,11 +36,6 @@ Thumbs.db
 Icon?
 ehthumbs.db
 
-# dev project files
-tags
-.ycm_extra_conf.py
-# used by YCM for js completion
-.tern-project
 # RVM/chruby/rbenv version
 .ruby-version
 # pyenv version
