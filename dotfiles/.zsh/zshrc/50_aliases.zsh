@@ -42,6 +42,9 @@ fi
 # Alias tf to terraform if available
 command_exists terraform && alias tf='terraform'
 
+# Alias tg to terragrunt if available
+command_exists terraform && alias tg='terragrunt'
+
 # Alias for copying the output of my yubikey 2FA codes.
 #     Ex: auth aws -> paste into aws
 if command_exists ykman; then
