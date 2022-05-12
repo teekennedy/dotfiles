@@ -1,14 +1,32 @@
 {
-    // https://github.com/fannheyward/coc-pyright#configurations
-    "python.formatting.provider": "black",
-    "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["go"],
-            "initializationOptions": {
-                "usePlaceholders": true
-            }
-        }
-    }
+  // https://github.com/fannheyward/coc-pyright#configurations
+  "python.formatting.provider": "black",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
+    // https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md#cocnvim=
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	}
 }
