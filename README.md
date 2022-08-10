@@ -53,13 +53,27 @@ completely refactored for macOS. Features:
 
 ## Base Installation (macOS)
 
-1. If you haven't already, setup an SSH key for use with GitHub. You'll need it
-   to initialize submodules for this repo.
-
-1. Clone and initialize submodules:
+1. Install Homebrew if you haven't already:
 
    ```bash
-   git clone git@github.com:cyphus/dotfiles.git
+   xcode-select --install
+   sudo xcodebuild -license accept
+   ```
+
+1. Install dependencies for dotfiles management:
+
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+   brew install git stow
+   ```
+
+1. Clone this repo and initialize submodules:
+
+   ```bash
+   # Clone using SSH url:
+   git clone git@github.com:teekennedy/dotfiles.git
+   # Or https url if you don't have SSH access setup yet:
+   #   git clone https://github.com/teekennedy/dotfiles.git
    cd dotfiles
    git submodule update --init --recursive
    ```
@@ -258,6 +272,39 @@ default macOS directory to the default Linux directory:
 
 ```bash
 ln -sf $HOME/.config/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+```
+
+
+## Firefox
+
+Firefox Sync will keep some settings in sync, but many config options have to be set on a
+per-install basis. I use Firefox's
+[AutoConfig](https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig) setup to
+centralize management of configuration options across my devices.
+
+My AutoConfig settings disable the built-in Pocket extension (sigh..), work around a memory leak by
+disabling Accessibility Services (see [this
+bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1726887) for context), and disable all telemetry.
+
+### Setup
+
+Install Firefox if you haven't already:
+
+```bash
+brew install --cask firefox
+```
+
+Applying AutoConfig requires adding files to the Firefox installation directory. Run the following
+commands from the dotfiles repo root to symlink AutoConfig files to where Firefox expects them:
+
+```bash
+if [ "$(uname -s)" = "Darwin" ]; then
+  FF_BASE_DIR="$(osascript -e 'POSIX path of (path to application "Firefox")')/Contents/Resources"
+else
+  FF_BASE_DIR="$(which firefox)"
+fi
+
+stow -vv --no-folding --target "$FF_BASE_DIR" firefox
 ```
 
 ## YubiKey (U2F) setup
