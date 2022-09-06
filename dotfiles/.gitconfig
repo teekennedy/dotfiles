@@ -6,6 +6,10 @@
 	# value of 'simple' pushes the current branch to the upstream branch of the
 	# same name. This is the default in git 2.0 and above.
 	default = simple
+
+[includeIf "gitdir:~/okta/"]
+  path = ~/okta/.gitconfig
+
 [alias]
 	# Deletes all local branches that are fully merged into the current HEAD.
 	delete-merged = !git branch --merged | grep -vE \"\\*|master|main|hotfix/\" | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
