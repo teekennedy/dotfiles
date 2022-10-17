@@ -10,6 +10,9 @@
 [includeIf "gitdir:~/okta/"]
   path = ~/okta/.gitconfig
 
+[includeIf "gitdir:~/go/"]
+  path = ~/go/.gitconfig
+
 [alias]
 	# Deletes all local branches that are fully merged into the current HEAD.
 	delete-merged = !git branch --merged | grep -vE \"\\*|master|main|hotfix/\" | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
