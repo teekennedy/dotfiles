@@ -219,13 +219,12 @@ nmap ga <Plug>(EasyAlign)
 " nvim-treesitter plugin
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained", or list of languages
+  -- Either "all" or list of languages
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-  ensure_installed = "all",
+  ensure_installed = { "bash", "lua", "python" },
 
-  -- List of parsers to ignore installing. I'm ignoring everything that's
-  -- marked as experimental or unofficially maintained except markdown
-  ignore_install = { "d", "elm", "fortran", "haskell", "swift", "phpdoc" },
+  -- List of parsers to ignore installing, e.g. because they're broken.
+  ignore_install = {},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
