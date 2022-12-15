@@ -20,6 +20,22 @@ vim.g.gruvbox_material_statusline_style = vim.g.gruvbox_material_foreground
 -- Reduce loading times by loading part of the colorscheme's code on-demand.
 vim.g.gruvbox_material_better_performance = 1
 
+-- lualine settings
+lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
+lvim.builtin.lualine.on_config_done = function(lualine)
+  local config = lualine.get_config()
+
+  config.sections.lualine_a[1].separator = { left = '' }
+  config.sections.lualine_z[1].separator = { right = '' }
+  lualine.setup(config)
+end
+-- lvim.builtin.lualine.sections.lualine_a = {
+--   { 'mode', separator = { left = '' }, right_padding = 2 },
+-- }
+-- lvim.builtin.lualine.sections.lualine_y = {
+--   { 'location', separator = { right = '' }, left_padding = 2 },
+-- }
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
