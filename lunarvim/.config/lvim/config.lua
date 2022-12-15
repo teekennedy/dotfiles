@@ -180,6 +180,7 @@ lvim.builtin.treesitter.highlight.enable = true
 -- Additional Plugins
 lvim.plugins = {
   { 'sainnhe/gruvbox-material' },
+  { "christoomey/vim-tmux-navigator" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
