@@ -189,6 +189,22 @@ lvim.plugins = {
 --   command = "setlocal wrap",
 -- })
 
+vim.filetype.add({
+  extension = {
+    ['zsh-theme'] = 'zsh',
+  },
+  filename = {
+    -- Waf scripts are python
+    ['wscript'] = 'python',
+  },
+  pattern = {
+    -- Set Jenkinsfiles as groovy
+    ['.*[jJ]enkinsfile.*'] = 'groovy',
+    -- Some repos use dockerfile as a prefix
+    ['[Dd]ockerfile.*'] = 'dockerfile'
+  }
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "zsh",
   callback = function()
