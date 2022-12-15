@@ -213,7 +213,8 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library 2>&1 >/dev/null || true
+# shellcheck disable=SC2015
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library >/dev/null 2>&1 || true
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
