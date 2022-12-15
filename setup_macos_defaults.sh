@@ -22,13 +22,16 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+echo "Increasing soft limit on maximum number of open files to 1024"
+sudo launchctl limit maxfiles 1024 unlimited
+
 # Set computer name (as done via System Preferences → Sharing)
 echo "Enter desired computer name, leave empty to skip"
-read COMPUTER_NAME
-[[ ! -z "$COMPUTER_NAME" ]] && sudo scutil --set ComputerName $COMPUTER_NAME
-[[ ! -z "$COMPUTER_NAME" ]] && sudo scutil --set HostName $COMPUTER_NAME
-[[ ! -z "$COMPUTER_NAME" ]] && sudo scutil --set LocalHostName $COMPUTER_NAME
-[[ ! -z "$COMPUTER_NAME" ]] && sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
+read -r COMPUTER_NAME
+[[ -n "$COMPUTER_NAME" ]] && sudo scutil --set ComputerName "$COMPUTER_NAME"
+[[ -n "$COMPUTER_NAME" ]] && sudo scutil --set HostName "$COMPUTER_NAME"
+[[ -n "$COMPUTER_NAME" ]] && sudo scutil --set LocalHostName "$COMPUTER_NAME"
+[[ -n "$COMPUTER_NAME" ]] && sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 # Map caps lock to ESC. This must be done as a launch agent so it can persist across reboots.
 CAPS_REMAP_SERVICE_NAME=net.missingtoken.map_caps_to_esc
