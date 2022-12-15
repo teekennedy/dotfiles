@@ -187,6 +187,106 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  { 'WhoIsSethDaniel/mason-tool-installer.nvim',
+    setup = function()
+      require('mason-tool-installer').setup {
+
+        -- a list of all tools you want to ensure are installed upon
+        -- start; they should be the names Mason uses for each tool
+        ensure_installed = {
+          -- General tools
+
+          -- misspell corrects commonly misspelled english words
+          -- https://pkg.go.dev/github.com/stephenwilliams/go-clitools/tools/misspell
+          'misspell',
+
+          -- gopls is the official go language server
+          -- https://pkg.go.dev/golang.org/x/tools/gopls
+          'gopls',
+          -- golangci-lint is a fast linters runner for go
+          -- https://pkg.go.dev/github.com/golangci/golangci-lint
+          'golangci-lint',
+          -- More opinionated version of gofmt
+          -- https://pkg.go.dev/mvdan.cc/gofumpt
+          'gofumpt',
+          -- Golines is a golang formatter that shortens long lines
+          -- https://pkg.go.dev/github.com/wrype/golines
+          'golines',
+          -- Gomodifytags is a tool to modify/update field tags in structs
+          -- https://pkg.go.dev/github.com/fatih/gomodifytags
+          'gomodifytags',
+          -- Gotests is a tool that generates table driven tests based on its target source files' function and method signatures
+          -- https://pkg.go.dev/github.com/cweill/gotests
+          'gotests',
+          -- impl generates method stubs for implementing an interface.
+          -- https://github.com/josharian/impl
+          'impl',
+          -- json-to-struct attempts to generate go struct definitions from json documents
+          -- https://github.com/tmc/json-to-struct
+          'json-to-struct',
+          -- staticcheck offers extensive analysis of Go code, covering a myriad of categories.
+          -- It will detect bugs, suggest code simplifications, point out dead code, and more
+          -- https://github.com/dominikh/go-tools/tree/master/cmd/staticcheck
+          'staticcheck',
+
+          -- Lua tools
+
+          -- Lua language server
+          -- https://github.com/sumneko/lua-language-server
+          'lua-language-server',
+          -- luacheck is a static analyzer and linter for lua
+          -- https://github.com/mpeterv/luacheck
+          -- This is failing to install via mason with the message "luarocks is not executable"
+          -- Leaving disabled for now.
+          -- 'luacheck',
+          -- stylua is a lua formatter
+          -- https://github.com/JohnnyMorganz/StyLua
+          'stylua',
+
+          -- Go tools
+
+          -- Shell tools (bash, zsh)
+          -- Bash language server
+          -- https://github.com/bash-lsp/bash-language-server
+          'bash-language-server',
+          -- Shellcheck is a shell linter
+          -- https://www.shellcheck.net/
+          'shellcheck',
+          -- shfmt is a shell formatter
+          -- https://github.com/mvdan/sh
+          'shfmt',
+
+          -- Vimscript tools
+
+          -- Vim language server
+          -- https://github.com/iamcco/vim-language-server
+          'vim-language-server',
+          -- vint is a vimscript language linter
+          -- https://github.com/Vimjas/vint
+          'vint',
+        },
+
+        -- if set to true this will check each tool for updates. If updates
+        -- are available the tool will be updated. This setting does not
+        -- affect :MasonToolsUpdate or :MasonToolsInstall.
+        -- Default: false
+        auto_update = false,
+
+        -- automatically install / update on startup. If set to false nothing
+        -- will happen on startup. You can use :MasonToolsInstall or
+        -- :MasonToolsUpdate to install tools and check for updates.
+        -- Default: true
+        run_on_start = true,
+
+        -- set a delay (in ms) before the installation starts. This is only
+        -- effective if run_on_start is set to true.
+        -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
+        -- Default: 0
+        start_delay = 3000, -- 3 second delay
+      }
+    end,
+  },
+}
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
