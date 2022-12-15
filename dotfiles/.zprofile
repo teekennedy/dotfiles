@@ -18,8 +18,8 @@ eval $($homebrew_prefix/bin/brew shellenv)
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 FPATH=$homebrew_prefix/share/zsh/site-functions:$FPATH
 
-# Add ~/bin directory for custom scripts
-PATH="$HOME/bin:$PATH"
+# Add local bin directory to path
+PATH="$HOME/.local/bin:$PATH"
 
 # If golang is available, add GOPATH to PATH
 if command -v go &>/dev/null; then
