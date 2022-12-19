@@ -10,6 +10,8 @@ an executable
 
 -- general
 lvim.log.level = "warn"
+-- Use swapfiles
+lvim.swapfile = true
 lvim.format_on_save.enabled = true
 -- Set colorscheme. If lualine theme with matching name is found, it will automatically be used too.
 lvim.colorscheme = "gruvbox-material"
@@ -20,6 +22,10 @@ vim.g.gruvbox_material_statusline_style = vim.g.gruvbox_material_foreground
 -- Reduce loading times by loading part of the colorscheme's code on-demand.
 vim.g.gruvbox_material_better_performance = 1
 
+-- Tab-complete the longest prefix common to all matches, then tab again will
+-- provide a list, and further tabs will cycle through completion options.
+vim.opt.wildmode = "longest:list,full"
+
 -- lualine settings
 lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
 lvim.builtin.lualine.on_config_done = function(lualine)
@@ -29,12 +35,6 @@ lvim.builtin.lualine.on_config_done = function(lualine)
   config.sections.lualine_z[1].separator = { right = '' }
   lualine.setup(config)
 end
--- lvim.builtin.lualine.sections.lualine_a = {
---   { 'mode', separator = { left = '' }, right_padding = 2 },
--- }
--- lvim.builtin.lualine.sections.lualine_y = {
---   { 'location', separator = { right = '' }, left_padding = 2 },
--- }
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -200,12 +200,14 @@ lvim.plugins = {
           -- https://pkg.go.dev/github.com/stephenwilliams/go-clitools/tools/misspell
           'misspell',
 
+          -- Go tools
+
           -- gopls is the official go language server
           -- https://pkg.go.dev/golang.org/x/tools/gopls
           'gopls',
-          -- golangci-lint is a fast linters runner for go
-          -- https://pkg.go.dev/github.com/golangci/golangci-lint
-          'golangci-lint',
+          -- golangci-lint-langserver provides golangci-lint diagnostics as an lsp server
+          -- https://github.com/nametake/golangci-lint-langserver
+          'golangci-lint-langserver',
           -- More opinionated version of gofmt
           -- https://pkg.go.dev/mvdan.cc/gofumpt
           'gofumpt',
@@ -243,9 +245,18 @@ lvim.plugins = {
           -- https://github.com/JohnnyMorganz/StyLua
           'stylua',
 
-          -- Go tools
+          -- Markdown tools
+
+          -- Style checker and lint tool
+          -- https://github.com/DavidAnson/markdownlint
+          'markdownlint',
+
+          -- Syntax-aware linter for prose
+          -- https://vale.sh/
+          'vale',
 
           -- Shell tools (bash, zsh)
+
           -- Bash language server
           -- https://github.com/bash-lsp/bash-language-server
           'bash-language-server',
@@ -255,6 +266,9 @@ lvim.plugins = {
           -- shfmt is a shell formatter
           -- https://github.com/mvdan/sh
           'shfmt',
+
+          -- Terraform tools
+          'terraform-ls',
 
           -- Vimscript tools
 
@@ -287,14 +301,6 @@ lvim.plugins = {
     end,
   },
 }
-}
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
 
 vim.filetype.add({
   extension = {
@@ -312,10 +318,27 @@ vim.filetype.add({
   }
 })
 
+-- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- Add autocommands under a named group
+local my_autocmd_group = "tkennedy-custom"
+-- Force recreation of autocmd group to overwrite previously defined autocommands.
+-- Must run :LVimCacheReset for changes to take effect.
+vim.api.nvim_create_augroup(my_autocmd_group, { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
+  group = my_autocmd_group,
   pattern = "zsh",
   callback = function()
     -- let treesitter use bash highlight for zsh files as well
     require("nvim-treesitter.highlight").attach(0, "bash")
+  end,
+})
+-- when saving a buffer that starts with a shebang, make it executable
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = my_autocmd_group,
+  pattern = "*",
+  callback = function()
+    if string.match(vim.fn.getline(1), "^#!.*/bin/") then
+      vim.fn.execute("!chmod a+x %", "silent")
+    end
   end,
 })
