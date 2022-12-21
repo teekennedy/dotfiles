@@ -80,6 +80,7 @@ lvim.builtin.which_key.mappings["t"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
+-- Use Ctrl+\ to open floating terminal
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -106,19 +107,89 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
 
--- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
--- -- change UI setting of `LspInstallInfo`
--- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---     uninstall_server = "d",
---     toggle_server_expand = "o",
--- }
+-- make sure server will always be installed even if the server is in skipped_servers list
+lvim.lsp.installer.setup.ensure_installed = {
+  -- General
+
+  -- -- misspell corrects commonly misspelled english words
+  -- -- https://pkg.go.dev/github.com/stephenwilliams/go-clitools/tools/misspell
+  -- 'misspell',
+
+  -- Go
+
+  -- gopls is the official go language server
+  -- https://pkg.go.dev/golang.org/x/tools/gopls
+  -- Config: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
+  'gopls',
+  -- golangci-lint-ls provides golangci-lint diagnostics as an lsp server
+  -- Be sure to install golangci with `brew install golangci-lint`
+  -- https://github.com/nametake/golangci-lint-langserver
+  'golangci_lint_ls',
+  -- -- Gomodifytags is a tool to modify/update field tags in structs
+  -- -- https://pkg.go.dev/github.com/fatih/gomodifytags
+  -- 'gomodifytags',
+  -- -- Gotests is a tool that generates table driven tests based on its target source files' function and method signatures
+  -- -- https://pkg.go.dev/github.com/cweill/gotests
+  -- 'gotests',
+  -- -- impl generates method stubs for implementing an interface.
+  -- -- https://github.com/josharian/impl
+  -- 'impl',
+  -- -- json-to-struct attempts to generate go struct definitions from json documents
+  -- -- https://github.com/tmc/json-to-struct
+  -- 'json-to-struct',
+  -- -- staticcheck offers extensive analysis of Go code, covering a myriad of categories.
+  -- -- It will detect bugs, suggest code simplifications, point out dead code, and more
+  -- -- https://github.com/dominikh/go-tools/tree/master/cmd/staticcheck
+  -- 'staticcheck',
+
+  -- Lua tools
+
+  -- Lua language server
+  -- https://github.com/sumneko/lua-language-server
+  'sumneko_lua',
+  -- -- luacheck is a static analyzer and linter for lua
+  -- -- https://github.com/mpeterv/luacheck
+  -- -- This is failing to install via mason with the message "luarocks is not executable"
+  -- -- Leaving disabled for now.
+  -- -- 'luacheck',
+  -- -- stylua is a lua formatter
+  -- -- https://github.com/JohnnyMorganz/StyLua
+  -- 'stylua',
+
+  -- Markdown tools
+
+  -- -- Style checker and lint tool
+  -- -- https://github.com/DavidAnson/markdownlint
+  -- 'markdownlint',
+
+  -- -- Syntax-aware linter for prose
+  -- -- https://vale.sh/
+  -- 'vale',
+
+  -- Shell tools (bash, zsh)
+
+  -- Bash language server
+  -- https://github.com/bash-lsp/bash-language-server
+  'bashls',
+  -- -- Shellcheck is a shell linter
+  -- -- https://www.shellcheck.net/
+  -- 'shellcheck',
+  -- -- shfmt is a shell formatter
+  -- -- https://github.com/mvdan/sh
+  -- 'shfmt',
+
+  -- Terraform tools
+  'terraformls',
+
+  -- Vimscript tools
+
+  -- Vim language server
+  -- https://github.com/iamcco/vim-language-server
+  'vimls',
+  -- -- vint is a vimscript language linter
+  -- -- https://github.com/Vimjas/vint
+  -- 'vint',
+}
 
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false
@@ -131,9 +202,9 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "golangci_lint_ls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -146,20 +217,26 @@ lvim.builtin.treesitter.highlight.enable = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  -- More opinionated version of gofmt
+  -- https://pkg.go.dev/mvdan.cc/gofumpt
+  { command = "gofumpt", filetypes = { "go" } },
+  -- Golines is a golang formatter that shortens long lines. Install with goimports to use it as the base formatter
+  -- https://pkg.go.dev/github.com/wrype/golines
+  { command = "golines", filetypes = { "go" } },
+  -- { command = "black", filetypes = { "python" } },
+  -- { command = "isort", filetypes = { "python" } },
+  -- {
+  --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --   command = "prettier",
+  --   ---@usage arguments to pass to the formatter
+  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --   extra_args = { "--print-with", "100" },
+  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --   filetypes = { "typescript", "typescriptreact" },
+  -- },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -186,119 +263,6 @@ lvim.plugins = {
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
-  },
-  { 'WhoIsSethDaniel/mason-tool-installer.nvim',
-    setup = function()
-      require('mason-tool-installer').setup {
-
-        -- a list of all tools you want to ensure are installed upon
-        -- start; they should be the names Mason uses for each tool
-        ensure_installed = {
-          -- General tools
-
-          -- misspell corrects commonly misspelled english words
-          -- https://pkg.go.dev/github.com/stephenwilliams/go-clitools/tools/misspell
-          'misspell',
-
-          -- Go tools
-
-          -- gopls is the official go language server
-          -- https://pkg.go.dev/golang.org/x/tools/gopls
-          'gopls',
-          -- golangci-lint-langserver provides golangci-lint diagnostics as an lsp server
-          -- https://github.com/nametake/golangci-lint-langserver
-          'golangci-lint-langserver',
-          -- More opinionated version of gofmt
-          -- https://pkg.go.dev/mvdan.cc/gofumpt
-          'gofumpt',
-          -- Golines is a golang formatter that shortens long lines
-          -- https://pkg.go.dev/github.com/wrype/golines
-          'golines',
-          -- Gomodifytags is a tool to modify/update field tags in structs
-          -- https://pkg.go.dev/github.com/fatih/gomodifytags
-          'gomodifytags',
-          -- Gotests is a tool that generates table driven tests based on its target source files' function and method signatures
-          -- https://pkg.go.dev/github.com/cweill/gotests
-          'gotests',
-          -- impl generates method stubs for implementing an interface.
-          -- https://github.com/josharian/impl
-          'impl',
-          -- json-to-struct attempts to generate go struct definitions from json documents
-          -- https://github.com/tmc/json-to-struct
-          'json-to-struct',
-          -- staticcheck offers extensive analysis of Go code, covering a myriad of categories.
-          -- It will detect bugs, suggest code simplifications, point out dead code, and more
-          -- https://github.com/dominikh/go-tools/tree/master/cmd/staticcheck
-          'staticcheck',
-
-          -- Lua tools
-
-          -- Lua language server
-          -- https://github.com/sumneko/lua-language-server
-          'lua-language-server',
-          -- luacheck is a static analyzer and linter for lua
-          -- https://github.com/mpeterv/luacheck
-          -- This is failing to install via mason with the message "luarocks is not executable"
-          -- Leaving disabled for now.
-          -- 'luacheck',
-          -- stylua is a lua formatter
-          -- https://github.com/JohnnyMorganz/StyLua
-          'stylua',
-
-          -- Markdown tools
-
-          -- Style checker and lint tool
-          -- https://github.com/DavidAnson/markdownlint
-          'markdownlint',
-
-          -- Syntax-aware linter for prose
-          -- https://vale.sh/
-          'vale',
-
-          -- Shell tools (bash, zsh)
-
-          -- Bash language server
-          -- https://github.com/bash-lsp/bash-language-server
-          'bash-language-server',
-          -- Shellcheck is a shell linter
-          -- https://www.shellcheck.net/
-          'shellcheck',
-          -- shfmt is a shell formatter
-          -- https://github.com/mvdan/sh
-          'shfmt',
-
-          -- Terraform tools
-          'terraform-ls',
-
-          -- Vimscript tools
-
-          -- Vim language server
-          -- https://github.com/iamcco/vim-language-server
-          'vim-language-server',
-          -- vint is a vimscript language linter
-          -- https://github.com/Vimjas/vint
-          'vint',
-        },
-
-        -- if set to true this will check each tool for updates. If updates
-        -- are available the tool will be updated. This setting does not
-        -- affect :MasonToolsUpdate or :MasonToolsInstall.
-        -- Default: false
-        auto_update = false,
-
-        -- automatically install / update on startup. If set to false nothing
-        -- will happen on startup. You can use :MasonToolsInstall or
-        -- :MasonToolsUpdate to install tools and check for updates.
-        -- Default: true
-        run_on_start = true,
-
-        -- set a delay (in ms) before the installation starts. This is only
-        -- effective if run_on_start is set to true.
-        -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
-        -- Default: 0
-        start_delay = 3000, -- 3 second delay
-      }
-    end,
   },
 }
 
