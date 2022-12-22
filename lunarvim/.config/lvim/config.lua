@@ -282,6 +282,10 @@ vim.filetype.add({
   }
 })
 
+-- Use 'gp' to select last pasted text in visual mode
+vim.api.nvim_set_keymap('n', 'gp', "'`[' . strpart(getregtype(), 0, 1) . '`]'",
+  { noremap = true, expr = true })
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- Add autocommands under a named group
 local my_autocmd_group = "tkennedy-custom"

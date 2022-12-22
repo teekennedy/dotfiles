@@ -1,6 +1,3 @@
-" select last pasted text
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
 " Remove trailing whitespace
 nmap <silent> <leader>w :%s/\s\+$<CR>
 
