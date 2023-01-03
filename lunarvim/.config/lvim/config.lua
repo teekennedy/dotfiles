@@ -24,7 +24,9 @@ vim.g.gruvbox_material_better_performance = 1
 
 -- Tab-complete the longest prefix common to all matches, then tab again will
 -- provide a list, and further tabs will cycle through completion options.
-vim.opt.wildmode = "longest:list,full"
+-- vim.opt.wildmode = "longest:list,full"
+-- Undo LunarVim's default (unnamedplus) that uses the clipboard for all operations that normally use the unnamed register.
+vim.opt.clipboard = ''
 
 -- lualine settings
 lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
@@ -142,6 +144,11 @@ lvim.lsp.installer.setup.ensure_installed = {
   -- -- https://github.com/dominikh/go-tools/tree/master/cmd/staticcheck
   -- 'staticcheck',
 
+  -- Json tools
+
+  -- json language server
+  -- https://github.com/microsoft/vscode-json-languageservice
+  'jsonls',
   -- Lua tools
 
   -- Lua language server
@@ -202,9 +209,9 @@ lvim.lsp.installer.setup.ensure_installed = {
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "golangci_lint_ls"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+--   return server ~= "golangci_lint_ls"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -217,14 +224,21 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
+local null_ls = require "null-ls"
 local formatters = require "lvim.lsp.null-ls.formatters"
+-- local fixjson = null_ls.builtins.formatting.fixjson
+-- table.insert(fixjson.filetypes, "jsonc")
+-- See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/ef9010b2ac11e2068a8e1d5a4eff576289a1f9a4/doc/BUILTINS.md for a full list of null-ls built-in sources.
 formatters.setup {
   -- More opinionated version of gofmt
   -- https://pkg.go.dev/mvdan.cc/gofumpt
-  { command = "gofumpt", filetypes = { "go" } },
+  null_ls.builtins.formatting.gofumpt,
   -- Golines is a golang formatter that shortens long lines. Install with goimports to use it as the base formatter
   -- https://pkg.go.dev/github.com/wrype/golines
-  { command = "golines", filetypes = { "go" } },
+  null_ls.builtins.formatting.golines,
+  -- A formatter and fixer for JSON files.
+  -- https://github.com/rhysd/fixjson
+  null_ls.builtins.formatting.fixjson,
   -- { command = "black", filetypes = { "python" } },
   -- { command = "isort", filetypes = { "python" } },
   -- {
@@ -264,6 +278,13 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  -- Git plugin for vim
+  { 'tpope/vim-fugitive' },
+  -- Support using '.' to repeat extra actions
+  { 'tpope/vim-repeat' },
+  -- Add / delete / replace surroundings of a sandwiched textobject
+  -- Docs: https://github.com/machakann/vim-sandwich/wiki
+  { 'machakann/vim-sandwich' }
 }
 
 vim.filetype.add({

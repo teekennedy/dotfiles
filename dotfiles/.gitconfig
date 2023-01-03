@@ -32,8 +32,8 @@
 	branch = false
 
 [merge]
-	# set "nvim" as tool for merging
-	tool = nvim
+	# set "lvim" as tool for merging
+	tool = lvim
 
 [mergetool]
 	# automatically launch merge tool without displaying a prompt
@@ -41,8 +41,8 @@
 	# Disable saving .orig backup of file with conflict markers after merging
 	keepBackup = false
 
-[mergetool "nvim"]
-	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool "lvim"]
+	cmd = lvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [pull]
 	ff = only
