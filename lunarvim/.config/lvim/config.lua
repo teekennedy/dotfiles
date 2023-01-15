@@ -90,6 +90,7 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
+  "beancount",
   "c",
   "go",
   "javascript",
@@ -239,6 +240,7 @@ formatters.setup {
   -- A formatter and fixer for JSON files.
   -- https://github.com/rhysd/fixjson
   null_ls.builtins.formatting.fixjson,
+  { command = "bean-format", filetypes = { "beancount" } },
   -- { command = "black", filetypes = { "python" } },
   -- { command = "isort", filetypes = { "python" } },
   -- {
