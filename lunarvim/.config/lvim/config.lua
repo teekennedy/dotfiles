@@ -8,6 +8,14 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+--[[
+lvim is the global options object
+
+Linters should be
+filled in as strings with either
+a global executable or a path to
+an executable
+]]
 -- general
 lvim.log.level = "warn"
 -- Use swapfiles
@@ -24,7 +32,8 @@ vim.g.gruvbox_material_better_performance = 1
 
 -- Tab-complete the longest prefix common to all matches, then tab again will
 -- provide a list, and further tabs will cycle through completion options.
--- vim.opt.wildmode = "longest:list,full"
+vim.opt.wildmode = "longest:list,full"
+
 -- Undo LunarVim's default (unnamedplus) that uses the clipboard for all operations that normally use the unnamed register.
 vim.opt.clipboard = ''
 
@@ -37,6 +46,11 @@ lvim.builtin.lualine.on_config_done = function(lualine)
   config.sections.lualine_z[1].separator = { right = '' }
   lualine.setup(config)
 end
+
+-- Stop LunarVim from automatically changing the working directory
+-- from https://github.com/LunarVim/LunarVim/discussions/2238#discussioncomment-2257236
+lvim.builtin.nvimtree.setup.update_focused_file.update_cwd = false
+lvim.builtin.project.manual_mode = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -93,6 +107,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "beancount",
   "c",
   "go",
+  "hcl",
   "javascript",
   "json",
   "lua",
@@ -286,7 +301,25 @@ lvim.plugins = {
   { 'tpope/vim-repeat' },
   -- Add / delete / replace surroundings of a sandwiched textobject
   -- Docs: https://github.com/machakann/vim-sandwich/wiki
-  { 'machakann/vim-sandwich' }
+  { 'machakann/vim-sandwich' },
+  -- Golang plugin
+  -- https://github.com/ray-x/go.nvim
+  { 'ray-x/go.nvim',
+    ft = "go",
+    requires = "ray-x/guihua.lua",
+    -- config function runs _after_ plugin is loaded.
+    config = function()
+      -- https://github.com/ray-x/go.nvim#configuration
+      require('go').setup({ gotests_template = "testify" })
+      local autocmd_grp = vim.api.nvim_create_augroup("go-nvim", { clear = true })
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        group = autocmd_grp,
+        pattern = "*.go",
+        callback = function()
+          vim.cmd("GoTestPkg")
+        end,
+      })
+    end }
 }
 
 vim.filetype.add({
@@ -306,18 +339,31 @@ vim.filetype.add({
 })
 
 -- Use 'gp' to select last pasted text in visual mode
+-- TODO migrate this to which-key https://github.com/folke/which-key.nvim
 vim.api.nvim_set_keymap('n', 'gp', "'`[' . strpart(getregtype(), 0, 1) . '`]'",
   { noremap = true, expr = true })
 
+-- list_snips lists all snippets for the current filetype
+local list_snips = function()
+  local ft_list = require("luasnip").available()[vim.o.filetype]
+  local ft_snips = {}
+  for _, item in pairs(ft_list) do
+    ft_snips[item.trigger] = item.name
+  end
+  print(vim.inspect(ft_snips))
+end
+
+vim.api.nvim_create_user_command("ListSnips", list_snips, {})
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- Add autocommands under a named group
-local my_autocmd_group = "tkennedy-custom"
+-- Named group for autocommands
 -- Force recreation of autocmd group to overwrite previously defined autocommands.
+-- Allows for realoading this config without duplicating autocommands.
 -- Must run :LVimCacheReset for changes to take effect.
-vim.api.nvim_create_augroup(my_autocmd_group, { clear = true })
+local my_autocmd_group = vim.api.nvim_create_augroup("tkennedy-custom", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = my_autocmd_group,
-  pattern = "zsh",
+  pattern = "*.zsh",
   callback = function()
     -- let treesitter use bash highlight for zsh files as well
     require("nvim-treesitter.highlight").attach(0, "bash")
