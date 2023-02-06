@@ -144,22 +144,24 @@ brew install \
     bat        `# Cat clone with syntax highlighting support` \
     bat-extras `# Bat integration with other utilities` \
     colordiff  `# Colorized diff tool` \
+    coreutils  `# GNU file, shell, text utilities (I use gls for colorized ls output)` \
     git        `# Comes with macOS but brew's is newer` \
     git-delta  `# Syntax highlighting pager for git, diff, and grep output` \
     jq         `# Json query tool` \
     mas        `# Mac App Store CLI` \
     tig        `# Git repo browser` \
     tmux       `# Terminal multiplexer` \
-    tree       `# Pretty prints directory contents` \
+    tree       `# Pretty print directory contents` \
     watch      `# Run commands repeatedly`
 
 # If you get an error: 'command not found: #' when running the above, either
 # remove the inline comments or run 'setopt interactive_comments' to fix.
 
 # Apps
-brew cask install \
+brew install --cask \
     fantastical `# Calendar` \
-    keepassxc `# Password manager`
+    keepassxc   `# Password manager` \
+    notunes     `# Prevent Play/Pause button from launching Apple Music`
 
 mas install \
     904280696  `# Things (todos)` \
