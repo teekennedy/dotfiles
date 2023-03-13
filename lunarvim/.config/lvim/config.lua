@@ -242,9 +242,8 @@ lvim.lsp.installer.setup.ensure_installed = {
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local null_ls = require "null-ls"
 local formatters = require "lvim.lsp.null-ls.formatters"
--- local fixjson = null_ls.builtins.formatting.fixjson
--- table.insert(fixjson.filetypes, "jsonc")
--- See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/ef9010b2ac11e2068a8e1d5a4eff576289a1f9a4/doc/BUILTINS.md for a full list of null-ls built-in sources.
+-- For a full list of built-in formatters,
+-- see https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 formatters.setup {
   -- More opinionated version of gofmt
   -- https://pkg.go.dev/mvdan.cc/gofumpt
@@ -299,27 +298,72 @@ lvim.plugins = {
   { 'tpope/vim-fugitive' },
   -- Support using '.' to repeat extra actions
   { 'tpope/vim-repeat' },
+  -- Autodetect filetype indentation settings
+  { 'tpope/vim-sleuth' },
   -- Add / delete / replace surroundings of a sandwiched textobject
   -- Docs: https://github.com/machakann/vim-sandwich/wiki
   { 'machakann/vim-sandwich' },
+  -- Runs lsp format on modifications only
+  { 'joechrisellis/lsp-format-modifications.nvim',
+    config = function()
+      -- Silence error when language server does not support ranged formatting (most don't)
+      vim.g.lsp_format_modifications_silence = true
+
+      local lsp_format_modifications = require "lsp-format-modifications"
+      lvim.lsp.on_attach_callback = function(client, bufnr)
+        lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
+      end
+    end
+  },
   -- Golang plugin
   -- https://github.com/ray-x/go.nvim
-  { 'ray-x/go.nvim',
+  {
+    'ray-x/go.nvim',
     ft = "go",
-    requires = "ray-x/guihua.lua",
+    requires = {
+      "ray-x/guihua.lua",
+    },
     -- config function runs _after_ plugin is loaded.
     config = function()
       -- https://github.com/ray-x/go.nvim#configuration
       require('go').setup({ gotests_template = "testify" })
-      local autocmd_grp = vim.api.nvim_create_augroup("go-nvim", { clear = true })
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        group = autocmd_grp,
-        pattern = "*.go",
-        callback = function()
-          vim.cmd("GoTestPkg")
-        end,
+      -- Use <leader>c to toggle test coverage
+      vim.api.nvim_set_keymap(
+        'n', '<leader>c', ":GoCoverage -p -t<cr>",
+        { noremap = true, desc = 'Toggle coverage for current package' }
+      )
+    end
+  },
+  -- Test runner supporting multiple languages
+  -- https://github.com/nvim-neotest/neotest
+  {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neotest/neotest-go",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    },
+    config = function()
+      -- get neotest namespace (api call creates or returns namespace)
+      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            local message =
+            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            return message
+          end,
+        },
+      }, neotest_ns)
+      require("neotest").setup({
+        -- your neotest config here
+        adapters = {
+          require("neotest-go"),
+        },
       })
-    end }
+    end,
+  },
 }
 
 vim.filetype.add({
@@ -339,9 +383,8 @@ vim.filetype.add({
 })
 
 -- Use 'gp' to select last pasted text in visual mode
--- TODO migrate this to which-key https://github.com/folke/which-key.nvim
 vim.api.nvim_set_keymap('n', 'gp', "'`[' . strpart(getregtype(), 0, 1) . '`]'",
-  { noremap = true, expr = true })
+  { noremap = true, expr = true, desc = 'Select last pasted' })
 
 -- list_snips lists all snippets for the current filetype
 local list_snips = function()
