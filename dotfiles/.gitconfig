@@ -57,11 +57,6 @@
 [interactive]
 	diffFilter = delta --color-only --features='interactive gruvbox'
 
-# Delta workaround for git add -p in git v2.37.0
-# https://github.com/dandavison/delta/issues/1114
-[add.interactive]
-    useBuiltin = false # for git 2.37.0
-
 [delta]
 	# Named groups of settings in delta
 	features = gruvbox
