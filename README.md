@@ -6,7 +6,8 @@ completely refactored for macOS. Features:
 - **zsh**
   - Relatively minimal setup with autocompletion and colorized output where
     available.
-  - Prompt from [Powerlevel10k]
+  - Prompt from [Powerlevel10k].
+  - Fuzzy finder ([fzf]) integration.
   - Aliases / shortcuts:
     - `auth <name>`: Passes the current TOTP code of the given `<name>` from
       your Yubikey to your clipboard.
@@ -145,6 +146,7 @@ brew install \
     bat-extras `# Bat integration with other utilities` \
     colordiff  `# Colorized diff tool` \
     coreutils  `# GNU file, shell, text utilities (I use gls for colorized ls output)` \
+    fzf        `# Command line fuzzy finder`
     git        `# Comes with macOS but brew's is newer` \
     git-delta  `# Syntax highlighting pager for git, diff, and grep output` \
     jq         `# Json query tool` \
@@ -212,13 +214,21 @@ Alacritty window and run `echo $TERM`. It should output `alacritty-direct`. If
 it doesn't, this gist on installing term
 
 ## Zsh setup
-The only dependency for zsh is [Powerlevel10k]. Install with:
+
+Install zsh dependencies [Powerlevel10k] and [fzf] with:
 
 ```bash
-brew install romkatv/powerlevel10k/powerlevel10k
+brew install romkatv/powerlevel10k/powerlevel10k fzf
 ```
 
-That's it!
+Then install fzf's zsh integration with:
+
+```bash
+$(brew --prefix)/opt/fzf/install
+```
+
+That's it! You won't see the changes until you either start a new shell or run
+`source ~/.zshrc` in the current one.
 
 ## NeoVim setup
 
@@ -400,6 +410,7 @@ MIT
 
 [bat]: https://github.com/sharkdp/bat
 [bat-extras]: https://github.com/eth-p/bat-extras
+[fzf]: https://github.com/junegunn/fzf
 [Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
 [Powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [location that depends on OS]: https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
