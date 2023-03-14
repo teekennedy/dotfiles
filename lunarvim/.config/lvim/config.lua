@@ -34,6 +34,9 @@ vim.g.gruvbox_material_better_performance = 1
 -- provide a list, and further tabs will cycle through completion options.
 vim.opt.wildmode = "longest:list,full"
 
+-- Show completion popup window even if there is only one match.
+-- LunarVim's default: {"menuone", "noselect"}, which doesn't auto-select a match from the completion menu.
+-- vim.opt.completeopt = { "longest", "menuone" }
 -- Undo LunarVim's default (unnamedplus) that uses the clipboard for all operations that normally use the unnamed register.
 vim.opt.clipboard = ''
 
@@ -45,6 +48,31 @@ lvim.builtin.lualine.on_config_done = function(lualine)
   config.sections.lualine_a[1].separator = { left = '' }
   config.sections.lualine_z[1].separator = { right = '' }
   lualine.setup(config)
+end
+
+-- Completion config
+lvim.builtin.cmp.on_config_done = function(cmp)
+	local config = cmp.get_config()
+	-- Trying to autocomplete the longest is not going to be easy, commenting out for now
+	-- See https://github.com/hrsh7th/nvim-cmp/issues/530 for context
+	-- config.experimental.native_menu = true
+	-- config.completion.completeopt = "longest,menuone"
+	config.mapping["<Tab>"] = cmp.mapping(function(fallback)
+		local luasnip = require("luasnip")
+		if cmp.visible() then
+			if #cmp.get_entries() == 1 then
+				cmp.complete()
+			else
+				cmp.select_next_item()
+			end
+		elseif luasnip.expand_or_locally_jumpable() then
+			luasnip.expand_or_jump()
+		elseif lvim.builtin.cmp.has_words_before() then
+			cmp.complete()
+		else
+			fallback()
+		end
+	end, { "i", "s" })
 end
 
 -- Stop LunarVim from automatically changing the working directory
