@@ -6,6 +6,16 @@ set -euo pipefail
 # Snippet from https://stackoverflow.com/a/246128/1209614
 script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 
+# GNU stow is my preferred method of symlinking dotfiles.
+# All dotfiles outside of the dotfiles subdirectory are managed with stow.
+stow_dirs=(
+    lunarvim
+    nix
+    p10k
+    tig
+    vivid
+)
+
 # dotfiles directory relative to script_dir
 dotfiles_dir="dotfiles"
 
@@ -21,10 +31,19 @@ else
     last_symlinked="$(git rev-list --max-parents=0 HEAD)"
 fi
 
-green=`tput setaf 2`
-yellow=`tput setaf 3`
-blue=`tput setaf 4`
-reset=`tput sgr0`
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+blue=$(tput setaf 4)
+reset=$(tput sgr0)
+
+run_stow() {
+    local subdir="$1"
+    echo -e "${yellow}[STW]${reset} (Re)stowing dotfiles under ${blue}$subdir${reset} subdirectory"
+    # Ignore warning about absolute/relative mismatch as we aren't using absolute symlinks
+    # See https://github.com/aspiers/stow/issues/65 for context.
+    stow --no-folding --restow --target "$HOME" --dir "$script_dir" "$subdir" \
+        2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+}
 
 backup_and_symlink() {
     local src="$script_dir/$dotfiles_dir/$1"
@@ -60,11 +79,15 @@ cleanup_broken_symlink() {
 dotfiles_changed_since() {
     local commit=$1
     local filter=$2
-    cd $script_dir/$dotfiles_dir
+    cd "$script_dir/$dotfiles_dir"
     # Show filenames relative to dotfiles dir that match the given filter
     # --no-renames disables rename detection, showing renamed files as addition / removal pairs
     git diff --name-only --relative --no-renames --diff-filter=$filter $commit
 }
+
+for stow_dir in "${stow_dirs[@]}"; do
+    run_stow "$stow_dir"
+done
 
 # Backup and symlink all new files in dotfiles subdirectory
 for file in $(dotfiles_changed_since $last_symlinked A); do

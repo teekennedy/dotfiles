@@ -1,13 +1,6 @@
 # .zshrc
 # This file is sourced every time a new interactive shell is created
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Source configs from zshrc config dir (if any)
 for zsh_config_file ($HOME/.zsh/zshrc/*.zsh(N)); do
     source $zsh_config_file
@@ -46,8 +39,5 @@ export PAGER='less'
 p10k_zsh_theme=$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 [ -f $p10k_zsh_theme ] && source $p10k_zsh_theme
 unset p10k_zsh_theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

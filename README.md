@@ -97,18 +97,7 @@ completely refactored for macOS. Features:
    already symlinks are left alone.
 
    ```console
-   $ ./symlink_dotfiles.sh
-   [SKP] /Users/tkennedy/.alacritty.yml is already symlinked. Skipping.
-   [SKP] /Users/tkennedy/.config/nvim/after/filetype.vim is already symlinked. Skipping.
-   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/c.vim is already symlinked. Skipping.
-   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/ruby.vim is already symlinked. Skipping.
-   [SKP] /Users/tkennedy/.config/nvim/after/ftplugin/tracwiki.vim is already symlinked. Skipping.
-   ...  (snip) ...
-   [SKP] /Users/tkennedy/.local/share/nvim/site/pack/tools/start/fugitive is already symlinked. Skipping.
-   [SKP] /Users/tkennedy/.local/share/nvim/site/pack/tools/start/visual-star-search is already symlinked. Skipping.
-   [BAK] Backing up /Users/tkennedy/.oh-my-zsh to /Users/tkennedy/.oh-my-zsh.2021-06-10T13_33_43.bak
-   [SYM] Symlinking /Users/tkennedy/.oh-my-zsh to /Users/tkennedy/projects/dotfiles/dotfiles/.oh-my-zsh
-   [SKP] /Users/tkennedy/.tmux.conf is already symlinked. Skipping.
+   ./symlink_dotfiles.sh
    ```
 
 ## Updating Dotfiles
