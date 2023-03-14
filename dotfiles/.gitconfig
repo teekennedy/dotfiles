@@ -6,8 +6,12 @@
 	# value of 'simple' pushes the current branch to the upstream branch of the
 	# same name. This is the default in git 2.0 and above.
 	default = simple
+	autoSetupRemote = true
 
 [includeIf "gitdir:~/okta/"]
+  path = ~/okta/.gitconfig
+
+[includeIf "gitdir:~/.local-ops/"]
   path = ~/okta/.gitconfig
 
 [includeIf "gitdir:~/go/"]

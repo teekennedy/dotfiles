@@ -51,6 +51,9 @@ ehthumbs.db
 
 ########## Terraform ##########
 
+# tfenv version pin files
+**/.terraform-version
+
 # Local .terraform directories
 **/.terraform/*
 
@@ -61,10 +64,6 @@ ehthumbs.db
 # Crash log files
 crash.log
 crash.*.log
-
-# Exclude all .tfvars files, which are likely to contain sensitive or environment-specific data.
-*.tfvars
-*.tfvars.json
 
 # Ignore override files
 # are not checked in
