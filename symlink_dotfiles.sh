@@ -9,6 +9,7 @@ script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 # GNU stow is my preferred method of symlinking dotfiles.
 # All dotfiles outside of the dotfiles subdirectory are managed with stow.
 stow_dirs=(
+    alacritty
     lunarvim
     nix
     p10k
