@@ -9,17 +9,44 @@
 	autoSetupRemote = true
 
 [includeIf "gitdir:~/okta/"]
-  path = ~/okta/.gitconfig
+	path = ~/okta/.gitconfig
 
 [includeIf "gitdir:~/.local-ops/"]
-  path = ~/okta/.gitconfig
+	path = ~/okta/.gitconfig
 
 [includeIf "gitdir:~/go/"]
-  path = ~/go/.gitconfig
+	path = ~/go/.gitconfig
 
 [alias]
-	# Deletes all local branches that are fully merged into the current HEAD.
-	delete-merged = !git branch --merged | grep -vE \"\\*|master|main|hotfix/\" | xargs -n 1 git branch -d 2>/dev/null || echo \"No merged branches to delete\"
+	# Returns the default branch used by the given remote (defaulting to origin)
+	default-branch = "!f() { \
+		local remote=\"${1:-origin}\"; \
+		basename \"$(git rev-parse --abbrev-ref \"$remote\"/HEAD)\"; \
+	}; \
+	f"
+	# Deletes all local and remote branches that are fully merged into the given branch (defaulting to the default branch)
+	# Works with branches that have been squash-and-merged. Based on https://github.com/not-an-aardvark/git-delete-squashed
+	delete-merged = "!f() { \
+		local remote=\"${1:-origin}\"; \
+		local targetBranch=\"${2:-$(git default-branch $remote)}\"; \
+		git checkout --quiet $targetBranch && \
+		git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d; \
+		git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do \
+			mergeBase=$(git merge-base $targetBranch $branch); \
+			if [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]]; then \
+				git branch -D $branch; \
+			fi; \
+		done; \
+	}; f"
+	# Fetches the latest changes from the given remote (defaulting to origin), updates the default branch, and deletes all local branches that have been merged
+	update = "!f() { \
+		local remote=\"${1:-origin}\"; \
+		git fetch \"$remote\" --prune; \
+		local default_branch=\"$(git default-branch $remote)\"; \
+		git checkout --quiet \"$default_branch\" && \
+		git merge --ff-only \"$remote/$default_branch\" && \
+		git delete-merged \"$remote\" \"$default_branch\"; \
+	}; f"
 
 # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt
 [diff]
