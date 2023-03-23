@@ -10,6 +10,7 @@ script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 # All dotfiles outside of the dotfiles subdirectory are managed with stow.
 stow_dirs=(
     alacritty
+    direnv
     lunarvim
     nix
     p10k
