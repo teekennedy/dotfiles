@@ -34,5 +34,3 @@ export LESS='-FRX'
 
 # Set pager (used by many utilities that page their output).
 export PAGER='less'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

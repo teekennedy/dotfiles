@@ -11,6 +11,7 @@ script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 stow_dirs=(
     alacritty
     direnv
+    fzf
     lunarvim
     nix
     p10k
