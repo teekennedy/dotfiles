@@ -145,6 +145,10 @@ brew install \
     tree       `# Pretty print directory contents` \
     watch      `# Run commands repeatedly`
 
+# JetBrains Mono Nerd Font (Used by my Alacritty config):
+brew tap homebrew/cask-fonts
+brew install font-jetbrains-mono-nerd-font
+
 # If you get an error: 'command not found: #' when running the above, either
 # remove the inline comments or run 'setopt interactive_comments' to fix.
 
