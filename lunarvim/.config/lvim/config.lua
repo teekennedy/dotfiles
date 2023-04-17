@@ -110,13 +110,15 @@ lvim.leader = "space"
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  t = { "<cmd>TroubleToggle<cr>", "trouble" },
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  name = "+Tests",
+  c = { "<cmd>GoCoverage -t -p<cr>", "Toggle Coverage (golang only)" },
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+  f = { function() require("neotest").run.run(vim.fn.expand('%')) end, "Test File" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+  r = { "<cmd>Trouble lsp_references<cr>", "References" },
+  s = { function() require("neotest").summary.toggle() end, "Toggle Summary window" },
+  t = { "<cmd>TroubleToggle<cr>", "trouble" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
