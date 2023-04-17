@@ -52,27 +52,27 @@ end
 
 -- Completion config
 lvim.builtin.cmp.on_config_done = function(cmp)
-	local config = cmp.get_config()
-	-- Trying to autocomplete the longest is not going to be easy, commenting out for now
-	-- See https://github.com/hrsh7th/nvim-cmp/issues/530 for context
-	-- config.experimental.native_menu = true
-	-- config.completion.completeopt = "longest,menuone"
-	config.mapping["<Tab>"] = cmp.mapping(function(fallback)
-		local luasnip = require("luasnip")
-		if cmp.visible() then
-			if #cmp.get_entries() == 1 then
-				cmp.complete()
-			else
-				cmp.select_next_item()
-			end
-		elseif luasnip.expand_or_locally_jumpable() then
-			luasnip.expand_or_jump()
-		elseif lvim.builtin.cmp.has_words_before() then
-			cmp.complete()
-		else
-			fallback()
-		end
-	end, { "i", "s" })
+  local config = cmp.get_config()
+  -- Trying to autocomplete the longest is not going to be easy, commenting out for now
+  -- See https://github.com/hrsh7th/nvim-cmp/issues/530 for context
+  -- config.experimental.native_menu = true
+  -- config.completion.completeopt = "longest,menuone"
+  config.mapping["<Tab>"] = cmp.mapping(function(fallback)
+    local luasnip = require("luasnip")
+    if cmp.visible() then
+      if #cmp.get_entries() == 1 then
+        cmp.complete()
+      else
+        cmp.select_next_item()
+      end
+    elseif luasnip.expand_or_locally_jumpable() then
+      luasnip.expand_or_jump()
+    elseif lvim.builtin.cmp.has_words_before() then
+      cmp.complete()
+    else
+      fallback()
+    end
+  end, { "i", "s" })
 end
 
 -- Stop LunarVim from automatically changing the working directory
@@ -385,7 +385,6 @@ lvim.plugins = {
         },
       }, neotest_ns)
       require("neotest").setup({
-        -- your neotest config here
         adapters = {
           require("neotest-go"),
         },
