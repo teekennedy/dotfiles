@@ -199,7 +199,7 @@ lvim.lsp.installer.setup.ensure_installed = {
 
   -- Lua language server
   -- https://github.com/sumneko/lua-language-server
-  'sumneko_lua',
+  'lua_ls',
   -- -- luacheck is a static analyzer and linter for lua
   -- -- https://github.com/mpeterv/luacheck
   -- -- This is failing to install via mason with the message "luarocks is not executable"
@@ -334,7 +334,8 @@ lvim.plugins = {
   -- Docs: https://github.com/machakann/vim-sandwich/wiki
   { 'machakann/vim-sandwich' },
   -- Runs lsp format on modifications only
-  { 'joechrisellis/lsp-format-modifications.nvim',
+  {
+    'joechrisellis/lsp-format-modifications.nvim',
     config = function()
       -- Silence error when language server does not support ranged formatting (most don't)
       vim.g.lsp_format_modifications_silence = true
@@ -350,7 +351,7 @@ lvim.plugins = {
   {
     'ray-x/go.nvim',
     ft = "go",
-    requires = {
+    dependencies = {
       "ray-x/guihua.lua",
     },
     -- config function runs _after_ plugin is loaded.
@@ -368,7 +369,7 @@ lvim.plugins = {
   -- https://github.com/nvim-neotest/neotest
   {
     "nvim-neotest/neotest",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-neotest/neotest-go",
       "nvim-treesitter/nvim-treesitter",
@@ -381,7 +382,7 @@ lvim.plugins = {
         virtual_text = {
           format = function(diagnostic)
             local message =
-            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+                diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
             return message
           end,
         },
