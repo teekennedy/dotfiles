@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -euo pipefail
 
@@ -8,16 +8,29 @@ script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 
 # GNU stow is my preferred method of symlinking dotfiles.
 # All dotfiles outside of the dotfiles subdirectory are managed with stow.
+declare -A stow_dirs
 stow_dirs=(
-    alacritty
-    direnv
-    fzf
-    lunarvim
-    nix
-    p10k
-    tig
-    vivid
+    [alacritty]="$HOME"
+    [direnv]="$HOME"
+    [fzf]="$HOME"
+    [lunarvim]="$HOME"
+    [nix]="$HOME"
+    [p10k]="$HOME"
+    [tig]="$HOME"
+    [vivid]="$HOME"
 )
+
+# While most dotfiles are symlinked to $HOME, some require symlinking to an application-specific directory.
+if [ "$(uname -s)" = "Darwin" ]; then
+  if open -Ra firefox; then
+      stow_dirs[firefox]="$(osascript -e 'POSIX path of (path to application "Firefox")')/Contents/Resources"
+  fi
+else
+    ff_path="$(which firefox)"
+    if [ -n "$ff_path" ]; then
+        stow_dirs[firefox]="$ff_path"
+    fi
+fi
 
 # dotfiles directory relative to script_dir
 dotfiles_dir="dotfiles"
@@ -41,10 +54,11 @@ reset=$(tput sgr0)
 
 run_stow() {
     local subdir="$1"
+    local target="$2"
     echo -e "${yellow}[STW]${reset} (Re)stowing dotfiles under ${blue}$subdir${reset} subdirectory"
     # Ignore warning about absolute/relative mismatch as we aren't using absolute symlinks
     # See https://github.com/aspiers/stow/issues/65 for context.
-    stow --no-folding --restow --target "$HOME" --dir "$script_dir" "$subdir" \
+    stow --no-folding --restow --target "$target" --dir "$script_dir" "$subdir" \
         2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
 }
 
@@ -89,8 +103,8 @@ dotfiles_changed_since() {
     git diff --name-only --relative --no-renames --diff-filter="$filter" "$commit"
 }
 
-for stow_dir in "${stow_dirs[@]}"; do
-    run_stow "$stow_dir"
+for stow_dir target_dir in ${(kv)stow_dirs}; do
+    run_stow "$stow_dir" "$target_dir"
 done
 
 # Backup and symlink all new files in dotfiles subdirectory

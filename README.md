@@ -256,18 +256,8 @@ Install Firefox if you haven't already:
 brew install --cask firefox
 ```
 
-Applying AutoConfig requires adding files to the Firefox installation directory. Run the following
-commands from the dotfiles repo root to symlink AutoConfig files to where Firefox expects them:
-
-```bash
-if [ "$(uname -s)" = "Darwin" ]; then
-  FF_BASE_DIR="$(osascript -e 'POSIX path of (path to application "Firefox")')/Contents/Resources"
-else
-  FF_BASE_DIR="$(which firefox)"
-fi
-
-stow -vv --no-folding --target "$FF_BASE_DIR" firefox
-```
+Applying AutoConfig requires adding files to the Firefox installation directory.
+The `symlink_dotfiles.sh` script automatically handles this.
 
 ## YubiKey (U2F) setup
 
