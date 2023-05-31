@@ -12,7 +12,7 @@ declare -A stow_dirs
 stow_dirs=(
     [alacritty]="$HOME"
     [direnv]="$HOME"
-    [fzf]="$HOME"
+    [atuin]="$HOME"
     [lunarvim]="$HOME"
     [nix]="$HOME"
     [p10k]="$HOME"
