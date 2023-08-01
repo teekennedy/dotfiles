@@ -11,10 +11,6 @@ done
 
 command_exists aws && complete -C $(brew --prefix)/bin/aws_completer aws
 
-# Shortcuts to cd to:
-# - iCloud drive
-export CDPATH=".:$HOME/Library/Mobile Documents/com~apple~CloudDocs"
-
 # Set default editor
 if command_exists lvim; then
   export EDITOR='lvim'
