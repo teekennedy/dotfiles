@@ -111,7 +111,7 @@ lvim.leader = "space"
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Tests",
-  c = { "<cmd>GoCoverage -t -p<cr>", "Toggle Coverage (golang only)" },
+  c = { "<cmd>GoCoverage -p<cr>", "Toggle Coverage (golang only)" },
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
   f = { function() require("neotest").run.run(vim.fn.expand('%')) end, "Test File" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
@@ -333,19 +333,6 @@ lvim.plugins = {
   -- Add / delete / replace surroundings of a sandwiched textobject
   -- Docs: https://github.com/machakann/vim-sandwich/wiki
   { 'machakann/vim-sandwich' },
-  -- Runs lsp format on modifications only
-  {
-    'joechrisellis/lsp-format-modifications.nvim',
-    config = function()
-      -- Silence error when language server does not support ranged formatting (most don't)
-      vim.g.lsp_format_modifications_silence = true
-
-      local lsp_format_modifications = require "lsp-format-modifications"
-      lvim.lsp.on_attach_callback = function(client, bufnr)
-        lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
-      end
-    end
-  },
   -- Golang plugin
   -- https://github.com/ray-x/go.nvim
   {
@@ -359,10 +346,11 @@ lvim.plugins = {
       -- https://github.com/ray-x/go.nvim#configuration
       require('go').setup({ gotests_template = "testify" })
       -- Use <leader>c to toggle test coverage
-      vim.api.nvim_set_keymap(
-        'n', '<leader>c', ":GoCoverage -p -t<cr>",
-        { noremap = true, desc = 'Toggle coverage for current package' }
-      )
+      -- (This is set to <leader>tc in lvim.builtins.whichkey.mappings elsewhere in this config file.)
+      -- vim.api.nvim_set_keymap(
+      --   'n', '<leader>c', ":GoCoverage -p -t<cr>",
+      --   { noremap = true, desc = 'Toggle coverage for current package' }
+      -- )
     end
   },
   -- Test runner supporting multiple languages
