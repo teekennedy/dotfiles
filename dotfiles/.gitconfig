@@ -8,15 +8,6 @@
 	default = simple
 	autoSetupRemote = true
 
-[includeIf "gitdir:~/okta/"]
-	path = ~/okta/.gitconfig
-
-[includeIf "gitdir:~/.local-ops/"]
-	path = ~/okta/.gitconfig
-
-[includeIf "gitdir:~/go/"]
-	path = ~/go/.gitconfig
-
 [alias]
 	# Returns the default branch used by the given remote (defaulting to origin)
 	default-branch = "!f() { \
@@ -124,3 +115,6 @@
 	minus-style = syntax "#372120"
 	# 40% #cc241d + 60% #1d2021
 	minus-emph-style = syntax "#63221f"
+
+[include]
+	path = ~/.config/git/local.gitconfig
