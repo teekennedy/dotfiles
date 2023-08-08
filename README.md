@@ -19,7 +19,6 @@ completely refactored for macOS. Features:
       one if it doesn't already exist.
     - `vim`: aliased to neovim, if available.
 
-
 - **tmux**
   - uses `Ctrl+a` as prefix (very common)
   - creates non-login shells by default (faster and doesn't mess up PATH)
@@ -93,7 +92,7 @@ completely refactored for macOS. Features:
 
 1. Run `symlink_dotfiles.sh` to "install" dotfiles by symlinking them from the
    cloned repo to your home directory. Any files that already exist in your
-   home directory are first backed up to *dotfile*.bak.  Any files that are
+   home directory are first backed up to _dotfile_.bak. Any files that are
    already symlinks are left alone.
 
    ```console
@@ -162,6 +161,7 @@ mas install \
     1091189122 `# Bear (notes)` \
     1439431081 `# Intermission (give your eyes a break)`
 ```
+
 ## Zsh setup
 
 Install zsh dependencies [Powerlevel10k] and [atuin] with:
@@ -175,48 +175,16 @@ That's it! You won't see the changes until you either start a new shell or run
 
 ## NeoVim setup
 
-[NeoVim](https://neovim.io/) is a modern fork of Vim. I have it configured as a
-pretty full fledged IDE thanks to a combination of
-[coc.nvim](https://github.com/neoclide/coc.nvim), [Asynchronous Lint
-Engine](https://github.com/dense-analysis/ale), and a healthy amount of
-language-specific plugins and config.
+[NeoVim](https://neovim.io/) is a modern fork of Vim.
+I have it configured using [AstroNvim](https://github.com/AstroNvim/AstroNvim),
+which provides a great default setup. Unlike [LunarVim](https://www.lunarvim.org/),
+AstroNvim does not hide configuration behind an abstraction layer.
 
-Setting up NeoVim requires only NeoVim itself and a recent version of node,
-which is required by coc. I use [fnm](https://github.com/Schniz/fnm) for
-managing my node runtimes, so setup looks like this:
+Setting up AstroNvim requires NeoVim itself,
+Nerd Fonts (installed as a dependency to Alacritty),
+and a terminal with true color support (Alacritty).
 
-```bash
-brew install fnm neovim
-eval $(fnm env)
-fnm install --lts
-nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
-```
-
-### Adding new plugins
-
-NeoVim plugins are tracked as git submodules, used as a lightweight vendoring
-mechanism. They are loaded into nvim using
-the native package feature from Vim 8. To add a new vim plugin
-as a git submodule, first choose the plugin category from the following list
-(or create a new one by adding a new subfolder to
-`dotfiles/.local/share/nvim/site/pack`:
-
-- tools (Commands, integrations, new functionalities)
-- language (Language specific plugins)
-- interface (UI tweaks and colorscheme)
-
-Next, grab the https clone url for the plugin's repo and run:
-
-```bash
-git submodule add <repo> dotfiles/.local/share/nvim/site/pack/<category>/start/<plugin_name>
-```
-
-### Updating plugins
-
-```bash
-git submodule update --recursive --remote
-nvim -c 'CocUpdateSync | TSUpdate all | helptags ALL | q'
-```
+To install, see the latest [installation instructions for AstroNvim](https://astronvim.com/#%EF%B8%8F-installation) on their website.
 
 ## VS Code Setup
 
@@ -228,7 +196,6 @@ default macOS directory to the default Linux directory:
 ```bash
 ln -sf $HOME/.config/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ```
-
 
 ## Firefox
 

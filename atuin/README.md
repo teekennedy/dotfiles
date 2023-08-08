@@ -8,7 +8,19 @@ Install [atuin]:
 brew install atuin
 ```
 
-The atuin zsh completion and loader scripts are managed via GNU [stow]. Install stow, then run `stow -vv --no-folding --target $HOME fzf/` from the repository root to symlink all atuin-related dotfiles to your home directory.
+Import your existing shell history into atuin's sqlite database:
+
+```shell
+atuin import auto
+```
+
+The atuin zsh completion and loader scripts are managed via GNU [stow]. Install stow, `cd` to the root directory of the dotfiles repository, then run:
+
+`stow -vv --no-folding --target $HOME atuin/`
+
+This will symlink all atuin-related dotfiles to your home directory.
+
+
 
 # Update
 

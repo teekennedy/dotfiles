@@ -11,9 +11,9 @@ script_dir=$( cd "$(dirname "$0")" ; pwd -P )
 declare -A stow_dirs
 stow_dirs=(
     [alacritty]="$HOME"
+    [astro-nvim]="$HOME"
     [direnv]="$HOME"
     [atuin]="$HOME"
-    [lunarvim]="$HOME"
     [nix]="$HOME"
     [p10k]="$HOME"
     [tig]="$HOME"

@@ -8,4 +8,4 @@ git pull
 git submodule sync
 git submodule update --init --recursive
 "$script_dir/symlink_dotfiles.sh"
-lvim --headless -c 'LvimUpdate' -c 'PackerUpdate' -c 'TSUpdateSync' -c 'q'
+nvim --headless -c AstroUpdate -c AstroUpdatePackages -c q
