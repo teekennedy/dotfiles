@@ -13,9 +13,11 @@ stow_dirs=(
     [alacritty]="$HOME"
     [astro-nvim]="$HOME"
     [direnv]="$HOME"
+    [dotfiles]="$HOME"
     [atuin]="$HOME"
     [nix]="$HOME"
     [p10k]="$HOME"
+    [skhd]="$HOME"
     [tig]="$HOME"
     [vivid]="$HOME"
 )
@@ -24,6 +26,9 @@ stow_dirs=(
 if [ "$(uname -s)" = "Darwin" ]; then
   if open -Ra firefox; then
       stow_dirs[firefox]="$(osascript -e 'POSIX path of (path to application "Firefox")')/Contents/Resources"
+  fi
+  if open -Ra "Visual Studio Code"; then
+      stow_dirs[vscode]="$HOME/Library/Application Support/Code/User"
   fi
 else
     ff_path="$(which firefox)"
