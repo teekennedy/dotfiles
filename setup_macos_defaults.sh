@@ -16,7 +16,11 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -347,33 +351,33 @@ killall Safari || true
 
 # Change indexing order and disable some search results
 defaults write com.apple.spotlight orderedItems -array \
-    '{ enabled = 1; name = APPLICATIONS; }' \
-    '{ enabled = 1; name = "MENU_SPOTLIGHT_SUGGESTIONS"; }' \
-    '{ enabled = 1; name = "MENU_CONVERSION"; }' \
-    '{ enabled = 1; name = "MENU_EXPRESSION"; }' \
-    '{ enabled = 1; name = "MENU_DEFINITION"; }' \
-    '{ enabled = 1; name = "SYSTEM_PREFS"; }' \
-    '{ enabled = 1; name = DOCUMENTS; }' \
-    '{ enabled = 1; name = DIRECTORIES; }' \
-    '{ enabled = 0; name = PRESENTATIONS; }' \
-    '{ enabled = 0; name = SPREADSHEETS; }' \
-    '{ enabled = 1; name = PDF; }' \
-    '{ enabled = 0; name = MESSAGES; }' \
-    '{ enabled = 1; name = CONTACT; }' \
-    '{ enabled = 0; name = "EVENT_TODO"; }' \
-    '{ enabled = 0; name = IMAGES; }' \
-    '{ enabled = 0; name = BOOKMARKS; }' \
-    '{ enabled = 0; name = MUSIC; }' \
-    '{ enabled = 0; name = MOVIES; }' \
-    '{ enabled = 1; name = FONTS; }' \
-    '{ enabled = 1; name = "MENU_OTHER"; }'
+	'{ enabled = 1; name = APPLICATIONS; }' \
+	'{ enabled = 1; name = "MENU_SPOTLIGHT_SUGGESTIONS"; }' \
+	'{ enabled = 1; name = "MENU_CONVERSION"; }' \
+	'{ enabled = 1; name = "MENU_EXPRESSION"; }' \
+	'{ enabled = 1; name = "MENU_DEFINITION"; }' \
+	'{ enabled = 1; name = "SYSTEM_PREFS"; }' \
+	'{ enabled = 1; name = DOCUMENTS; }' \
+	'{ enabled = 1; name = DIRECTORIES; }' \
+	'{ enabled = 0; name = PRESENTATIONS; }' \
+	'{ enabled = 0; name = SPREADSHEETS; }' \
+	'{ enabled = 1; name = PDF; }' \
+	'{ enabled = 0; name = MESSAGES; }' \
+	'{ enabled = 1; name = CONTACT; }' \
+	'{ enabled = 0; name = "EVENT_TODO"; }' \
+	'{ enabled = 0; name = IMAGES; }' \
+	'{ enabled = 0; name = BOOKMARKS; }' \
+	'{ enabled = 0; name = MUSIC; }' \
+	'{ enabled = 0; name = MOVIES; }' \
+	'{ enabled = 1; name = FONTS; }' \
+	'{ enabled = 1; name = "MENU_OTHER"; }'
 
 # Load new settings before rebuilding the index
-killall mds > /dev/null 2>&1 || true
+killall mds >/dev/null 2>&1 || true
 # Make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
+sudo mdutil -i on / >/dev/null
 # Rebuild the index from scratch
-sudo mdutil -E / > /dev/null
+sudo mdutil -E / >/dev/null
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -418,11 +422,11 @@ killall Photos || true
 
 # Only run if Bear is installed
 if open -Ra "Bear" 2>/dev/null; then
-  # Turn off spellcheck, grammar check, and auto-correct
-  defaults write net.shinyfrog.bear SFNoteTextViewContinuousSpellCheckingEnabled -bool false
-  defaults write net.shinyfrog.bear SFNoteTextViewGrammarCheckingEnabled -bool false
-  defaults write net.shinyfrog.bear SFNoteTextViewAutomaticSpellingCorrectionEnabled -bool false
-  killall Bear || true
+	# Turn off spellcheck, grammar check, and auto-correct
+	defaults write net.shinyfrog.bear SFNoteTextViewContinuousSpellCheckingEnabled -bool false
+	defaults write net.shinyfrog.bear SFNoteTextViewGrammarCheckingEnabled -bool false
+	defaults write net.shinyfrog.bear SFNoteTextViewAutomaticSpellingCorrectionEnabled -bool false
+	killall Bear || true
 fi
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
