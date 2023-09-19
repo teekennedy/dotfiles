@@ -70,6 +70,9 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    -- Keep clipboard register ('+') separate from unnamed register.
+    -- AstroNvim defaults to "unnamedplus" for this option.
+    vim.opt.clipboard = ""
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
