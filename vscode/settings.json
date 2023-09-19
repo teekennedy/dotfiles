@@ -11,5 +11,6 @@
     "editor.fontLigatures": true,
     "typescript.inlayHints.parameterNames.enabled": "all",
     "dotnet.server.useOmnisharp": true,
-    "security.workspace.trust.untrustedFiles": "open"
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.formatOnSave": true
 }
