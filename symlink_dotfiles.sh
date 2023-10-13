@@ -55,16 +55,22 @@ fi
 green=$(tput setaf 2)
 yellow=$(tput setaf 3)
 blue=$(tput setaf 4)
+red=$(tput setaf 1)
 reset=$(tput sgr0)
 
 run_stow() {
     local subdir="$1"
     local target="$2"
-    echo -e "${yellow}[STW]${reset} (Re)stowing dotfiles under ${blue}$subdir${reset} subdirectory"
-    # Ignore warning about absolute/relative mismatch as we aren't using absolute symlinks
-    # See https://github.com/aspiers/stow/issues/65 for context.
-    stow --no-folding --restow --target "$target" --dir "$script_dir" "$subdir" \
-        2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+    # Confirm that target directory is writable
+    if [ -w "$target" ]; then
+        echo -e "${yellow}[STW]${reset} (Re)stowing dotfiles under ${blue}$subdir${reset} subdirectory"
+        # Ignore warning about absolute/relative mismatch as we aren't using absolute symlinks
+        # See https://github.com/aspiers/stow/issues/65 for context.
+        stow --no-folding --restow --target "$target" --dir "$script_dir" "$subdir" \
+            2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+    else
+        echo -e "${red}[ERR]${reset} Not stowing files under $blue$subdir$reset: Target dir ${blue}$target${reset} is not writable."
+    fi
 }
 
 backup_and_symlink() {
