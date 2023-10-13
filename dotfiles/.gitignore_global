@@ -42,6 +42,8 @@ ehthumbs.db
 .python-version
 # nvm version
 .nvmrc
+# Current jira issue (for my customized go-jira CLI)
+.jira-issue
 
 # custom ctrlp ignore file
 .ctrlpignore

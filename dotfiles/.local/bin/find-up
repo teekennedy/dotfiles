@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+path=$(pwd)
+while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+  path=${path%/*}
+done
+echo "$path"
