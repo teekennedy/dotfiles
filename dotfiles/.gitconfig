@@ -60,8 +60,8 @@
 	branch = false
 
 [merge]
-	# set "lvim" as tool for merging
-	tool = lvim
+	# set "nvim" as tool for merging
+	tool = nvim
 
 [mergetool]
 	# automatically launch merge tool without displaying a prompt

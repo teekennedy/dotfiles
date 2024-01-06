@@ -12,9 +12,7 @@ done
 command_exists aws && complete -C $(brew --prefix)/bin/aws_completer aws
 
 # Set default editor
-if command_exists lvim; then
-  export EDITOR='lvim'
-elif command_exists nvim; then
+if command_exists nvim; then
   export EDITOR='nvim'
 elif command_exists vim; then
   export EDITOR='vim'
