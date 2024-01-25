@@ -15,9 +15,6 @@ alias history='fc -nil 1'
 
 ## History configuration
 setopt extended_history         # record timestamp of command in HISTFILE
-setopt hist_ignore_all_dups     # do not put duplicated command into history list
-setopt hist_ignore_dups         # ignore duplicated commands history list
 setopt hist_ignore_space        # ignore commands that start with space
 setopt hist_reduce_blanks       # remove unnecessary blanks
-setopt hist_save_no_dups        # do not save duplicated command
 setopt inc_append_history_time  # append command to history file immediately after execution
