@@ -26,6 +26,14 @@ if command -v go &>/dev/null; then
     PATH="$(go env GOPATH)/bin:$PATH"
 fi
 
+# Setup zsh run-help for documentation on zsh builtins
+# remove default alias run-help=man
+unalias run-help 2>/dev/null
+# load run-help module from zshcontrib
+autoload run-help
+# tell run-help where to find docs
+export HELPDIR="/usr/share/zsh/$(zsh --version | cut -d ' ' -f 2)/help"
+
 # Source configs from zprofile config dir (if any)
 for zsh_config_file ($HOME/.zsh/zprofile/*.zsh(N)); do
     source $zsh_config_file
