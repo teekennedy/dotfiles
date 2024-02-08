@@ -7,6 +7,42 @@ return {
   -- Disable toggleterm.nvim so I can use <leader>t prefix for tests instead
   { "akinsho/toggleterm.nvim", enabled = false },
   {
+    "andythigpen/nvim-coverage",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = {
+      "Coverage",
+      "CoverageSummary",
+      "CoverageLoad",
+      "CoverageShow",
+      "CoverageHide",
+      "CoverageToggle",
+      "CoverageClear",
+    },
+    opts = {
+      auto_reload = true,
+      highlights = {
+        -- customize highlight groups created by the plugin
+        covered = { fg = "#C3E88D" }, -- supports style, fg, bg, sp (see :h highlight-gui)
+        uncovered = { fg = "#F07178" },
+      },
+    },
+  },
+  -- overriding the default git signs so they don't conflict with nvim-coverage
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "+" },
+        change = { text = "±" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
+      },
+    },
+  },
+
+  {
     "nvim-neotest/neotest",
     ft = { "go", "rust", "python", "lua" },
     dependencies = {
@@ -24,11 +60,17 @@ return {
           opts.library.types = true
         end,
       },
+      --
     },
     opts = function()
       return {
         adapters = {
-          require "neotest-go",
+          require "neotest-go" {
+            experimental = {
+              test_table = true,
+            },
+            args = { "-coverprofile=coverage.out" },
+          },
           require "neotest-rust",
           require "neotest-python",
         },
@@ -43,7 +85,10 @@ return {
       local mappings = {
         n = {
           [prefix] = { desc = icon .. "Test" },
-          [prefix .. "f"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Test current file" },
+          [prefix .. "f"] = {
+            function() neotest.run.run(vim.fn.expand "%") end,
+            desc = "Test current file",
+          },
           [prefix .. "a"] = {
             function() neotest.run.run(vim.fn.expand "%") end,
             desc = "Run all tests in current directory",
@@ -56,14 +101,33 @@ return {
             function() neotest.watch.toggle(vim.fn.getcwd()) end,
             desc = "Toggle watching current directory",
           },
-          [prefix .. "c"] = { function() neotest.run.run() end, desc = "Run closest test" },
-          [prefix .. "S"] = { function() neotest.run.stop() end, desc = "Stop current test run" },
-          [prefix .. "s"] = { function() neotest.summary.toggle() end, desc = "Toggle summary panel" },
-          [prefix .. "o"] = { function() neotest.output_panel.toggle() end, desc = "Toggle output panel" },
+          [prefix .. "c"] = {
+            "<cmd>Coverage<CR>",
+            desc = "Show test coverage",
+          },
+          [prefix .. "C"] = {
+            function() neotest.run.run() end,
+            desc = "Run closest test",
+          },
+          [prefix .. "S"] = {
+            function() neotest.run.stop() end,
+            desc = "Stop current test run",
+          },
+          [prefix .. "s"] = {
+            function() neotest.summary.toggle() end,
+            desc = "Toggle summary panel",
+          },
+          [prefix .. "o"] = {
+            function() neotest.output_panel.toggle() end,
+            desc = "Toggle output panel",
+          },
         },
       }
       if utils.is_available "nvim-dap" then
-        mappings.n[prefix .. "d"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Debug closest test" }
+        mappings.n[prefix .. "d"] = {
+          function() neotest.run.run { strategy = "dap" } end,
+          desc = "Debug closest test",
+        }
       end
       utils.set_mappings(mappings)
       -- get neotest namespace (api call creates or returns namespace)
