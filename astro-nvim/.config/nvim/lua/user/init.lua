@@ -28,6 +28,14 @@ return {
   },
 
   lsp = {
+    config = {
+      terraformls = {
+        -- terraform-ls logs to stderr by default and causes ~/.local/state/nvim/lsp.log to reach multiple gigabytes in size.
+        -- Disable logs until a better solution can be found.
+        -- See https://github.com/hashicorp/terraform-ls/issues/1271
+        cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
+      },
+    },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
@@ -41,6 +49,7 @@ return {
           "json",
         },
       },
+
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
