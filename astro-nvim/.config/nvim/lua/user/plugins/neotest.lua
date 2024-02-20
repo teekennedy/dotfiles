@@ -69,7 +69,10 @@ return {
             experimental = {
               test_table = true,
             },
-            args = { "-coverprofile=coverage.out" },
+            args = {
+              "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+              "-coverpkg=" .. string.gsub(vim.fn.system "go list -m", "%s+", "") .. "/...",
+            },
           },
           require "neotest-rust",
           require "neotest-python",
