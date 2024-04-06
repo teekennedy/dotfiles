@@ -226,11 +226,15 @@ sudo chflags nohidden /Volumes
 killall Finder || true
 
 ###############################################################################
-# Dock, Dashboard, and hot corners                                            #
+# Dock, Dashboard, Window Manager, and hot corners                            #
 ###############################################################################
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 #defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# Disable single click desktop to hide all windows and show desktop only in
+# Stage Manager.
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "suck"
