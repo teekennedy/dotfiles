@@ -70,6 +70,7 @@ return {
               test_table = true,
             },
             args = {
+              "-timeout=60s",
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
               "-coverpkg=" .. string.gsub(vim.fn.system "go list -m", "%s+", "") .. "/...",
             },
