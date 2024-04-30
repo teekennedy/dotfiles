@@ -234,7 +234,10 @@ killall Finder || true
 
 # Disable single click desktop to hide all windows and show desktop only in
 # Stage Manager.
-defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
+# NB: running this on 14.4.1 didn't seem to do anything even after a restart.
+#     Changing the setting through Ssytem settings worked, but according to
+#     `defaults read com.apple.WindowManager` it didn't change anything.
+# defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "suck"
