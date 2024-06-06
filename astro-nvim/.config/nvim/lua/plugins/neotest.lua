@@ -1,8 +1,6 @@
 -- NeoTest (integrates with go, python, rust)
 -- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/test/neotest/init.lua
-local utils = require "astronvim.utils"
-local prefix = "<leader>t"
-local icon = vim.g.icons_enabled and "󰙨 " or ""
+local astrocore = require "astrocore"
 return {
   -- Disable toggleterm.nvim so I can use <leader>t prefix for tests instead
   { "akinsho/toggleterm.nvim", enabled = false },
@@ -42,6 +40,8 @@ return {
     },
   },
 
+  -- Disable Neodev in favor of LazyDev
+  { "folke/neodev.nvim", enabled = false },
   {
     "nvim-neotest/neotest",
     ft = { "go", "rust", "python", "lua" },
@@ -49,16 +49,11 @@ return {
       "nvim-neotest/neotest-go",
       "nvim-neotest/neotest-python",
       "rouge8/neotest-rust",
-      -- Add Neotest as a Neodev plugin (lua specific)
+      -- Add Neotest as a Lazydev plugin (lua specific)
       {
-        "folke/neodev.nvim",
-        opts = function(_, opts)
-          opts.library = opts.library or {}
-          if opts.library.plugins ~= true then
-            opts.library.plugins = require("astronvim.utils").list_insert_unique(opts.library.plugins, "neotest")
-          end
-          opts.library.types = true
-        end,
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = function(_, opts) opts.library = require("astrocore").list_insert_unique(opts.library, { "neotest" }) end,
       },
       --
     },
@@ -86,6 +81,8 @@ return {
     end,
     config = function(_, opts)
       local neotest = require "neotest"
+      local prefix = "<leader>t"
+      local icon = vim.g.icons_enabled and "󰙨 " or ""
       local mappings = {
         n = {
           [prefix] = { desc = icon .. "Test" },
@@ -127,13 +124,13 @@ return {
           },
         },
       }
-      if utils.is_available "nvim-dap" then
+      if astrocore.is_available "nvim-dap" then
         mappings.n[prefix .. "d"] = {
           function() neotest.run.run { strategy = "dap" } end,
           desc = "Debug closest test",
         }
       end
-      utils.set_mappings(mappings)
+      astrocore.set_mappings(mappings)
       -- get neotest namespace (api call creates or returns namespace)
       local neotest_ns = vim.api.nvim_create_namespace "neotest"
       vim.diagnostic.config({
