@@ -15,6 +15,7 @@ stow_dirs=(
     [direnv]="$HOME"
     [dotfiles]="$HOME"
     [atuin]="$HOME"
+    [gpg]="$HOME"
     [nix]="$HOME"
     [p10k]="$HOME"
     [skhd]="$HOME"

@@ -1,6 +1,8 @@
 [user]
 	email = terrance@missingtoken.net
 	name = Terrance Kennedy
+	signingkey = F87EB4B68CB111C1 # Yubikey backed signing subkey, expires 2026-07-25
+
 [push]
 	# Configures the behavior of running `git push` without a branch name. A
 	# value of 'simple' pushes the current branch to the upstream branch of the
@@ -118,3 +120,5 @@
 
 [include]
 	path = ~/.config/git/local.gitconfig
+[commit]
+	gpgsign = true
