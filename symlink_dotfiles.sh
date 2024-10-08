@@ -21,6 +21,7 @@ stow_dirs=(
     [skhd]="$HOME"
     [tig]="$HOME"
     [vivid]="$HOME"
+    [zsh-vi-mode]="$HOME"
 )
 
 # While most dotfiles are symlinked to $HOME, some require symlinking to an application-specific directory.
