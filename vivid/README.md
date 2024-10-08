@@ -20,5 +20,5 @@ Make sure you have stow installed (`brew install stow`) then run:
 
 ```
 cd "$(git rev-parse --show-toplevel)" # cd to dotfiles repo root
-stow -v --no-folding --restow --target "$HOME" vivid
+stow -v --no-folding --restow --dotfiles --target "$HOME" vivid
 ```

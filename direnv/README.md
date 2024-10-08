@@ -6,7 +6,7 @@ Install direnv:
 
 `brew install direnv`
 
-These dotfiles are managed via GNU [stow]. Install stow, then run `stow -vv --no-folding --target $HOME direnv/` from the repository root to symlink all direnv-related dotfiles to your home directory.
+These dotfiles are managed via GNU [stow]. Install stow, then run `stow -vv --no-folding --dotfiles --target $HOME direnv/` from the repository root to symlink all direnv-related dotfiles to your home directory.
 
 # Usage
 
@@ -18,6 +18,6 @@ There's many common tools to integrate into the current shell. Direnv has a stan
 
 # Uninstall
 
-`stow -vv --no-folding --target $HOME --delete direnv/`
+`stow -vv --no-folding --dotfiles --target $HOME --delete direnv/`
 
 [stow]: https://www.gnu.org/software/stow/

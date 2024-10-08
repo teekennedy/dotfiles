@@ -6,6 +6,6 @@ This config is managed via GNU [stow]. Install stow, then run `stow -vv --no-fol
 
 # Uninstall
 
-`stow -vv --no-folding --target $HOME --delete gpg/`
+`stow -vv --no-folding --dotfiles --target $HOME --delete gpg/`
 
 [stow]: https://www.gnu.org/software/stow/

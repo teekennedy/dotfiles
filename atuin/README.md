@@ -16,11 +16,9 @@ atuin import auto
 
 The atuin zsh completion and loader scripts are managed via GNU [stow]. Install stow, `cd` to the root directory of the dotfiles repository, then run:
 
-`stow -vv --no-folding --target $HOME atuin/`
+`stow -vv --no-folding --dotfiles --target $HOME atuin/`
 
 This will symlink all atuin-related dotfiles to your home directory.
-
-
 
 # Update
 
@@ -32,7 +30,7 @@ brew upgrade
 
 # Uninstall
 
-`stow -vv --no-folding --target $HOME --delete atuin/`
+`stow -vv --no-folding --dotfiles --target $HOME --delete atuin/`
 
 [atuin]: https://github.com/ellie/atuin
 [stow]: https://www.gnu.org/software/stow/

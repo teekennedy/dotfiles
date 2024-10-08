@@ -4,6 +4,7 @@ My personal collection of dotfiles. Originally created for Arch, then
 completely refactored for macOS. Features:
 
 - **zsh**
+
   - Relatively minimal setup with autocompletion and colorized output where
     available.
   - Prompt from [Powerlevel10k].
@@ -20,6 +21,7 @@ completely refactored for macOS. Features:
     - `vim`: aliased to neovim, if available.
 
 - **tmux**
+
   - uses `Ctrl+a` as prefix (very common)
   - creates non-login shells by default (faster and doesn't mess up PATH)
   - extended history for panes (100k lines)
@@ -30,6 +32,7 @@ completely refactored for macOS. Features:
     just in the way.
 
 - **Alacritty**
+
   - Uses [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font.
   - Has great defaults, doesn't need much customization.
 
