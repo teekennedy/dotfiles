@@ -21,6 +21,7 @@ stow_dirs=(
     [skhd]="$HOME"
     [tig]="$HOME"
     [vivid]="$HOME"
+    [yabai]="$HOME"
     [zsh-vi-mode]="$HOME"
 )
 
