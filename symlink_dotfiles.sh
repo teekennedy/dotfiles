@@ -20,6 +20,7 @@ stow_dirs=(
     [p10k]="$HOME"
     [skhd]="$HOME"
     [tig]="$HOME"
+    [tmux]="$HOME"
     [vivid]="$HOME"
     [yabai]="$HOME"
     [zsh-vi-mode]="$HOME"
