@@ -10,6 +10,8 @@ brew install openssh
 HOMEBREW_SSH_AGENT_SERVICE_NAME=net.missingtoken.homebrew_ssh_agent
 HOMEBREW_SSH_AGENT_PLIST_PATH="$HOME/Library/LaunchAgents/$HOMEBREW_SSH_AGENT_SERVICE_NAME.plist"
 
+mkdir -p "$(dirname "$HOMEBREW_SSH_AGENT_PLIST_PATH")"
+
 cat <<EOF | sudo tee $HOMEBREW_SSH_AGENT_PLIST_PATH >/dev/null
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -39,4 +41,4 @@ cat <<EOF | sudo tee $HOMEBREW_SSH_AGENT_PLIST_PATH >/dev/null
 </plist>
 EOF
 
-launchctl bootstrap gui/$UID "$HOMEBREW_SSH_AGENT_PLIST_PATH"
+sudo launchctl bootstrap gui/$UID "$HOMEBREW_SSH_AGENT_PLIST_PATH"
