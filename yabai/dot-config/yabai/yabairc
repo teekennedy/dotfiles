@@ -20,8 +20,6 @@ yabai -m config focus_follows_mouse off
 yabai -m config window_origin_display default
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
-# floating windows are always on top (default: off)
-# yabai -m config window_topmost               off
 # modify window shadows (default: on, options: on, off, float)
 yabai -m config window_shadow float
 yabai -m config window_opacity off
@@ -56,11 +54,13 @@ yabai -m signal --add event=window_resized action='sleep 1'
 yabai -m signal --add event=window_moved action='sleep 1'
 
 # Float the Fantastical menubar popup
-yabai -m rule --add app="^Fantastical Helper$" manage=off border=off
+yabai -m rule --add app="^Fantastical Helper$" manage=off
+
 # Float every Godot window except the godot editor itself
 yabai -m rule --add app="^Godot$" title!="Godot Engine" manage=off #layer=above
 # Float every Darktable window except the main one
 yabai -m rule --add app="^darktable$" title!="^darktable$" manage=off
 
 yabai -m config debug_output on
+
 echo "yabai configuration loaded.."
