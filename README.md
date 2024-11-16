@@ -102,6 +102,32 @@ completely refactored for macOS. Features:
    ./symlink_dotfiles.sh
    ```
 
+## Nix
+
+Using [nix], [nix-darwin], and [home-manager], configuration and tooling can be declaratively configured.
+
+### Installation
+
+1. Install nix using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer#determinate-nix-installer):
+
+   ```shell
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+   sh -s -- install
+   ```
+
+1. Install [nix-darwin] using the flake in this repo:
+
+   ```shell
+   nix run nix-darwin -- switch --flake .
+   ```
+
+This will install nix-darwin, home-manager, and the rest of my dotfiles and tooling.
+You may need to start a new shell for the settings to fully take effect.
+
+### Applying changes
+
+After making changes to the nix-darwin configuration, run `darwin-rebuild switch --flake .` to apply.
+
 ## Updating Dotfiles
 
 Pull latest, sync submodules, symlink new dotfiles and/or submodules, and
@@ -317,3 +343,6 @@ MIT
 [Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
 [Powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [location that depends on OS]: https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
+[nix-darwin]: https://github.com/LnL7/nix-darwin
+[nix]: https://nixos.org/
+[home-manager]: https://github.com/nix-community/home-manager
