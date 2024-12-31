@@ -37,7 +37,7 @@
             # $ darwin-rebuild changelog
             system.stateVersion = 5;
           }
-          # determinate.darwinModules.default
+          inputs.determinate.darwinModules.default
           # home-manager.darwinModules.home-manager
           # devenv-configuration
         ];

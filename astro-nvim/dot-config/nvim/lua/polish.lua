@@ -2,10 +2,6 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
--- Keep clipboard register ('+') separate from unnamed register.
--- AstroNvim defaults to "unnamedplus" for this option.
-vim.opt.clipboard = ""
-
 -- Set up custom filetypes
 -- vim.filetype.add {
 --   extension = {
