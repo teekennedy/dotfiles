@@ -23,7 +23,11 @@ background = "0x1d2021"
 foreground = "0xebdbb2"
 
 [font]
-size = 12.0
+size = 13
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "ExtraLight"
 
 [font.bold]
 style = "SemiBold"
@@ -33,10 +37,6 @@ style = "SemiBold Italic"
 
 [font.italic]
 style = "ExtraLight Italic"
-
-[font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "ExtraLight"
 
 [window]
 dynamic_padding = true
