@@ -71,8 +71,8 @@
 	# Disable saving .orig backup of file with conflict markers after merging
 	keepBackup = false
 
-[mergetool "lvim"]
-	cmd = lvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [pull]
 	ff = only
