@@ -1,46 +1,40 @@
 {
-  self,
-  config,
-  withSystem,
   inputs,
+  pkgs,
   ...
 }: {
-  config.flake.darwinConfigurations.oxygen = withSystem "aarch64-darwin" (
-    ctx @ {
-      inputs',
-      pkgs,
-      system,
-      ...
-    }:
-      inputs.nix-darwin.lib.darwinSystem {
-        modules = [
-          {
-            nixpkgs.hostPlatform = system;
-            nixpkgs.pkgs = pkgs;
-            # List packages installed in system profile. To search by name, run:
-            # $ nix-env -qaP | grep wget
-            environment.systemPackages = [
-              pkgs.devenv
-            ];
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+    devenv
+    alejandra
+  ];
 
-            # Necessary for using flakes on this system.
-            nix.settings.experimental-features = "nix-command flakes";
-            nix.settings.trusted-users = ["tkennedy"];
+  # Necessary for using flakes on this system.
+  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.trusted-users = ["tkennedy"];
 
-            # Enable alternative shell support in nix-darwin.
-            # programs.fish.enable = true;
+  nix.distributedBuilds = true;
+  nix.linux-builder = {
+    enable = true;
+    systems = ["x86_64-linux"];
+  };
+  nix.buildMachines = [
+    {
+      hostName = "borg-1";
+      system = "x86_64-linux";
+      sshUser = "root";
+    }
+  ];
 
-            # Set Git commit hash for darwin-version.
-            system.configurationRevision = self.rev or self.dirtyRev or null;
+  nix.optimise.automatic = true;
 
-            # Used for backwards compatibility, please read the changelog before changing.
-            # $ darwin-rebuild changelog
-            system.stateVersion = 5;
-          }
-          inputs.determinate.darwinModules.default
-          # home-manager.darwinModules.home-manager
-          # devenv-configuration
-        ];
-      }
-  );
+  # Enable alternative shell support in nix-darwin.
+  # programs.fish.enable = true;
+
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 5;
+  programs.direnv.nix-direnv.enable = true;
 }
