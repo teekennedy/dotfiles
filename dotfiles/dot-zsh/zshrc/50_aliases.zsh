@@ -18,14 +18,23 @@ command_exists colordiff && alias diff='colordiff'
 # Alias vim to neovim if available
 command_exists nvim && alias vim='nvim'
 
+# Alias kubectl to k if available
+command_exists kubectl && alias k='kubectl'
+
 # Alias some common git commands
 if command_exists git; then
+    # gs = Git Status
+    alias gs='git status'
     # gfa = Git Fetch All
     alias gfa='git fetch --all --prune'
     # gca = Git Commit Amend
-    alias gca='git add -u && git commit --amend --no-edit'
+    alias gca='git commit --amend --no-edit'
     # gcap = Git Commit Amend Push
-    alias gcap='git add -u && git commit --amend --no-edit && git push --force'
+    alias gcap='git commit --amend --no-edit && git push --force'
+    # gca = Git Add modified Commit Amend
+    alias gaca='git add -u && git commit --amend --no-edit'
+    # gcap = Git Add modified Commit Amend Push
+    alias gacap='git add -u && git commit --amend --no-edit && git push --force'
 fi
 
 # Alias cat to bat https://github.com/sharkdp/bat if available
@@ -39,8 +48,12 @@ if command_exists bat; then
     command_exists batman && alias man='batman'
 fi
 
-# Alias tf to terraform if available
-command_exists terraform && alias tf='terraform'
+# Alias tf to opentofu / terraform if available
+if command_exists opentofu; then
+    alias tf='opentofu'
+elif command_exists terraform; then
+    alias tf='terraform'
+fi
 
 # Alias tg to terragrunt if available
 command_exists terraform && alias tg='terragrunt'
