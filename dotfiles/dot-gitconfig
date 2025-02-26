@@ -8,7 +8,22 @@
 	# value of 'simple' pushes the current branch to the upstream branch of the
 	# same name. This is the default in git 2.0 and above.
 	default = simple
+	# Create upstream branch if it doesn't exist
 	autoSetupRemote = true
+	# Push all local tags that aren't on the server
+	followTags = true
+
+# Allow git branch to output multiple columns
+[column]
+  ui = auto
+
+# Sort branches by committerdate
+[branch]
+	sort = -committerdate
+
+# Sort tags by version number
+[tag]
+	sort = version:refname
 
 [alias]
 	# Returns the default branch used by the given remote (defaulting to origin)
@@ -53,6 +68,10 @@
 	algorithm = histogram
 	# Differentiate moved blocks of text by using different colors
 	colorMoved = default
+	# Use i/, w/, and c/ (index, working directory, and commit) instead of a/ and b/ in git diff
+	mnemonicPrefix = true
+	# Detect renames
+	renames = true
 
 [core]
 	excludesfile = ~/.gitignore_global
@@ -64,6 +83,7 @@
 [merge]
 	# set "nvim" as tool for merging
 	tool = nvim
+	conflictstyle = zdiff3
 
 [mergetool]
 	# automatically launch merge tool without displaying a prompt
@@ -76,6 +96,7 @@
 
 [pull]
 	ff = only
+	rebase = true
 
 [init]
 	defaultBranch = main
@@ -120,5 +141,29 @@
 
 [include]
 	path = ~/.config/git/local.gitconfig
+
 [commit]
 	gpgsign = true
+	# Shows commit diff in editor for commit's message
+	verbose = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[help]
+	autocorrect = prompt
+
+# Reuse recorded resolutions
+# https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/#reuse-recorded-resolution
+[rerere]
+	enabled = true
+	autoupdate = true
+
+# Autosquash
+# https://blog.gitbutler.com/git-autosquash/
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
