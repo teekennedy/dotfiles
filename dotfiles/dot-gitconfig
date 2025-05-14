@@ -61,6 +61,7 @@
 		git delete-merged \"$remote\" \"$default_branch\" \"$current_branch\"; \
 		git checkout --quiet \"$current_branch\"; \
 	}; f"
+	root = rev-parse --show-toplevel
 
 # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt
 [diff]
