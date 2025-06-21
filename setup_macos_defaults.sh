@@ -60,7 +60,7 @@ cat <<EOF | sudo tee $CAPS_REMAP_PLIST_PATH >/dev/null
     <key>StandardOutPath</key>
     <string>/tmp/caps-remap.out</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/caps-remap.out</string>
+    <string>/tmp/caps-remap.err</string>
     -->
   </dict>
 </plist>
