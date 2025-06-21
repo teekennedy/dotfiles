@@ -19,7 +19,15 @@ command_exists colordiff && alias diff='colordiff'
 command_exists nvim && alias vim='nvim'
 
 # Alias kubectl to k if available
-command_exists kubectl && alias k='kubectl'
+if command_exists kubectl; then
+    k() {
+        if command -v kubecolor >/dev/null; then
+            kubecolor "$@"
+        else
+            kubectl "$@"
+        fi
+    }
+fi
 
 # Alias some common git commands
 if command_exists git; then
