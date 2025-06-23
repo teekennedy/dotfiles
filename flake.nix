@@ -19,7 +19,10 @@
         ./nix/modules/nix-darwin/default.nix
         ./nix/modules/dev/default.nix
 
-        {system.configurationRevision = self.rev or self.dirtyRev or null;}
+        {
+          system.configurationRevision = self.rev or self.dirtyRev or null;
+          nix.settings.trusted-users = ["tkennedy"];
+        }
       ];
     };
   };

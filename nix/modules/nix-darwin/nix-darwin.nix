@@ -2,6 +2,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
   # Nix settings are managed by Determinate Nix
@@ -9,8 +10,11 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # Enable alternative shell support in nix-darwin.
-  # programs.fish.enable = true;
+  environment.etc."nix/nix.custom.conf" = {
+    text = ''
+      extra-trusted-users = ${builtins.concatStringsSep " " config.nix.settings.trusted-users}
+    '';
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
