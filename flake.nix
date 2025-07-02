@@ -24,6 +24,7 @@
       home-manager.darwinModules.home-manager
       ./nix/modules/nix-darwin/default.nix
       ./nix/modules/dev/default.nix
+      ./nix/modules/components/mcp-hub.nix
       {
         system.configurationRevision = self.rev or self.dirtyRev or null;
         home-manager.extraSpecialArgs = {

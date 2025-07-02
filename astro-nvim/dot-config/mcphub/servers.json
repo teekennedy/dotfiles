@@ -1,13 +1,22 @@
 {
-    "mcpServers": {
-        "filesystem": {
-            "command": "filesystem-mcp-server"
-        },
-        "git": {
-            "command": "mcp-server-git"
-        },
-        "github": {
-            "url": "https://api.githubcopilot.com/mcp/"
-        }
+  "nativeMCPServers": [],
+  "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "disabled": false
+    },
+    "filesystem": {
+      "command": "filesystem-mcp-server"
+    },
+    "container-use": {
+      "command": "cu",
+      "type": "stdio",
+      "args": [
+        "stdio"
+      ]
+    },
+    "git": {
+      "command": "mcp-server-git"
     }
+  }
 }
