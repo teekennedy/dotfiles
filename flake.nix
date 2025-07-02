@@ -14,27 +14,31 @@
     home-manager,
     self,
     ...
-  }: {
+  }: let
+    commonDarwinModules = [
+      home-manager.darwinModules.home-manager
+      ./nix/modules/nix-darwin/default.nix
+      ./nix/modules/dev/default.nix
+      {
+        system.configurationRevision = self.rev or self.dirtyRev or null;
+      }
+    ];
+  in {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#oxygen
-    darwinConfigurations."oxygen" = inputs.nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#$(scutil --get HostName)
+    darwinConfigurations."oxygen" = nix-darwin.lib.darwinSystem {
       modules = [
-        home-manager.darwinModules.home-manager
-        ./nix/modules/nix-darwin/default.nix
-        ./nix/modules/dev/default.nix
+        commonDarwinModules
         {
           system.configurationRevision = self.rev or self.dirtyRev or null;
           myUsername = "tkennedy";
         }
       ];
     };
-    darwinConfigurations."MJLYCVF4YQ" = inputs.nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MJLYCVF4YQ" = nix-darwin.lib.darwinSystem {
       modules = [
-        home-manager.darwinModules.home-manager
-        ./nix/modules/nix-darwin/default.nix
-        ./nix/modules/dev/default.nix
+        commonDarwinModules
         {
-          system.configurationRevision = self.rev or self.dirtyRev or null;
           myUsername = "terrance.kennedy";
         }
       ];
