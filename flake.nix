@@ -27,8 +27,7 @@
       {
         system.configurationRevision = self.rev or self.dirtyRev or null;
         home-manager.extraSpecialArgs = {
-          mcp-hub = mcp-hub;
-          mcp-server-git = mcp-server-git;
+          inherit mcp-hub mcp-server-git;
         };
       }
     ];

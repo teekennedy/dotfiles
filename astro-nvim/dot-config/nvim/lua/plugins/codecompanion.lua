@@ -22,19 +22,14 @@ return {
           },
         },
         ---@param opts cmp.ConfigSchema
-        opts = function(_, opts)
-          table.insert(opts.sources, { name = "copilot" })
-        end,
+        opts = function(_, opts) table.insert(opts.sources, { name = "copilot" }) end,
       },
       {
         "ravitemer/mcphub.nvim",
         dependencies = {
           "nvim-lua/plenary.nvim",
         },
-        build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-        config = function()
-          require("mcphub").setup()
-        end,
+        config = function() require("mcphub").setup() end,
       },
     },
     opts = {
@@ -52,7 +47,7 @@ return {
           callback = "mcphub.extensions.codecompanion",
           opts = {
             show_result_in_chat = true, -- Show mcp tool results in chat
-            make_vars = true,     -- Convert resources to #variables
+            make_vars = true, -- Convert resources to #variables
             make_slash_commands = true, -- Add prompts as /slash commands
           },
         },
