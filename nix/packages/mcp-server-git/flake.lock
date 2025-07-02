@@ -18,6 +18,24 @@
         "type": "github"
       }
     },
+    "mcp-server-git": {
+      "flake": false,
+      "locked": {
+        "dir": "src/git",
+        "lastModified": 1751394506,
+        "narHash": "sha256-WPBNPhaI8FJFXJg3MQVkgv52egCjNffdjwva4DdjH/s=",
+        "owner": "modelcontextprotocol",
+        "repo": "servers",
+        "rev": "42f9c842c212377a2e9623ca3cd390ea9fff1d7a",
+        "type": "github"
+      },
+      "original": {
+        "dir": "src/git",
+        "owner": "modelcontextprotocol",
+        "repo": "servers",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1751271578,
@@ -98,6 +116,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "mcp-server-git": "mcp-server-git",
         "nixpkgs": "nixpkgs",
         "pyproject-build-systems": "pyproject-build-systems",
         "pyproject-nix": "pyproject-nix",

@@ -22,7 +22,9 @@ return {
           },
         },
         ---@param opts cmp.ConfigSchema
-        opts = function(_, opts) table.insert(opts.sources, { name = "copilot" }) end,
+        opts = function(_, opts)
+          table.insert(opts.sources, { name = "copilot" })
+        end,
       },
       {
         "ravitemer/mcphub.nvim",
@@ -30,7 +32,9 @@ return {
           "nvim-lua/plenary.nvim",
         },
         build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-        config = function() require("mcphub").setup() end,
+        config = function()
+          require("mcphub").setup()
+        end,
       },
     },
     opts = {
@@ -48,11 +52,33 @@ return {
           callback = "mcphub.extensions.codecompanion",
           opts = {
             show_result_in_chat = true, -- Show mcp tool results in chat
-            make_vars = true, -- Convert resources to #variables
+            make_vars = true,     -- Convert resources to #variables
             make_slash_commands = true, -- Add prompts as /slash commands
           },
         },
       },
     },
+    config = function(_, opts)
+      local mappings = {
+        n = {
+          ["<leader>a"] = { desc = " AI" },
+          ["<leader>ac"] = {
+            "<cmd>CodeCompanionChat Toggle<CR>",
+            desc = "Toggle AI chat",
+          },
+          ["<leader>aa"] = {
+            "<cmd>CodeCompanionActions<CR>",
+            desc = "AI actions",
+          },
+          ["<leader>am"] = {
+            "<cmd>MCPHub<CR>",
+            desc = "Open MCP Hub",
+          },
+        },
+      }
+      require("astrocore").set_mappings(mappings)
+      -- Load the codecompanion plugin with the specified options
+      require("codecompanion").setup(opts)
+    end,
   },
 }

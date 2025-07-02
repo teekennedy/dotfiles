@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    mcp-server-git = {
+      url = "github:modelcontextprotocol/servers?dir=src/git";
+      flake = false;
+    };
+
     pyproject-nix = {
       url = "github:pyproject-nix/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +31,7 @@
 
   outputs = inputs @ {
     flake-parts,
+    mcp-server-git,
     uv2nix,
     pyproject-nix,
     pyproject-build-systems,
@@ -42,15 +48,7 @@
         ...
       }: let
         python = pkgs.python3;
-        src = pkgs.fetchFromGitHub {
-          owner = "modelcontextprotocol";
-          repo = "servers";
-          rev = "2025.7.1";
-          hash = "sha256-e5cFinKiLUHMb3/ampcNOMqkKd2GeR3+ftIHe/f2Bio=";
-          # Only use the git server subdir
-          sparseCheckout = ["src/git"];
-        };
-        workspace = inputs.uv2nix.lib.workspace.loadWorkspace {workspaceRoot = "${src.outPath}/src/git";};
+        workspace = inputs.uv2nix.lib.workspace.loadWorkspace {workspaceRoot = "${mcp-server-git}/src/git";};
 
         overlay = workspace.mkPyprojectOverlay {
           sourcePreference = "wheel";
