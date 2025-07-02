@@ -141,6 +141,8 @@
 	minus-emph-style = syntax "#63221f"
 
 [include]
+	path = ~/okta/.gitconfig
+[include]
 	path = ~/.config/git/local.gitconfig
 
 [commit]
@@ -168,3 +170,5 @@
 	autoSquash = true
 	autoStash = true
 	updateRefs = true
+[gpg]
+	program = /opt/homebrew/bin/gpg

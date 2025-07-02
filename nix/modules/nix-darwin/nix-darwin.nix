@@ -9,6 +9,7 @@
   nix.enable = false;
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nix.settings.trusted-users = [config.myUsername];
 
   environment.etc."nix/nix.custom.conf" = {
     text = ''
