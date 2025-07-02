@@ -9,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
+  outputs = {
     nix-darwin,
     home-manager,
     self,
@@ -27,21 +27,23 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#$(scutil --get HostName)
     darwinConfigurations."oxygen" = nix-darwin.lib.darwinSystem {
-      modules = [
+      modules =
         commonDarwinModules
-        {
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-          myUsername = "tkennedy";
-        }
-      ];
+        ++ [
+          {
+            system.configurationRevision = self.rev or self.dirtyRev or null;
+            myUsername = "tkennedy";
+          }
+        ];
     };
     darwinConfigurations."MJLYCVF4YQ" = nix-darwin.lib.darwinSystem {
-      modules = [
+      modules =
         commonDarwinModules
-        {
-          myUsername = "terrance.kennedy";
-        }
-      ];
+        ++ [
+          {
+            myUsername = "terrance.kennedy";
+          }
+        ];
     };
   };
 }
