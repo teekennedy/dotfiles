@@ -1,10 +1,5 @@
 # Platform-specific settings
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}: {
+{config, ...}: {
   # Nix settings are managed by Determinate Nix
   nix.enable = false;
 
@@ -14,6 +9,7 @@
   environment.etc."nix/nix.custom.conf" = {
     text = ''
       extra-trusted-users = ${builtins.concatStringsSep " " config.nix.settings.trusted-users}
+      lazy-trees = true
     '';
   };
 
