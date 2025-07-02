@@ -4,6 +4,9 @@
     home = "/Users/${config.myUsername}";
   };
   home-manager.users.tkennedy = {pkgs, ...}: {
+    imports = [
+      ../components/mcp-hub.nix
+    ];
     home.packages = with pkgs; [
       curl
       btop

@@ -1,0 +1,5 @@
+{"mcpServers":{
+    "git": {
+    "command": "mcp-server-git"
+  }
+}}
