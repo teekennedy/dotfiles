@@ -26,7 +26,7 @@ foreground = "0xebdbb2"
 size = 13
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Maple Mono NF CN"
 style = "ExtraLight"
 
 [font.bold]

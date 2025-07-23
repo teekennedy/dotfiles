@@ -82,8 +82,8 @@
 	branch = false
 
 [merge]
-	# set "nvim" as tool for merging
-	tool = nvim
+	# set "nvimdiff" as tool for merging
+	tool = nvimdiff
 	conflictstyle = zdiff3
 
 [mergetool]
@@ -91,9 +91,6 @@
 	prompt = false
 	# Disable saving .orig backup of file with conflict markers after merging
 	keepBackup = false
-
-[mergetool "nvim"]
-	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [pull]
 	ff = only

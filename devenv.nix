@@ -30,7 +30,10 @@
       args = ["--edit"];
     };
     # Shell script linter
-    shellcheck.enable = true;
+    shellcheck = {
+      enable = true;
+      files = "\\.sh$";
+    };
     # YAML linter
     yamllint.enable = true;
   };

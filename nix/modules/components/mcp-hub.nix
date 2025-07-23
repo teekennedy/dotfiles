@@ -1,5 +1,5 @@
 {...}: {
-  home-manager.users.me = {
+  home-manager.users.primary = {
     mcp-hub,
     mcp-server-git,
     pkgs,

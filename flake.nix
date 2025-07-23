@@ -25,32 +25,26 @@
       ./nix/modules/nix-darwin/default.nix
       ./nix/modules/dev/default.nix
       ./nix/modules/components/mcp-hub.nix
-      {
+      ({lib, ...}: {
         system.configurationRevision = self.rev or self.dirtyRev or null;
         home-manager.extraSpecialArgs = {
           inherit mcp-hub mcp-server-git;
         };
-      }
+        system.primaryUser = lib.mkDefault "tkennedy";
+      })
     ];
   in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#$(scutil --get HostName)
     darwinConfigurations."oxygen" = nix-darwin.lib.darwinSystem {
-      modules =
-        commonDarwinModules
-        ++ [
-          {
-            system.configurationRevision = self.rev or self.dirtyRev or null;
-            myUsername = "tkennedy";
-          }
-        ];
+      modules = commonDarwinModules;
     };
     darwinConfigurations."MJLYCVF4YQ" = nix-darwin.lib.darwinSystem {
       modules =
         commonDarwinModules
         ++ [
           {
-            myUsername = "terrance.kennedy";
+            system.primaryUser = "terrance.kennedy";
           }
         ];
     };

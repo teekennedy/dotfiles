@@ -4,7 +4,7 @@
   nix.enable = false;
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  nix.settings.trusted-users = [config.myUsername];
+  nix.settings.trusted-users = [config.system.primaryUser];
 
   environment.etc."nix/nix.custom.conf" = {
     text = ''
