@@ -15,9 +15,8 @@ if [ -e "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" ]; then
   if [ -d "$bin_dir" ]; then
     # Add the bin directory to PATH if it's not already there
     case ":$PATH:" in
-    *":$bin_dir:"*) echo "bin dir $bin_dir already in PATH" ;;
+    *":$bin_dir:"*) : ;;
     *)
-      echo "adding $bin_dir to PATH"
       export PATH="$bin_dir:$PATH"
       ;;
     esac
