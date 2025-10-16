@@ -32,7 +32,6 @@
   outputs = inputs @ {
     flake-parts,
     mcp-server-git,
-    uv2nix,
     pyproject-nix,
     pyproject-build-systems,
     ...
@@ -42,13 +41,9 @@
     } {
       # TODO more systems
       systems = ["aarch64-darwin" "x86_64-linux"];
-      perSystem = {
-        pkgs,
-        lib,
-        ...
-      }: let
+      perSystem = {pkgs, ...}: let
         python = pkgs.python3;
-        workspace = inputs.uv2nix.lib.workspace.loadWorkspace {workspaceRoot = "${mcp-server-git}/src/git";};
+        workspace = inputs.uv2nix.lib.workspace.loadWorkspace {workspaceRoot = "${mcp-server-git}";};
 
         overlay = workspace.mkPyprojectOverlay {
           sourcePreference = "wheel";
