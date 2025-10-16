@@ -12,17 +12,50 @@ return {
           panel = { enabled = false },
         },
       },
-      -- Integrate copilot with cmp
+      -- Integrate copilot with blink
       {
-        "hrsh7th/nvim-cmp",
+        "saghen/blink.cmp",
         dependencies = {
           {
-            "zbirenbaum/copilot-cmp",
-            config = true,
+            "giuxtaposition/blink-cmp-copilot",
           },
         },
-        ---@param opts cmp.ConfigSchema
-        opts = function(_, opts) table.insert(opts.sources, { name = "copilot" }) end,
+        opts = {
+          sources = {
+            default = { "lsp", "path", "snippets", "buffer", "copilot" },
+            providers = {
+              copilot = {
+                name = "copilot",
+                module = "blink-cmp-copilot",
+                score_offset = 100,
+                async = true,
+              },
+            },
+          },
+        },
+      },
+      {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
+        config = function()
+          require("mcphub").setup(
+            --   {
+            --   -- Use local mcp-hub during development
+            --   cmd = "node",
+            --   cmdArgs = {
+            --     "/Users/tkennedy/projects/mcp-hub/src/utils/cli.js", -- Point to local mcp-hub
+            --   },
+            --   shutdown_delay = 0, -- During development, stop immediately when neovim exits
+            --   log = {
+            --     to_file = true,
+            --     file_path = vim.fn.expand("~/mcphub.log"),
+            --     level = vim.log.levels.DEBUG,
+            --   },
+            -- }
+          )
+        end,
       },
     },
     opts = {
@@ -34,6 +67,16 @@ return {
         },
         inline = {
           adapter = "copilot",
+        },
+      },
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            show_result_in_chat = true, -- Show mcp tool results in chat
+            make_vars = true, -- Convert resources to #variables
+            make_slash_commands = true, -- Add prompts as /slash commands
+          },
         },
       },
       prompt_library = {
