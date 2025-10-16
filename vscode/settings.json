@@ -12,5 +12,9 @@
     "typescript.inlayHints.parameterNames.enabled": "all",
     "dotnet.server.useOmnisharp": true,
     "security.workspace.trust.untrustedFiles": "open",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "chat.tools.terminal.autoApprove": {
+        "gofumpt": true,
+        "go": true
+    }
 }
