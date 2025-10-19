@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Adam Sharp
 # Aug 21, 2013
@@ -11,7 +11,10 @@
 #  3) Clean up the .gitmodules file
 #
 
-submodule_name=$(echo "$1" | sed 's/\/$//'); shift
+set -euo pipefail
+
+submodule_name=$(echo "$1" | sed 's/\/$//')
+shift
 
 exit_err() {
   [ $# -gt 0 ] && echo "fatal: $*" 1>&2

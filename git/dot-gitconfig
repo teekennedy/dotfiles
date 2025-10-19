@@ -26,41 +26,8 @@
 	sort = version:refname
 
 [alias]
-	# Returns the default branch used by the given remote (defaulting to origin)
-	default-branch = "!f() { \
-		local remote=\"${1:-origin}\"; \
-		basename \"$(git rev-parse --abbrev-ref \"$remote\"/HEAD)\"; \
-	}; \
-	f"
 	# Returns the name of the current branch.
 	current-branch = "rev-parse --abbrev-ref HEAD"
-	# Deletes all local branches that are fully merged into the given branch (defaulting to the default branch)
-	# Works with branches that have been squash-and-merged. Based on https://github.com/not-an-aardvark/git-delete-squashed
-	delete-merged = "!f() { \
-		local remote=\"${1:-origin}\"; \
-		local default_branch=\"${2:-$(git default-branch $remote)}\"; \
-		local ignore_branch=\"${3:-$(git current-branch)}\"; \
-		git checkout --quiet $default_branch && \
-		git branch --merged $default_branch | grep -vE \"\\*|$ignore_branch\" | xargs -n 1 git branch -d; \
-		git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do \
-			[[ $branch == $ignore_branch ]] && continue; \
-			mergeBase=$(git merge-base $default_branch $branch); \
-			if [[ $(git cherry $default_branch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]]; then \
-				git branch -D $branch; \
-			fi; \
-		done; \
-	}; f"
-	# Fetches the latest changes from the given remote (defaulting to origin), updates the default branch, and deletes all local branches that have been merged
-	update = "!f() { \
-		local remote=\"${1:-origin}\"; \
-		local default_branch=\"$(git default-branch $remote)\"; \
-		local current_branch=\"$(git current-branch)\"; \
-		git delete-merged-remote $remote $default_branch; \
-		git checkout --quiet \"$default_branch\" && \
-		git merge --ff-only \"$remote/$default_branch\" && \
-		git delete-merged \"$remote\" \"$default_branch\" \"$current_branch\"; \
-		git checkout --quiet \"$current_branch\"; \
-	}; f"
 	root = rev-parse --show-toplevel
 
 # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt

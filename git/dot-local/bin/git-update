@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Fetches the latest changes from the given remote (defaulting to origin), updates the default branch, and deletes all local branches that have been merged
+remote="${1:-origin}"
+default_branch="$(git default-branch "$remote")"
+current_branch="$(git current-branch)"
+git fetch "$remote" --quiet --prune --prune-tags
+git checkout --quiet "$default_branch" &&
+  git merge --ff-only "$remote/$default_branch" &&
+  git delete-merged "$remote" "$default_branch" "$current_branch"
+git checkout --quiet "$current_branch"

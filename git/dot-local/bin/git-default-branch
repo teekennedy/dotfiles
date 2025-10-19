@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Returns the default branch used by the given remote (defaulting to origin)
+remote="${1:-origin}"
+basename "$(git rev-parse --abbrev-ref "$remote/HEAD")"

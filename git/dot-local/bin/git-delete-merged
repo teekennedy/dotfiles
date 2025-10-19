@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Deletes all local branches that are fully merged into the given branch (defaulting to the default branch)
+# Works with branches that have been squash-and-merged. Based on https://github.com/not-an-aardvark/git-delete-squashed
+remote="${1:-origin}"
+default_branch="${2:-$(git default-branch "$remote")}"
+ignore_branch="${3:-$(git current-branch)}"
+
+# Detect GNU vs BSD xargs
+# GNU xargs will run the command with empty input unless given --no-run-if-empty.
+# BSD xargs will NOT run the command with empty input and has no such flag.
+xargs_no_run_if_empty_flag=""
+if xargs --version 2>&1 | grep -q 'GNU'; then
+	xargs_no_run_if_empty_flag="--no-run-if-empty"
+fi
+
+git checkout --quiet "$default_branch" &&
+	git branch --merged "$default_branch" |
+	{ grep -vE "\\*|$ignore_branch" || true; } |
+		xargs $xargs_no_run_if_empty_flag -n 1 git branch -d
+
+git for-each-ref refs/heads/ "--format=%(refname:short)" | while read -r branch; do
+	[[ "$branch" == "$ignore_branch" ]] && continue
+	mergeBase=$(git merge-base "$default_branch" "$branch")
+	if [[ "$(git cherry "$default_branch" "$(git commit-tree "$(git rev-parse "$branch^{tree}")" -p "$mergeBase" -m _)")" == "-"* ]]; then
+		git branch -D "$branch"
+	fi
+done
