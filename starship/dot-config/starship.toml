@@ -1,12 +1,11 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# All further configuration is generated from the 'gruvbox-rainbow' preset
+# All further configuration is based on the 'gruvbox-rainbow' preset
 # https://starship.rs/presets/gruvbox-rainbow
 
 format = """
 [](color_orange)\
-$os\
 $username\
 [](bg:color_yellow fg:color_orange)\
 $directory\
@@ -25,15 +24,26 @@ $kotlin\
 $haskell\
 $python\
 [](fg:color_blue bg:color_bg3)\
+$nix_shell\
 $docker_context\
 $conda\
 $pixi\
 [](fg:color_bg3 bg:color_bg1)\
-$time\
+$cmd_duration\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
 palette = 'gruvbox_dark'
+
+[nix_shell]
+format = '[ $symbol $state ]($style)'
+symbol = ""
+style = "fg:color_fg0 bg:color_bg3"
+heuristic = true
+
+[cmd_duration]
+format = '[ $duration ]($style)'
+style = 'fg:color_fg0 bg:color_bg1'
 
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
