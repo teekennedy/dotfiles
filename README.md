@@ -7,7 +7,7 @@ completely refactored for macOS. Features:
 
   - Relatively minimal setup with autocompletion and colorized output where
     available.
-  - Prompt from [Powerlevel10k].
+  - Prompt from [Starship].
   - Shell history via [atuin].
   - Aliases / shortcuts:
     - `auth <name>`: Passes the current TOTP code of the given `<name>` from
@@ -193,10 +193,10 @@ mas install \
 
 ## Zsh setup
 
-Install zsh dependencies [Powerlevel10k] and [atuin] with:
+Install zsh dependencies [Starship] and [atuin] with:
 
 ```bash
-brew install romkatv/powerlevel10k/powerlevel10k atuin
+brew install starship atuin
 ```
 
 That's it! You won't see the changes until you either start a new shell or run
@@ -341,7 +341,7 @@ MIT
 [bat-extras]: https://github.com/eth-p/bat-extras
 [atuin]: https://github.com/ellie/atuin
 [Kirill Kuznetsov's post]: https://evilmartians.com/chronicles/stick-with-security-yubikey-ssh-gnupg-macos#making-things-stick
-[Powerlevel10k]: https://github.com/romkatv/powerlevel10k
+[Starship]: https://starship.rs
 [location that depends on OS]: https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
 [nix-darwin]: https://github.com/LnL7/nix-darwin
 [nix]: https://nixos.org/
