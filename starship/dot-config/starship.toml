@@ -23,6 +23,7 @@ $java\
 $kotlin\
 $haskell\
 $python\
+$terraform\
 [](fg:color_blue bg:color_bg3)\
 $nix_shell\
 $docker_context\
@@ -34,6 +35,15 @@ $cmd_duration\
 $line_break$character"""
 
 palette = 'gruvbox_dark'
+
+[terraform]
+format = '[ $symbol $workspace ]($style)'
+symbol = ''
+style = "fg:color_fg0 bg:color_blue"
+# prefer opentofu over terraform
+# NB: This option isn't documented but _is_ part of the source
+# https://github.com/starship/starship/blob/f7d583821a01d2429cef1f243228aa04055f4760/src/configs/terraform.rs
+commands = [["tofu", "version"], ["terraform", "version"]]
 
 [nix_shell]
 format = '[ $symbol $state ]($style)'
