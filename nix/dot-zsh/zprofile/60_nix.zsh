@@ -1,10 +1,10 @@
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+# Export NIX_SSL_CERT_FILE so nix-managed curl and openssl can pick it up
+if [ -e "/etc/nix/macos-keychain.crt" ]; then
+  export NIX_SSL_CERT_FILE="/etc/nix/macos-keychain.crt"
 fi
 
-# Export SSL_CERT_FILE so nix-managed curl and openssl can pick it up
-if [ -e "/etc/nix/macos-keychain.crt" ]; then
-  export SSL_CERT_FILE="/etc/nix/macos-keychain.crt"
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 # home manager (with homeManager.useUserPackages = true)
