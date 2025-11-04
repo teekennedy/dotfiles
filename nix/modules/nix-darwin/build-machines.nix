@@ -1,7 +1,5 @@
 {
   config,
-  inputs,
-  pkgs,
   lib,
   ...
 }:
@@ -13,18 +11,18 @@ in {
   nix.distributedBuilds = true;
   nix.buildMachines = [
     {
+      hostName = "borg-3";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 2;
+      speedFactor = 2;
+    }
+    {
       hostName = "borg-2";
       system = "x86_64-linux";
       protocol = "ssh-ng";
       maxJobs = 4;
       speedFactor = 4;
-    }
-    {
-      hostName = "borg-1";
-      system = "x86_64-linux";
-      protocol = "ssh-ng";
-      maxJobs = 2;
-      speedFactor = 2;
     }
     {
       hostName = "borg-0";

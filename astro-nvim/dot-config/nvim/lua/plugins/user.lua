@@ -6,7 +6,7 @@ return {
 		"andweeb/presence.nvim",
 		config = function()
 			require("presence").setup({
-				blacklist = { "okta" },
+				blacklist = { "/?[^p][^r][^o][^j][^e][^c][^t][^s]/?" },
 			})
 		end,
 	},
