@@ -11,6 +11,7 @@ return {
 			disable = { "yaml" },
 		},
 		ensure_installed = {
+			"jsonnet",
 			"lua",
 			"vim",
 			-- add more arguments for adding more treesitter parsers
