@@ -6,15 +6,13 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nix.settings.trusted-users = [config.system.primaryUser];
 
-  environment.etc."nix/nix.custom.conf" = {
-    text = ''
-      # use all cores in parallel evaluation
-      # NB: this is a determinate-nix specific option
-      eval-cores = 0
+  determinate-nix.customSettings = {
+    # use all cores in parallel evaluation
+    # NB: this is a determinate-nix specific option
+    eval-cores = 0;
 
-      extra-trusted-users = ${builtins.concatStringsSep " " config.nix.settings.trusted-users}
-      lazy-trees = true
-    '';
+    extra-trusted-users = config.nix.settings.trusted-users;
+    lazy-trees = true;
   };
 
   # I already have completion init in my dotfiles

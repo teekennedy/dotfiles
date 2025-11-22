@@ -2,6 +2,7 @@
   description = "teekennedy's dotfiles flake";
 
   inputs = {
+    determinate.url = "github:DeterminateSystems/determinate";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mcp-hub.url = "github:ravitemer/mcp-hub";
@@ -13,6 +14,7 @@
   };
 
   outputs = {
+    determinate,
     nix-darwin,
     home-manager,
     mcp-hub,
@@ -21,6 +23,7 @@
     ...
   }: let
     commonDarwinModules = [
+      determinate.darwinModules.default
       home-manager.darwinModules.home-manager
       ./nix/modules/nix-darwin/default.nix
       ./nix/modules/dev/default.nix
