@@ -48,19 +48,17 @@ yabai -m config window_gap 06
 # https://github.com/koekeishiya/yabai/issues/924#issuecomment-859727411
 yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" == false and .\"is-floating\" == false" && yabai -m window $YABAI_WINDOW_ID --toggle float'
 
-# Workaround for retiling going so crazy
-# https://github.com/koekeishiya/yabai/issues/2321
-yabai -m signal --add event=window_resized action='sleep 1'
-yabai -m signal --add event=window_moved action='sleep 1'
-
 # Float the Fantastical menubar popup
 yabai -m rule --add app="^Fantastical Helper$" manage=off
 
 # Float every Godot window except the godot editor itself
 yabai -m rule --add app="^Godot$" title!="Godot Engine" manage=off #layer=above
+
 # Float every Darktable window except the main one
 yabai -m rule --add app="^darktable$" title!="^darktable$" manage=off
 
-yabai -m config debug_output on
+# Use a stacked layout for spaces that KiCad is launched into
+yabai -m signal --add event=application_launched app='^KiCad$' action='yabai -m space --layout stack'
+yabai -m signal --add event=application_terminated app='^KiCad$' action='yabai -m space --layout bsp'
 
 echo "yabai configuration loaded.."
