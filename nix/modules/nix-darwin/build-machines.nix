@@ -33,6 +33,37 @@ in {
     }
   ];
 
+  programs.ssh = {
+    extraConfig = ''
+      Host borg-*
+        User tkennedy
+        HostName %h.msng.to
+        IdentitiesOnly yes
+        IdentityFile   /Users/${config.system.primaryUser}/.ssh/gpg-ed25519.pub
+        # Use GPG agent instead of SSH agent
+        IdentityAgent /Users/${config.system.primaryUser}/.gnupg/S.gpg-agent.ssh
+        # Connect via socket if available
+        ControlMaster  auto
+        ControlPath    ~/.ssh/%r@%h:%p.sock
+        # Keep connection alive for 60 seconds
+        ControlPersist 60
+    '';
+    knownHosts = {
+      borg-0 = {
+        extraHostNames = ["borg-0.msng.to" "10.69.80.10"];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICJQRqBGMXLfQoZqBCHZHC5HBRE+yO9/mimTwiQ5NIcH";
+      };
+      borg-2 = {
+        extraHostNames = ["borg-2.msng.to" "10.69.80.12"];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILgmviYKe+aSetP4R/UR9OjvaU2mHtT9cXyu8qF4u5q";
+      };
+      borg-3 = {
+        extraHostNames = ["borg-3.msng.to" "10.69.80.13"];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5lrKIDPYLNaxDpeI/4gN6iOt7Fmx/Ky+Nt53Ogl0c1";
+      };
+    };
+  };
+
   # This expression "borrowed" from https://github.com/nix-darwin/nix-darwin/blob/0d71cbf88d63e938b37b85b3bf8b238bcf7b39b9/modules/nix/default.nix#L247
   environment.etc."nix/machines" = mkIf (cfg.buildMachines != []) {
     text =
