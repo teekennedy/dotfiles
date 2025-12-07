@@ -51,6 +51,9 @@ yabai -m signal --add event=window_created action='yabai -m query --windows --wi
 # Float the Fantastical menubar popup
 yabai -m rule --add app="^Fantastical Helper$" manage=off
 
+# Float all Finder windows
+yabai -m rule --add app="^Finder$" manage=off
+
 # Float every Godot window except the godot editor itself
 yabai -m rule --add app="^Godot$" title!="Godot Engine" manage=off #layer=above
 
