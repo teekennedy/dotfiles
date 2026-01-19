@@ -39,14 +39,10 @@ in {
         User tkennedy
         HostName %h.msng.to
         IdentitiesOnly yes
-        IdentityFile   /Users/${config.system.primaryUser}/.ssh/gpg-ed25519.pub
-        # Use GPG agent instead of SSH agent
-        IdentityAgent /Users/${config.system.primaryUser}/.gnupg/S.gpg-agent.ssh
-        # Connect via socket if available
-        ControlMaster  auto
-        ControlPath    ~/.ssh/%r@%h:%p.sock
-        # Keep connection alive for 60 seconds
-        ControlPersist 60
+        # This public key is synced from dotfiles
+        # The corresponding private key is managed via KeePassXC database
+        IdentityFile /Users/${config.system.primaryUser}/.ssh/homelab_ed25519.pub
+        IdentityAgent /Users/${config.system.primaryUser}/.ssh/ssh-agent-auth-sock
     '';
     knownHosts = {
       borg-0 = {

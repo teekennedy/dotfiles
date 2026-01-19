@@ -47,6 +47,9 @@ elif command_exists terraform; then
     alias tf='terraform'
 fi
 
+# Create mdig, a dig alias that queries mDNS
+alias mdig='dig -p 5353 @224.0.0.251'
+
 # Alias tg to terragrunt if available
 command_exists terraform && alias tg='terragrunt'
 

@@ -289,42 +289,6 @@ Fall back to ecdsa-sk:
 Now every time you use the key, you'll be prompted to confirm user presence by
 tapping your YubiKey.
 
-#### U2F keys and ssh-agent
-
-MacOS's default ssh-agent doesn't support ed25519-sk or ecdsa-sk keys. While
-adding U2F keys to your ssh-agent doesn't offer much in terms of convenience
-(you still have to tap your YubiKey on every use), having the agent error out
-every time you try to use a U2F key is quite annoying.
-
-If you want to use your U2F SSH keys with the ssh-agent, you'll need to use a
-newer version of ssh-agent from homebrew. MacOS versions with System Integrity
-Protection do not make this easy, as the default ssh-agent is a system-level
-service that cannot be disabled or overwritten since it lives under the
-protected `/System` directory.
-
-To use homebrew's ssh-agent, one has to resort to the somewhat hacky solution
-of starting homebrew's ssh-agent with a new unix socket path, and then forcibly
-symlink the system-provided unix socket to the path used by homebrew. Roughly
-equivalent to running the following at login:
-
-```bash
-# Create a temporary path for homebrew's socket
-HOMEBREW_SSH_AUTH_SOCK=$(mktemp -dt ssh-agent)/auth-sock
-
-# Overwrite the system-generated socket with a symlink to homebrew's
-sudo ln -sf $HOMEBREW_SSH_AUTH_SOCK $SSH_AUTH_SOCK
-
-# Start homebrew's ssh-agent using the new path
-eval "$(ssh-agent -a $HOMEBREW_SSH_AUTH_SOCK)"
-```
-
-To ensure this works across all applications that use ssh-agent, it's best to
-run these steps before login, via your own launch agent. I've made a script to
-setup such an agent [./setup_homebrew_ssh_agent.sh].
-
-See [Kirill Kuznetsov's post] for a detailed background on the motivation
-behind setting up such a launch agent.
-
 ### Adding a TOTP 2FA Account
 
 - Setup 2FA on website
