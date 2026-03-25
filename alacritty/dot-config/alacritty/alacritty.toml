@@ -45,3 +45,10 @@ dynamic_title = true
 [window.padding]
 x = 0
 y = 1
+
+# Shift + Enter sends carriage return
+# (added for use with coding agents)
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b\r"
