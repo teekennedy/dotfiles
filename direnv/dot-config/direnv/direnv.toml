@@ -1,0 +1,8 @@
+[global]
+# Load .envrc with set -euo pipefail
+strict_env = true
+# Disable direnv warn timeout (default 5 seconds).
+# Devenv shell can take awhile to build the first time, this is expected.
+warn_timeout = 0
+# Don't output diff of environment variables on direnv load
+hide_env_diff = true

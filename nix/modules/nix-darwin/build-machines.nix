@@ -42,7 +42,7 @@ in {
         # This public key is synced from dotfiles
         # The corresponding private key is managed via KeePassXC database
         IdentityFile /Users/${config.system.primaryUser}/.ssh/homelab_ed25519.pub
-        IdentityAgent /Users/${config.system.primaryUser}/.ssh/ssh-agent-auth-sock
+        IdentityAgent /Users/${config.system.primaryUser}/.ssh/agents/s.user
     '';
     knownHosts = {
       borg-0 = {

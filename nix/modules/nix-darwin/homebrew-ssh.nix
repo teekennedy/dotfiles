@@ -12,9 +12,11 @@ in {
           if [ -z "$SSH_AUTH_SOCK" ]; then
             exit 1
           fi
-          NEW_SOCK=/Users/${config.system.primaryUser}/.ssh/ssh-agent-auth-sock
+          SOCK_DIR=/Users/${config.system.primaryUser}/.ssh/agents
+          NEW_SOCK="$SOCK_DIR/s.user"
+          mkdir -p "$SOCK_DIR"
           /bin/ln -sf "$NEW_SOCK" "$SSH_AUTH_SOCK"
-          exec ${config.homebrew.brewPrefix}/bin/ssh-agent -D -a "$NEW_SOCK"
+          exec ${config.homebrew.brewPrefix}/ssh-agent -D -a "$NEW_SOCK"
         ''
       ];
       RunAtLoad = true;
