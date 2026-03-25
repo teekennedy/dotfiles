@@ -16,7 +16,7 @@ in {
           NEW_SOCK="$SOCK_DIR/s.user"
           mkdir -p "$SOCK_DIR"
           /bin/ln -sf "$NEW_SOCK" "$SSH_AUTH_SOCK"
-          exec ${config.homebrew.brewPrefix}/ssh-agent -D -a "$NEW_SOCK"
+          exec ${config.homebrew.prefix}/bin/ssh-agent -D -a "$NEW_SOCK"
         ''
       ];
       RunAtLoad = true;

@@ -6,7 +6,7 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nix.settings.trusted-users = [config.system.primaryUser];
 
-  determinate-nix.customSettings = {
+  determinateNix.customSettings = {
     # use all cores in parallel evaluation
     # NB: this is a determinate-nix specific option
     eval-cores = 0;
