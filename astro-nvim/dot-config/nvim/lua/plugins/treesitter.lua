@@ -1,20 +1,16 @@
 -- Customize Treesitter
--- https://github.com/nvim-treesitter/nvim-treesitter
+-- In AstroNvim v6, treesitter is configured through AstroCore
+-- nvim-treesitter is now only used for parser downloads
 
 ---@type LazySpec
 return {
-	"nvim-treesitter/nvim-treesitter",
-	opts = {
-		-- Disable broken treesitter indent rules for yaml
-		-- https://github.com/nvim-treesitter/nvim-treesitter/issues/5653
-		indent = {
-			disable = { "yaml" },
-		},
-		ensure_installed = {
-			"jsonnet",
-			"lua",
-			"vim",
-			-- add more arguments for adding more treesitter parsers
-		},
-	},
+  "AstroNvim/astrocore",
+  opts = {
+    treesitter = {
+      ensure_installed = {
+        "jsonnet",
+        -- add more arguments for adding more treesitter parsers
+      },
+    },
+  },
 }

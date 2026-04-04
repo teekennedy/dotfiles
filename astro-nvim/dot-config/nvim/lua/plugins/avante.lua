@@ -47,6 +47,15 @@ return {
         },
         ft = { "markdown", "Avante" },
       },
+      {
+        -- Ensure treesitter parsers required by render-markdown are installed
+        "AstroNvim/astrocore",
+        opts = {
+          treesitter = {
+            ensure_installed = { "markdown", "markdown_inline" },
+          },
+        },
+      },
     },
   },
 }

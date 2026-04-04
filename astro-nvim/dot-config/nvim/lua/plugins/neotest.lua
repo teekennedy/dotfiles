@@ -40,8 +40,6 @@ return {
     },
   },
 
-  -- Disable Neodev in favor of LazyDev
-  { "folke/neodev.nvim",       enabled = false },
   {
     "nvim-neotest/neotest",
     ft = { "go", "rust", "python", "lua" },

@@ -14,12 +14,6 @@ return {
 	-- Support for 'sandwiching' text.
 	"machakann/vim-sandwich",
 
-	-- Show function signature while you type
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "BufRead",
-	},
-
 	-- Disable better escape because I don't use jj or jk as mappings to exit insert mode
 	{ "max397574/better-escape.nvim", enabled = false },
 }
