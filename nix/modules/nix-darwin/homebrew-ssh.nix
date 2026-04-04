@@ -15,10 +15,12 @@ in {
           SOCK_DIR=/Users/${config.system.primaryUser}/.ssh/agents
           NEW_SOCK="$SOCK_DIR/s.user"
           mkdir -p "$SOCK_DIR"
+          rm -f "$NEW_SOCK"
           /bin/ln -sf "$NEW_SOCK" "$SSH_AUTH_SOCK"
           exec ${config.homebrew.prefix}/bin/ssh-agent -D -a "$NEW_SOCK"
         ''
       ];
+      KeepAlive = true;
       RunAtLoad = true;
     };
   };
