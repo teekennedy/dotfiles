@@ -6,6 +6,37 @@ return {
 	{ import = "astrocommunity.pack.helm" },
 	{ import = "astrocommunity.pack.json" },
 	{ import = "astrocommunity.pack.markdown" },
+	{
+		-- Make sure to set this up properly if you have lazy=true
+		"MeanderingProgrammer/render-markdown.nvim",
+		-- Default options: https://github.com/MeanderingProgrammer/render-markdown.nvim#setup
+		opts = {
+			-- defaults to trying to render markdown blocks in any filetype
+			file_types = { "markdown" },
+			completions = { lsp = { enabled = true } },
+		},
+		-- lazy load on markdown
+		ft = { "markdown" },
+		dependencies = {
+			{ "nvim-mini/mini.icons", version = "*" },
+			{
+				-- Ensure treesitter parsers required by render-markdown are installed
+				"AstroNvim/astrocore",
+				opts = {
+					treesitter = {
+						ensure_installed = {
+							"markdown",
+							"markdown_inline",
+							-- Parsers below are optional
+							"html",
+							"latex",
+							"yaml", -- to render YAML frontmatter metadata
+						},
+					},
+				},
+			},
+		},
+	},
 	{ import = "astrocommunity.pack.python" },
 	{ import = "astrocommunity.pack.terraform" },
 	{
