@@ -31,6 +31,13 @@ in {
       maxJobs = 1;
       speedFactor = 1;
     }
+    {
+      hostName = "borg-1";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 4;
+      speedFactor = 4;
+    }
   ];
 
   programs.ssh = {
@@ -56,6 +63,10 @@ in {
       borg-3 = {
         extraHostNames = ["borg-3.msng.to" "10.69.80.13"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5lrKIDPYLNaxDpeI/4gN6iOt7Fmx/Ky+Nt53Ogl0c1";
+      };
+      borg-1 = {
+        extraHostNames = ["borg-1.msng.to" "10.69.80.11"];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTLislLa9iVm6UXRGtrWoOrPXxcxpc89GBHPnHAtdJn";
       };
     };
   };
