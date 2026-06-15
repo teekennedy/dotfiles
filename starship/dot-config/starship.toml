@@ -18,7 +18,6 @@ $golang\
 $nodejs\
 $python\
 [](fg:color_blue bg:color_bg3)\
-$nix_shell\
 [](fg:color_bg3 bg:color_bg1)\
 $cmd_duration\
 [ ](fg:color_bg1)\
@@ -27,7 +26,7 @@ $line_break$character"""
 palette = 'gruvbox_dark'
 
 [nix_shell]
-format = '[[ $symbol devenv ](fg:color_fg0 bg:color_bg3)]($style)'
+format = '[ $symbol $state ]($style)'
 symbol = ""
 style = "fg:color_fg0 bg:color_bg3"
 heuristic = true
