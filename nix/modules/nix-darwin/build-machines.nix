@@ -11,20 +11,6 @@ in {
   nix.distributedBuilds = true;
   nix.buildMachines = [
     {
-      hostName = "borg-3";
-      system = "x86_64-linux";
-      protocol = "ssh-ng";
-      maxJobs = 2;
-      speedFactor = 2;
-    }
-    {
-      hostName = "borg-2";
-      system = "x86_64-linux";
-      protocol = "ssh-ng";
-      maxJobs = 4;
-      speedFactor = 4;
-    }
-    {
       hostName = "borg-0";
       system = "x86_64-linux";
       protocol = "ssh-ng";
@@ -37,6 +23,20 @@ in {
       protocol = "ssh-ng";
       maxJobs = 4;
       speedFactor = 4;
+    }
+    {
+      hostName = "borg-2";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 4;
+      speedFactor = 4;
+    }
+    {
+      hostName = "borg-3";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 2;
+      speedFactor = 2;
     }
   ];
 
@@ -56,6 +56,10 @@ in {
         extraHostNames = ["borg-0.msng.to" "10.69.80.10"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICJQRqBGMXLfQoZqBCHZHC5HBRE+yO9/mimTwiQ5NIcH";
       };
+      borg-1 = {
+        extraHostNames = ["borg-1.msng.to" "10.69.80.11"];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTLislLa9iVm6UXRGtrWoOrPXxcxpc89GBHPnHAtdJn";
+      };
       borg-2 = {
         extraHostNames = ["borg-2.msng.to" "10.69.80.12"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILgmviYKe+aSetP4R/UR9OjvaU2mHtT9cXyu8qF4u5q";
@@ -63,10 +67,6 @@ in {
       borg-3 = {
         extraHostNames = ["borg-3.msng.to" "10.69.80.13"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5lrKIDPYLNaxDpeI/4gN6iOt7Fmx/Ky+Nt53Ogl0c1";
-      };
-      borg-1 = {
-        extraHostNames = ["borg-1.msng.to" "10.69.80.11"];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTLislLa9iVm6UXRGtrWoOrPXxcxpc89GBHPnHAtdJn";
       };
     };
   };

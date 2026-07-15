@@ -6,6 +6,7 @@ return {
 	{ import = "astrocommunity.pack.helm" },
 	{ import = "astrocommunity.pack.json" },
 	{ import = "astrocommunity.pack.markdown" },
+	{ import = "astrocommunity.pack.nix" },
 	{
 		-- Make sure to set this up properly if you have lazy=true
 		"MeanderingProgrammer/render-markdown.nvim",
