@@ -5,10 +5,7 @@
     determinate.url = "github:DeterminateSystems/determinate";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mcp-hub.url = "github:ravitemer/mcp-hub";
-    mcp-server-git.url = "./nix/packages/mcp-server-git";
-    mcp-server-git.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "github:numtide/nixpkgs-unfree/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,8 +14,6 @@
     determinate,
     nix-darwin,
     home-manager,
-    mcp-hub,
-    mcp-server-git,
     self,
     ...
   }: {
@@ -30,13 +25,14 @@
         home-manager.darwinModules.home-manager
         ./nix/modules/nix-darwin/default.nix
         ./nix/modules/dev/default.nix
-        ./nix/modules/components/mcp-hub.nix
         ({lib, ...}: {
           system.configurationRevision = self.rev or self.dirtyRev or null;
-          home-manager.extraSpecialArgs = {
-            inherit mcp-hub mcp-server-git;
-          };
           system.primaryUser = lib.mkDefault "tkennedy";
+
+          # Configuration state version at time of initial install.
+          # Used to maintain backwards compatibility.
+          system.stateVersion = 5;
+          home-manager.users.primary = {...}: {home.stateVersion = "25.05";};
         })
       ];
     };
