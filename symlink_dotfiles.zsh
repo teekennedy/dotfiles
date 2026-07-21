@@ -4,7 +4,8 @@ set -euo pipefail
 
 # Source directory that script lives in
 # Snippet from https://stackoverflow.com/a/246128/1209614
-script_dir=$( cd "$(dirname "$0")" ; pwd -P )
+STOR_DIR=$( cd "$(dirname "$0")" ; pwd -P )
+export STOW_DIR
 
 # GNU stow is my preferred method of symlinking dotfiles.
 # All dotfiles outside of the dotfiles subdirectory are managed with stow.
@@ -56,7 +57,7 @@ run_stow() {
         echo -e "${yellow}[STW]${reset} (Re)stowing dotfiles under ${blue}$subdir${reset} subdirectory"
         # Ignore warning about absolute/relative mismatch as we aren't using absolute symlinks
         # See https://github.com/aspiers/stow/issues/65 for context.
-        stow --no-folding --dotfiles --restow --target "$target" --dir "$script_dir" "$subdir" \
+        stow --no-folding --dotfiles --restow --target "$target" "$subdir" \
             2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
     else
         echo -e "${red}[ERR]${reset} Not stowing files under $blue$subdir$reset: Target dir ${blue}$target${reset} is not writable."
