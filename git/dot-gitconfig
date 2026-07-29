@@ -1,7 +1,7 @@
 [user]
 	email = terrance@missingtoken.net
 	name = Terrance Kennedy
-	signingkey = F87EB4B68CB111C1 # Yubikey backed signing subkey, expires 2026-07-25
+	signingkey = F87EB4B68CB111C1 # Yubikey backed signing subkey, expires 2028-07-29
 
 [push]
 	# Configures the behavior of running `git push` without a branch name. A
