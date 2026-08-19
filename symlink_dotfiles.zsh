@@ -13,6 +13,7 @@ declare -A stow_dirs
 stow_dirs=(
     [alacritty]="$HOME"
     [astro-nvim]="$HOME"
+    [claude]="$HOME"
     [direnv]="$HOME"
     [dotfiles]="$HOME"
     [atuin]="$HOME"
