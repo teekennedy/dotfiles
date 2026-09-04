@@ -20,6 +20,7 @@ stow_dirs=(
     [git]="$HOME"
     [gpg]="$HOME"
     [nix]="$HOME"
+    [opentofu]="$HOME"
     [skhd]="$HOME"
     [starship]="$HOME"
     [tig]="$HOME"
