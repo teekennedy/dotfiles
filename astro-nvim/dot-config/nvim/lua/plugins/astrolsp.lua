@@ -41,11 +41,12 @@ return {
 		---@diagnostic disable: missing-fields
 		config = {
 			-- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-			terraformls = {
-				-- terraform-ls logs to stderr by default and causes ~/.local/state/nvim/lsp.log to reach multiple gigabytes in size.
+			tofu_ls = {
+				-- tofu-ls is a fork of terraform-ls and inherits its stderr logging, which causes
+				-- ~/.local/state/nvim/lsp.log to reach multiple gigabytes in size.
 				-- Disable logs until a better solution can be found.
 				-- See https://github.com/hashicorp/terraform-ls/issues/1271
-				cmd = { "terraform-ls", "serve", "-log-file", "/dev/null" },
+				cmd = { "tofu-ls", "serve", "-log-file", "/dev/null" },
 			},
 		},
 		-- customize how language servers are attached
@@ -56,6 +57,10 @@ return {
 
 			-- the key is the server that is being setup
 			-- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
+
+			-- terraform-ls is not OpenTofu-aware (it reports `encryption` blocks as
+			-- "Unexpected block"); tofu_ls handles .tf files instead.
+			terraformls = false,
 			-- pyright = function(server) vim.lsp.enable(server) end -- or a custom handler function can be passed
 		},
 		-- Configure buffer local auto commands to add when attaching a language server

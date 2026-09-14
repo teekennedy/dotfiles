@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./devenv.nix ./lang-nix.nix];
+  imports = [./devenv.nix ./lang-nix.nix ./opentofu.nix];
 }
