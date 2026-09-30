@@ -26,5 +26,18 @@
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
   "agentPushNotifEnabled": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(kubectl get:*)",
+      "Bash(kubectl describe:*)",
+      "Bash(kubectl logs:*)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(tofu apply:*)",
+      "Bash(kubectl delete:*)"
+    ]
+  },
   "voiceEnabled": true
 }

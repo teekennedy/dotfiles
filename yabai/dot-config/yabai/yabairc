@@ -46,7 +46,7 @@ yabai -m config window_gap 06
 
 # Float all windows that are not resizeable
 # https://github.com/koekeishiya/yabai/issues/924#issuecomment-859727411
-yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" == false and .\"is-floating\" == false" && yabai -m window $YABAI_WINDOW_ID --toggle float'
+yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" == false and .\"is-floating\" == false and .app != \"Bear\"" && yabai -m window $YABAI_WINDOW_ID --toggle float'
 
 # Float the Fantastical menubar popup
 yabai -m rule --add app="^Fantastical Helper$" manage=off
