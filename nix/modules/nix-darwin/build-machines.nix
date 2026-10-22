@@ -16,6 +16,7 @@ in {
       protocol = "ssh-ng";
       maxJobs = 1;
       speedFactor = 1;
+      supportedFeatures = ["bemchmark" "big-parallel" "kvm" "nixos-test"];
     }
     {
       hostName = "borg-1";
@@ -23,6 +24,7 @@ in {
       protocol = "ssh-ng";
       maxJobs = 4;
       speedFactor = 4;
+      supportedFeatures = ["bemchmark" "big-parallel" "kvm" "nixos-test"];
     }
     {
       hostName = "borg-2";
@@ -30,6 +32,7 @@ in {
       protocol = "ssh-ng";
       maxJobs = 4;
       speedFactor = 4;
+      supportedFeatures = ["bemchmark" "big-parallel" "kvm" "nixos-test"];
     }
     {
       hostName = "borg-3";
@@ -37,6 +40,7 @@ in {
       protocol = "ssh-ng";
       maxJobs = 2;
       speedFactor = 2;
+      supportedFeatures = ["bemchmark" "big-parallel" "kvm" "nixos-test"];
     }
   ];
 
