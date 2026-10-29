@@ -4,4 +4,10 @@ set -euo pipefail
 
 # Returns the default branch used by the given remote (defaulting to origin)
 remote="${1:-origin}"
-basename "$(git rev-parse --abbrev-ref "$remote/HEAD")"
+if head_ref="$(git symbolic-ref --quiet --short "refs/remotes/$remote/HEAD" 2>/dev/null)"; then
+  # Strip only the remote prefix so branch names containing slashes survive
+  echo "${head_ref#"$remote"/}"
+else
+  # refs/remotes/<remote>/HEAD is only set on clone, so fall back to asking the remote
+  git ls-remote --symref "$remote" HEAD | sed -n 's|^ref: refs/heads/\(.*\)\tHEAD$|\1|p'
+fi

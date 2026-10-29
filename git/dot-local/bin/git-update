@@ -3,11 +3,27 @@
 set -euo pipefail
 
 # Fetches the latest changes from the given remote (defaulting to origin), updates the default branch, and deletes all local branches that have been merged
+# If the current branch has been merged, switches to the default branch before deleting it
 remote="${1:-origin}"
 default_branch="$(git default-branch "$remote")"
 current_branch="$(git current-branch)"
 git fetch "$remote" --quiet --prune --prune-tags
-git checkout --quiet "$default_branch" &&
-  git merge --ff-only "$remote/$default_branch" &&
-  git delete-merged "$remote" "$default_branch" "$current_branch"
-git checkout --quiet "$current_branch"
+
+# Fast-forward the default branch in place so the current branch is never disturbed
+default_worktree="$(git for-each-ref "refs/heads/$default_branch" --format='%(worktreepath)')"
+if [[ -n "$default_worktree" ]]; then
+  git -C "$default_worktree" merge --quiet --ff-only "$remote/$default_branch"
+else
+  git merge-base --is-ancestor "$default_branch" "$remote/$default_branch"
+  git update-ref "refs/heads/$default_branch" "$remote/$default_branch"
+fi
+
+# Captured rather than piped to grep, which would trip pipefail when it exits early
+merged="$(git show-merged "$remote" "$default_branch")"
+if [[ "$current_branch" != "$default_branch" && "$current_branch" != "HEAD" ]] &&
+  grep -qxF "$current_branch" <<<"$merged"; then
+  git checkout --quiet "$default_branch" ||
+    echo "Could not switch to '$default_branch'; leaving merged branch '$current_branch' in place" >&2
+fi
+
+git delete-merged "$remote" "$default_branch"

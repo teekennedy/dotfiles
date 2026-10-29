@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Lists local branches whose changes are already in the given branch (defaulting to the default branch).
+# Detects branches that were merged or fast-forwarded (only once their upstream is gone, so new branches survive),
+# rebased (every commit has an equivalent patch upstream), or squash-merged (merging the branch into the default
+# branch would change nothing).
+# Branches checked out in a worktree are included; callers decide what to do with them.
+remote="${1:-origin}"
+default_branch="${2:-$(git default-branch "$remote")}"
+default_tree="$(git rev-parse "$default_branch^{tree}")"
+
+is_merged() {
+  local branch="$1" merged_tree
+
+  # Merged or fast-forwarded. A freshly created branch looks identical, so also require that its upstream was
+  # deleted on the remote (e.g. after the PR merged); branches that were never pushed are left alone.
+  if git merge-base --is-ancestor "$branch" "$default_branch"; then
+    [[ "$(git for-each-ref "refs/heads/$branch" --format='%(upstream:track)')" == "[gone]" ]]
+    return
+  fi
+
+  # Rebased: `git cherry` marks commits with an equivalent upstream patch as "-" and the rest as "+"
+  [[ -z "$(git cherry "$default_branch" "$branch" | { grep '^+' || true; })" ]] && return 0
+
+  # Squashed: a trial merge that yields the default branch's own tree adds nothing
+  merged_tree="$(git merge-tree --write-tree "$default_branch" "$branch" 2>/dev/null || true)"
+  [[ "${merged_tree%%$'\n'*}" == "$default_tree" ]]
+}
+
+while read -r branch; do
+  [[ "$branch" == "$default_branch" ]] && continue
+  if is_merged "$branch"; then
+    echo "$branch"
+  fi
+done < <(git for-each-ref refs/heads/ --format='%(refname:short)')

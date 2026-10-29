@@ -22,4 +22,12 @@ if command_exists git; then
   alias gaca='git add -u && git commit --amend --no-edit'
   # gcap = Git Add modified Commit Amend Push
   alias gacap='git add -u && git commit --amend --no-edit && git push --force'
+  # gw = Git Worktree
+  alias gw='git worktree'
+  # gwa = Git Worktree Add
+  alias gwa='git worktree add'
+  # gwl = Git Worktree List
+  alias gwl='git worktree list'
+  # gwr = Git Worktree Remove
+  alias gwr='git worktree remove'
 fi
