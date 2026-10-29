@@ -42,5 +42,6 @@
       "Bash(kubectl delete:*)"
     ]
   },
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "idleCompaction": false
 }
