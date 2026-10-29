@@ -15,7 +15,6 @@ return {
 			cmp = true,
 			diagnostics = {
 				virtual_text = true,
-				virtual_lines = true,
 			},
 			highlighturl = true,
 			notifications = true,
