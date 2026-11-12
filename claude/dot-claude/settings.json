@@ -28,6 +28,7 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
+  "idleCompaction": false,
   "agentPushNotifEnabled": true,
   "autoMode": {
     "allow": [
@@ -42,6 +43,5 @@
       "Bash(kubectl delete:*)"
     ]
   },
-  "voiceEnabled": true,
-  "idleCompaction": false
+  "voiceEnabled": true
 }
