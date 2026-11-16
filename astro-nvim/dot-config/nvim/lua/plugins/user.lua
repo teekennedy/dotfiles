@@ -3,12 +3,28 @@ return {
 
 	-- Discord Rich Presence for NeoVim
 	{
-		"andweeb/presence.nvim",
-		config = function()
-			require("presence").setup({
-				blacklist = { "/?[^p][^r][^o][^j][^e][^c][^t][^s]/?" },
-			})
-		end,
+		"vyfor/cord.nvim",
+		build = ":Cord update fetch",
+		opts = {
+			editor = {
+				tooltip = "Hyperextensible Vim-based text editor",
+			},
+			display = {
+				theme = "minecraft",
+				swap_fields = true,
+			},
+			idle = {
+				enabled = true,
+				-- Clear the presence after 5 minutes without activity (ms)
+				timeout = 300000,
+				show_status = false,
+			},
+			advanced = {
+				workspace = {
+					limit_to_cwd = true,
+				},
+			},
+		},
 	},
 
 	-- Support for 'sandwiching' text.
